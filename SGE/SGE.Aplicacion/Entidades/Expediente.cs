@@ -9,7 +9,7 @@ namespace SGE.Aplicacion.Entidades
 {
     public class Expediente
     {
-        public int IDTramite { get; set; }
+        public int IDExpediente { get; set; }
         public string? Caratula { get; set; }
         public DateTime? FechaHoraCreacion { get; set; }
         public DateTime? FechaHoraModificacion { get; set; }
@@ -20,6 +20,6 @@ namespace SGE.Aplicacion.Entidades
         {
 
         }
-
+        
      }
 }

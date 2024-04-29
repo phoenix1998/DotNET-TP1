@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Excepciones
 {
-    internal class AutorizacionException
+    public class AutorizacionException : Exception
     {
+        public AutorizacionException() : base()
+        {
+            Console.WriteLine("El Usuario no tiene el permiso");
+        }
     }
 }

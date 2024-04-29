@@ -1,34 +1,82 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\",
+  "WorkspaceRootPath": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\stanley\\documents\\repos\\dotnet\\sge\\sge.aplicacion\\interfaces\\itramiterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\interfaces\\itramiterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CE60BAB1-C8F2-47B7-8522-07BA5FE860D2}|SGE.Repositorios\\SGE.Repositorios.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.repositorios\\repositorioexpediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE60BAB1-C8F2-47B7-8522-07BA5FE860D2}|SGE.Repositorios\\SGE.Repositorios.csproj|solutionrelative:sge.repositorios\\repositorioexpediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\stanley\\documents\\repos\\dotnet\\sge\\sge.aplicacion\\casosdeuso\\casodeusoexpedienteconsulatodos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\casosdeuso\\casodeusoexpedienteconsulatodos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\entidades\\expediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\entidades\\expediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\stanley\\documents\\repos\\dotnet\\sge\\sge.aplicacion\\casosdeuso\\casodeusoexpedienteconsultaporid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\casosdeuso\\casodeusoexpedienteconsultaporid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\enumerativos\\permiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\enumerativos\\permiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\stanley\\documents\\repos\\dotnet\\sge\\sge.aplicacion\\casosdeuso\\casodeusotramiteconsultaporetiqueta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\casosdeuso\\casodeusotramiteconsultaporetiqueta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\enumerativos\\estadoexpediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\enumerativos\\estadoexpediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\stanley\\documents\\repos\\dotnet\\sge\\sge.aplicacion\\interfaces\\iexpedienterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\interfaces\\iexpedienterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\interfaces\\iexpedienterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\stanley\\documents\\repos\\dotnet\\sge\\sge.aplicacion\\entidades\\tramite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\interfaces\\itramiterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\interfaces\\itramiterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\entidades\\tramite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\entidades\\tramite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\stanley\\documents\\repos\\dotnet\\sge\\sge.aplicacion\\entidades\\expediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\entidades\\expediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\interfaces\\iservicioautorizacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\interfaces\\iservicioautorizacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\servicios\\servicioactualizacionprovisorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\servicios\\servicioactualizacionprovisorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\excepciones\\autorizacionexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\excepciones\\autorizacionexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\casosdeuso\\casodeusoexpedientemodificacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\casosdeuso\\casodeusoexpedientemodificacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\casosdeuso\\casodeusoexpedientebaja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\casosdeuso\\casodeusoexpedientebaja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\casosdeuso\\casodeusoexpedientealta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\casosdeuso\\casodeusoexpedientealta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\casosdeuso\\casodeusoexpedienteconsulatodos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\casosdeuso\\casodeusoexpedienteconsulatodos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\casosdeuso\\casodeusoexpedienteconsultaporid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\casosdeuso\\casodeusoexpedienteconsultaporid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\excepciones\\validacionexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\excepciones\\validacionexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\validadores\\tramitevalidador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\validadores\\tramitevalidador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\validadores\\expedientevalidador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\validadores\\expedientevalidador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|c:\\users\\estan\\onedrive\\documentos\\cosas facu\\dotnet\\dotnet-tp1\\sge\\sge.aplicacion\\casosdeuso\\casodeusotramiteconsultaporetiqueta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6351018C-3C24-49D8-B031-375D744559F5}|SGE.Aplicacion\\SGE.Aplicacion.csproj|solutionrelative:sge.aplicacion\\casosdeuso\\casodeusotramiteconsultaporetiqueta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,84 +86,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CasoDeUsoExpedienteConsultaPorId.cs",
-              "DocumentMoniker": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsultaPorId.cs",
-              "RelativeDocumentMoniker": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsultaPorId.cs",
-              "ToolTip": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsultaPorId.cs",
-              "RelativeToolTip": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsultaPorId.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-27T20:59:37.388Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CasoDeUsoExpedienteConsulaTodos.cs",
-              "DocumentMoniker": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsulaTodos.cs",
-              "RelativeDocumentMoniker": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsulaTodos.cs",
-              "ToolTip": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsulaTodos.cs",
-              "RelativeToolTip": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsulaTodos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-27T20:58:03.118Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CasoDeUsoTramiteConsultaPorEtiqueta.cs",
-              "DocumentMoniker": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoTramiteConsultaPorEtiqueta.cs",
-              "RelativeDocumentMoniker": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoTramiteConsultaPorEtiqueta.cs",
-              "ToolTip": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoTramiteConsultaPorEtiqueta.cs",
-              "RelativeToolTip": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoTramiteConsultaPorEtiqueta.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-27T20:57:42.864Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IExpedienteRepositorio.cs",
-              "DocumentMoniker": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\Interfaces\\IExpedienteRepositorio.cs",
-              "RelativeDocumentMoniker": "SGE.Aplicacion\\Interfaces\\IExpedienteRepositorio.cs",
-              "ToolTip": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\Interfaces\\IExpedienteRepositorio.cs",
-              "RelativeToolTip": "SGE.Aplicacion\\Interfaces\\IExpedienteRepositorio.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-27T20:56:43.654Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ITramiteRepositorio.cs",
-              "DocumentMoniker": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\Interfaces\\ITramiteRepositorio.cs",
-              "RelativeDocumentMoniker": "SGE.Aplicacion\\Interfaces\\ITramiteRepositorio.cs",
-              "ToolTip": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\Interfaces\\ITramiteRepositorio.cs",
-              "RelativeToolTip": "SGE.Aplicacion\\Interfaces\\ITramiteRepositorio.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-27T20:56:28.648Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "RepositorioExpediente.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Repositorios\\RepositorioExpediente.cs",
+              "RelativeDocumentMoniker": "SGE.Repositorios\\RepositorioExpediente.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Repositorios\\RepositorioExpediente.cs",
+              "RelativeToolTip": "SGE.Repositorios\\RepositorioExpediente.cs",
+              "ViewState": "AQIAAI0AAAAAAAAAAAAAAKcAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:09:58.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IExpedienteRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Interfaces\\IExpedienteRepositorio.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Interfaces\\IExpedienteRepositorio.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Interfaces\\IExpedienteRepositorio.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Interfaces\\IExpedienteRepositorio.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T20:56:43.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Tramite.cs",
-              "DocumentMoniker": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\Entidades\\Tramite.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Entidades\\Tramite.cs",
               "RelativeDocumentMoniker": "SGE.Aplicacion\\Entidades\\Tramite.cs",
-              "ToolTip": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\Entidades\\Tramite.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Entidades\\Tramite.cs",
               "RelativeToolTip": "SGE.Aplicacion\\Entidades\\Tramite.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -124,15 +133,210 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
+              "Title": "ITramiteRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Interfaces\\ITramiteRepositorio.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Interfaces\\ITramiteRepositorio.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Interfaces\\ITramiteRepositorio.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Interfaces\\ITramiteRepositorio.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T20:56:28.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Expediente.cs",
-              "DocumentMoniker": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\Entidades\\Expediente.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Entidades\\Expediente.cs",
               "RelativeDocumentMoniker": "SGE.Aplicacion\\Entidades\\Expediente.cs",
-              "ToolTip": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\Entidades\\Expediente.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Entidades\\Expediente.cs",
               "RelativeToolTip": "SGE.Aplicacion\\Entidades\\Expediente.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-27T20:54:27.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EstadoExpediente.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Enumerativos\\EstadoExpediente.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Enumerativos\\EstadoExpediente.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Enumerativos\\EstadoExpediente.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Enumerativos\\EstadoExpediente.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:14:03.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Permiso.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Enumerativos\\Permiso.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Enumerativos\\Permiso.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Enumerativos\\Permiso.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Enumerativos\\Permiso.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:29:27.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IServicioAutorizacion.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Interfaces\\IServicioAutorizacion.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Interfaces\\IServicioAutorizacion.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Interfaces\\IServicioAutorizacion.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Interfaces\\IServicioAutorizacion.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:32:04.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ServicioActualizacionProvisorio.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Servicios\\ServicioActualizacionProvisorio.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Servicios\\ServicioActualizacionProvisorio.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Servicios\\ServicioActualizacionProvisorio.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Servicios\\ServicioActualizacionProvisorio.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T17:42:56.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AutorizacionException.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Excepciones\\AutorizacionException.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Excepciones\\AutorizacionException.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Excepciones\\AutorizacionException.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Excepciones\\AutorizacionException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:33:26.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CasoDeUsoExpedienteModificacion.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteModificacion.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteModificacion.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteModificacion.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteModificacion.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:58:21.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CasoDeUsoExpedienteBaja.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteBaja.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteBaja.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteBaja.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteBaja.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:25:54.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CasoDeUsoExpedienteAlta.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteAlta.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteAlta.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteAlta.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteAlta.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:24:48.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CasoDeUsoExpedienteConsulaTodos.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsulaTodos.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsulaTodos.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsulaTodos.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsulaTodos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T20:58:03.118Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CasoDeUsoExpedienteConsultaPorId.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsultaPorId.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsultaPorId.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsultaPorId.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoExpedienteConsultaPorId.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T20:59:37.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ValidacionException.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Excepciones\\ValidacionException.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Excepciones\\ValidacionException.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Excepciones\\ValidacionException.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Excepciones\\ValidacionException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:33:43.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "TramiteValidador.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Validadores\\TramiteValidador.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Validadores\\TramiteValidador.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Validadores\\TramiteValidador.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Validadores\\TramiteValidador.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:28:52.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ExpedienteValidador.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Validadores\\ExpedienteValidador.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\Validadores\\ExpedienteValidador.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\Validadores\\ExpedienteValidador.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\Validadores\\ExpedienteValidador.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:22:53.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CasoDeUsoTramiteConsultaPorEtiqueta.cs",
+              "DocumentMoniker": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoTramiteConsultaPorEtiqueta.cs",
+              "RelativeDocumentMoniker": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoTramiteConsultaPorEtiqueta.cs",
+              "ToolTip": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\CasosDeUso\\CasoDeUsoTramiteConsultaPorEtiqueta.cs",
+              "RelativeToolTip": "SGE.Aplicacion\\CasosDeUso\\CasoDeUsoTramiteConsultaPorEtiqueta.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T20:57:42.864Z",
               "EditorCaption": ""
             }
           ]

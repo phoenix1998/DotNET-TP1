@@ -1,28 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {}
+    "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
+    "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj",
+        "projectUniqueName": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj",
         "projectName": "SGE.Aplicacion",
-        "projectPath": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj",
-        "packagesPath": "C:\\Users\\Stanley\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Stanley\\Documents\\Repos\\DotNET\\SGE\\SGE.Aplicacion\\obj\\",
+        "projectPath": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj",
+        "packagesPath": "C:\\Users\\estan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Stanley\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\estan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
         },
         "frameworks": {
           "net8.0": {
