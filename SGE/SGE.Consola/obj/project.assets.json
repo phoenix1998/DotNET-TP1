@@ -46,36 +46,37 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\estan\\.nuget\\packages\\": {}
+    "C:\\Users\\Stanley\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Consola\\SGE.Consola.csproj",
+      "projectUniqueName": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Consola\\SGE.Consola.csproj",
       "projectName": "SGE.Consola",
-      "projectPath": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Consola\\SGE.Consola.csproj",
-      "packagesPath": "C:\\Users\\estan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Consola\\obj\\",
+      "projectPath": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Consola\\SGE.Consola.csproj",
+      "packagesPath": "C:\\Users\\Stanley\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Consola\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\estan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Stanley\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
-              "projectPath": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj"
+            "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj": {
+              "projectPath": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Aplicacion\\SGE.Aplicacion.csproj"
             },
-            "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Repositorios\\SGE.Repositorios.csproj": {
-              "projectPath": "C:\\Users\\estan\\OneDrive\\Documentos\\COSAS FACU\\DotNet\\DotNET-TP1\\SGE\\SGE.Repositorios\\SGE.Repositorios.csproj"
+            "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Repositorios\\SGE.Repositorios.csproj": {
+              "projectPath": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Repositorios\\SGE.Repositorios.csproj"
             }
           }
         }

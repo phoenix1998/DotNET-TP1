@@ -11,7 +11,7 @@ namespace SGE.Aplicacion.Excepciones
         //public string MensajeError = "La entidad no cumple con los requisitos";
         public ValidacionException() : base() 
         {
-            Console.WriteLine("La entidad no cunple con los requisitos");
+            Console.WriteLine("La entidad no cumple con los requisitos");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SGE.Aplicacion.Entidades;
+using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace SGE.Aplicacion.CasosDeUso
 {
     public class CasoDeUsoTramiteBaja(ITramiteRepositorio repo)
     {
-        public void BajaTramite(int id, int idU)
+        public void BajaTramite(int id, int idU, Permiso permiso)
         {
-            repo.BajaTramite(id, idU);
+            repo.BajaTramite(id, idU, permiso);
         }
     }
 }

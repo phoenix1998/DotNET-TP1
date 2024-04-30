@@ -10,10 +10,10 @@ namespace SGE.Aplicacion.Entidades
     public class Tramite
     {
         public int IDTramite { get; set; }
-        public int expID {get;}
+        public int expID { get; set; }
         public EtiquetaTramite EtiquetaTramite { get; set; }
         public string? Contenido { get; set; }
-        public DateTime FechaHoraCrecion { get; set; }
+        public DateTime FechaHoraCreacion { get; set; }
         public DateTime FechaHoraMod {  get; set; }
         public int IDUser { get; set; }
 

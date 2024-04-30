@@ -5,83 +5,100 @@ using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
+using SGE.Aplicacion.Servicios;
 using SGE.Aplicacion.Validadores;
+using System.IO;
 using System.Security.Cryptography;
 
-public class RepositorioExpediente : IExpedienteRepositorio, IServicioAutorizacion
+public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador EV) : IExpedienteRepositorio
 {
     readonly string _nombreArch = "Expediente.txt";
-    public bool PoseeElPermiso(int idUser, Permiso permiso)
+    /*public bool PoseeElPermiso(int idUser, Permiso permiso)
     {
         if ((idUser > 0) && ((int)permiso == idUser))
         {
             return true;
         }
         else return false;
-    }
+    }*/
+   // IServicioAutorizacion SA;
     public void AltaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
         try
         {
-            if (PoseeElPermiso(idUser, permisoUser))
+            if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
             {
                 using var sw = new StreamWriter(_nombreArch, true);
                 sw.WriteLine(exp.IDExpediente);
                 sw.WriteLine(exp.Caratula);
-                sw.WriteLine(exp.FechaHoraCreacion);
-                sw.WriteLine(exp.FechaHoraModificacion);
+                sw.WriteLine(DateTime.Now.Date);
+                sw.WriteLine(DateTime.Now.Date);
                 sw.WriteLine(exp.IDUser);
                 sw.WriteLine(exp.Estado);
             }
         }
         catch
         {
-            throw new AutorizacionException();
+            Console.WriteLine("Hubo una excepcion");
         }
+
     }
     public void BajaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
+         
+        //var lines = File.ReadAllLines(_nombreArch);
+        //using var sw = new StreamWriter(_nombreArch, true);
+        
+
         try
         {
-            if (PoseeElPermiso(idUser, permisoUser))
+            if (SA.PoseeElPermiso(idUser, permisoUser))
             {
-                using var sw = new StreamWriter(_nombreArch, true);
-                var lines = File.ReadAllLines(_nombreArch);
-            
-                int i = 0;
-                //int eID = exp.IDExpediente;
-                while((i < lines.Length) && (int.Parse(lines[i]) != exp.IDExpediente)){
-                    i += 6;
+                using var sr = new StreamReader(_nombreArch, true);
+                string str = sr.ReadToEnd();
+                File.Delete(_nombreArch);
+                using (StreamWriter swriter = new StreamWriter(_nombreArch, false))
+                {
+                   
+                    swriter.Write(str);
+                }
+
+                //int i = lines.Length-6;
+                /*while((i >= lines.Length) && (int.Parse(lines[i]) != exp.IDExpediente)){
+                    i -= 6;
                     
                 }
                 
                 if (int.Parse(lines[i]) == exp.IDExpediente)
                 {
-                    sw.WriteLine(lines[i]);
-                    sw.WriteLine(lines[i + 1]);
-                    sw.WriteLine(lines[i + 2]);
-                    sw.WriteLine(lines[i + 3]);
-                    sw.WriteLine(lines[i + 4]);
-                    sw.WriteLine(lines[i + 5]);
+                    Console.WriteLine("Entre al if");
+                    sw.WriteLine();
+                    sw.WriteLine();
+                    sw.WriteLine();
+                    sw.WriteLine();
+                    sw.WriteLine();
+                    sw.WriteLine();
+                    //sw.WriteLine("final")
                     Console.WriteLine("El Expediente fue eliminado");
                 }
                 else
                 {
                     Console.WriteLine("No se encontro el expediente");
-                }
+                }*/
             }
         }
-        catch
+        catch(Exception e)
         {
-            throw new AutorizacionException();
+            //throw new AutorizacionException();
+            Console.WriteLine(e.Message);
         }
-
+        
     }
     public void ModificacionExpediente(int ID,Expediente exp, int idUser, Permiso permisoUser )
     {
         try
         {
-            if (PoseeElPermiso(idUser, permisoUser))
+            if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
             {
                 using var sw = new StreamWriter(_nombreArch, true);
                 var lines = File.ReadAllLines(_nombreArch);
@@ -99,7 +116,7 @@ public class RepositorioExpediente : IExpedienteRepositorio, IServicioAutorizaci
                     sw.WriteLine(exp.IDExpediente);
                     sw.WriteLine(exp.Caratula);
                     sw.WriteLine(exp.FechaHoraCreacion);
-                    sw.WriteLine(exp.FechaHoraModificacion);
+                    sw.WriteLine(DateTime.Now.Date);
                     sw.WriteLine(exp.IDUser);
                     sw.WriteLine(exp.Estado);
                     Console.WriteLine("El Expediente fue modificado");
@@ -112,30 +129,39 @@ public class RepositorioExpediente : IExpedienteRepositorio, IServicioAutorizaci
         }
         catch
         {
-            throw new AutorizacionException();
+            Console.WriteLine("Hubo una excepcion");
         }
     }
     public Expediente ConsultaPorID(int id)
     {
         using var sr = new StreamReader(_nombreArch);
+        var lines = File.ReadAllLines(_nombreArch);
         try
         {
-            while (!sr.EndOfStream)
+            int eID;
+            int i = 0;
+            while (i < lines.Length)
             {
-                int pID = int.Parse(sr.ReadLine());
-                string pName = sr.ReadLine();
-                double pPrice = double.Parse(sr.ReadLine());
+                eID = int.Parse(lines[i]);
 
-                if (pID == id)
+                if (eID == id)
                 {
                     return new Expediente
                     {
-                        ID = pID,
-                        Nombre = pName,
-                        Precio = pPrice
+                        IDExpediente = eID,
+                        Caratula = (lines[i + 1]),
+                        FechaHoraCreacion = DateTime.Parse(lines[i+2]),
+                        FechaHoraModificacion = DateTime.Parse(lines[i+3]),
+                        IDUser = int.Parse(lines[i+4]),
+                        Estado = (EstadoExpediente)int.Parse(lines[i+5])
                     };
                 }
+                else
+                {
+                    i += 6;
+                }
             }
+            return null;
         }
         catch 
         {
@@ -164,12 +190,14 @@ public class RepositorioExpediente : IExpedienteRepositorio, IServicioAutorizaci
                     aux.Estado = (EstadoExpediente) int.Parse(lines[i + 5]);
                     listaAux.Add(aux);
                 }
+                i += 6;
             }
             return listaAux;
         }
         catch
         {
-            throw new Exception();
+            Console.WriteLine("Hubo una excepcion");
+            return listaAux;
         }
     }
 }

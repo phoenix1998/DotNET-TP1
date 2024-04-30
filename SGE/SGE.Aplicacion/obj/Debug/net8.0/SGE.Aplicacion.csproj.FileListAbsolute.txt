@@ -1,0 +1,12 @@
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\bin\Debug\net8.0\SGE.Aplicacion.deps.json
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\bin\Debug\net8.0\SGE.Aplicacion.dll
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\bin\Debug\net8.0\SGE.Aplicacion.pdb
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.AssemblyInfoInputs.cache
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.AssemblyInfo.cs
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.csproj.CoreCompileInputs.cache
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.sourcelink.json
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.dll
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\obj\Debug\net8.0\refint\SGE.Aplicacion.dll
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\obj\Debug\net8.0\SGE.Aplicacion.pdb
+C:\Users\Stanley\Documents\DotNET-TP1\SGE\SGE.Aplicacion\obj\Debug\net8.0\ref\SGE.Aplicacion.dll

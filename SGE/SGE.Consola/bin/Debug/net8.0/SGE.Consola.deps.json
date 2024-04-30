@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "SGE.Consola/1.0.0": {
+        "dependencies": {
+          "SGE.Aplicacion": "1.0.0",
+          "SGE.Repositorios": "1.0.0"
+        },
+        "runtime": {
+          "SGE.Consola.dll": {}
+        }
+      },
+      "SGE.Aplicacion/1.0.0": {
+        "runtime": {
+          "SGE.Aplicacion.dll": {}
+        }
+      },
+      "SGE.Repositorios/1.0.0": {
+        "dependencies": {
+          "SGE.Aplicacion": "1.0.0"
+        },
+        "runtime": {
+          "SGE.Repositorios.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SGE.Consola/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SGE.Aplicacion/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SGE.Repositorios/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
