@@ -20,5 +20,11 @@ namespace SGE.Aplicacion.Entidades
         public Tramite()
         {
         }
+
+        public override string ToString()
+        {
+            string info = $"ID Tramite: {IDTramite} \nID Expediente: {expID} \nEtiqueta: {EtiquetaTramite} \nContenido: {Contenido} \nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraMod}";
+            return info;
+        }
     }
 }

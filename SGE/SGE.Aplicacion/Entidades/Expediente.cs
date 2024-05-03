@@ -20,6 +20,10 @@ namespace SGE.Aplicacion.Entidades
         {
 
         }
-        
-     }
+        public override string ToString()
+        {
+            string info = $"ID Expediente: {IDExpediente} \n Caratula: {Caratula}\nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraModificacion}\n`ID de usuario: {IDUser} \n Estado del expediente: {Estado}";
+            return info;
+        }
+    }
 }
