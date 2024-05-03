@@ -31,8 +31,8 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
                 using var sw = new StreamWriter(_nombreArch, true);
                 sw.WriteLine(exp.IDExpediente);
                 sw.WriteLine(exp.Caratula);
-                sw.WriteLine(DateTime.Now.Date);
-                sw.WriteLine(DateTime.Now.Date);
+                sw.WriteLine(DateTime.Now);
+                sw.WriteLine(DateTime.Now);
                 sw.WriteLine(exp.IDUser);
                 sw.WriteLine(exp.Estado);
             }
@@ -52,40 +52,33 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
 
         try
         {
+            
             if (SA.PoseeElPermiso(idUser, permisoUser))
             {
-                
+
                 var lines = File.ReadAllLines(_nombreArch);
-                
-                int i = lines.Length-6;
-                while((i >= 0) && (int.Parse(lines[i]) != exp.IDExpediente)){
-                    i -= 6;
-                    
-                }
-                
-                if (int.Parse(lines[i]) == exp.IDExpediente)
+                using var sw = new StreamWriter(_nombreArch, false);
+
+                for (int i = 0; i < lines.Length; i += 6)
                 {
-                    using var sw = new StreamWriter(_nombreArch, true);
-                    Console.WriteLine("Entre al if");
-                    sw.WriteLine();
-                    sw.WriteLine();
-                    sw.WriteLine();
-                    sw.WriteLine();
-                    sw.WriteLine();
-                    sw.WriteLine();
-                    //sw.WriteLine("final")
-                    Console.WriteLine("El Expediente fue eliminado");
+                    if (int.Parse(lines[i]) != exp.IDExpediente)
+                    {
+                        sw.WriteLine(lines[i]);
+                        sw.WriteLine(lines[i+1]);
+                        sw.WriteLine(lines[i+2]);
+                        sw.WriteLine(lines[i+3]);
+                        sw.WriteLine(lines[i+4]);
+                        sw.WriteLine(lines[i+5]);
+                        Console.WriteLine("Se dio de baja el expediente " + exp.IDExpediente);
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("No se encontro el expediente");
-                }
+
             }
         }
-        catch()
+        catch
         {
             throw new AutorizacionException();
-            //Console.WriteLine(e.Message);
+            
         }
         
     }
@@ -95,36 +88,36 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
         {
             if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
             {
-                using var sw = new StreamWriter(_nombreArch, true);
                 var lines = File.ReadAllLines(_nombreArch);
+                using var sw = new StreamWriter(_nombreArch, false);
 
-                int i = 0;
-                //int eID = exp.IDExpediente;
-                while ((i < lines.Length) && (int.Parse(lines[i]) != exp.IDExpediente))
+                for (int i = 0; i < lines.Length; i += 6)
                 {
-                    i += 6;
-
-                }
-
-                if (int.Parse(lines[i]) == ID)
-                {
-                    sw.WriteLine(exp.IDExpediente);
-                    sw.WriteLine(exp.Caratula);
-                    sw.WriteLine(exp.FechaHoraCreacion);
-                    sw.WriteLine(DateTime.Now.Date);
-                    sw.WriteLine(exp.IDUser);
-                    sw.WriteLine(exp.Estado);
-                    Console.WriteLine("El Expediente fue modificado");
-                }
-                else
-                {
-                    Console.WriteLine("No se encontro el expediente");
+                    if (int.Parse(lines[i]) != ID)
+                    {
+                        sw.WriteLine(lines[i]);
+                        sw.WriteLine(lines[i + 1]);
+                        sw.WriteLine(lines[i + 2]);
+                        sw.WriteLine(lines[i + 3]);
+                        sw.WriteLine(lines[i + 4]);
+                        sw.WriteLine(lines[i + 5]);
+                    }
+                    else
+                    {
+                        sw.WriteLine(exp.IDExpediente);
+                        sw.WriteLine(exp.Caratula);
+                        sw.WriteLine(exp.FechaHoraCreacion);
+                        sw.WriteLine(DateTime.Now.Date);
+                        sw.WriteLine(exp.IDUser);
+                        sw.WriteLine(exp.Estado);
+                        Console.WriteLine("El Expediente fue modificado");
+                    }
                 }
             }
         }
-        catch
+        catch (Exception e)
         {
-            Console.WriteLine("Hubo una excepcion");
+            Console.WriteLine(e.Message);
         }
     }
     public Expediente ConsultaPorID(int id)

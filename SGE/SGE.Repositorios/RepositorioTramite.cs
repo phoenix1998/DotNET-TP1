@@ -35,9 +35,10 @@ namespace SGE.Repositorios;
                     sw.WriteLine(tra.expID);
                     sw.WriteLine(tra.EtiquetaTramite);
                     sw.WriteLine(tra.Contenido);
-                    sw.WriteLine(DateTime.Now.Date);
-                    sw.WriteLine(DateTime.Now.Date);
+                    sw.WriteLine(DateTime.Now);
+                    sw.WriteLine(DateTime.Now);
                     sw.WriteLine(tra.IDUser);
+                    sw.WriteLine("-----------");
 
                 }
             }
@@ -48,22 +49,18 @@ namespace SGE.Repositorios;
         }
         public void BajaTramite(int ID, int IDUser, Permiso permisoUser)
         {
-            try
+        try
+        {
+
+            if (SA.PoseeElPermiso(IDUser, permisoUser))
             {
-                if (SA.PoseeElPermiso(IDUser, permisoUser))
+                bool ok = false;
+                var lines = File.ReadAllLines(_nombreArch);
+                using var sw = new StreamWriter(_nombreArch, false);
+
+                for (int i = 0; i < lines.Length; i += 8)
                 {
-                    using var sw = new StreamWriter(_nombreArch, true);
-                    var lines = File.ReadAllLines(_nombreArch);
-
-                    int i = 0;
-                    //int eID = exp.IDExpediente;
-                    while ((i < lines.Length) && (int.Parse(lines[i]) != ID))
-                    {
-                        i += 7;
-
-                    }
-
-                    if (int.Parse(lines[i]) == ID)
+                    if (int.Parse(lines[i]) != ID)
                     {
                         sw.WriteLine(lines[i]);
                         sw.WriteLine(lines[i + 1]);
@@ -72,50 +69,61 @@ namespace SGE.Repositorios;
                         sw.WriteLine(lines[i + 4]);
                         sw.WriteLine(lines[i + 5]);
                         sw.WriteLine(lines[i + 6]);
-                    Console.WriteLine("El tramite fue eliminado");
-                    }
-                    else
-                    {
-                        Console.WriteLine("No se encontro el tramite");
+                        sw.WriteLine(lines[i + 7]);
+                        ok = true;
                     }
                 }
-            }
-            catch
-            {
-                throw new AutorizacionException();
+                if (!ok)
+                {
+                    Console.WriteLine("Se dio de baja el tramite " + ID);
+                }
+
+                else
+                {
+                    Console.WriteLine($"El tramite {ID} no se encontro");
+
+                }
+
             }
         }
+        catch
+        {
+            throw new AutorizacionException();
+        }
+    }
     public void ModificarTramite(int ID, Tramite tramite, int IDUser, Permiso permisoUser)
     {
         try
         {
             if (SA.PoseeElPermiso(IDUser, permisoUser) && (TV.Validador(tramite)))
             {
-                using var sw = new StreamWriter(_nombreArch, true);
                 var lines = File.ReadAllLines(_nombreArch);
+                using var sw = new StreamWriter(_nombreArch, false);
 
-                int i = 0;
-                //int eID = exp.IDExpediente;
-                while ((i < lines.Length) && (int.Parse(lines[i]) != ID))
+                for (int i = 0; i < lines.Length; i += 8)
                 {
-                    i += 7;
-
-                }
-
-                if (int.Parse(lines[i]) == ID)
-                {
-                    sw.WriteLine(tramite.IDTramite);
-                    sw.WriteLine(tramite.expID);
-                    sw.WriteLine(tramite.EtiquetaTramite);
-                    sw.WriteLine(tramite.Contenido);
-                    sw.WriteLine(tramite.FechaHoraCreacion);
-                    sw.WriteLine(DateTime.Now.Date);
-                    sw.WriteLine(tramite.IDUser);
-                    Console.WriteLine("El tramite fue modificado");
-                }
-                else
-                {
-                    Console.WriteLine("No se encontro el tramite");
+                    if (int.Parse(lines[i]) != ID)
+                    {
+                        sw.WriteLine(lines[i]);
+                        sw.WriteLine(lines[i + 1]);
+                        sw.WriteLine(lines[i + 2]);
+                        sw.WriteLine(lines[i + 3]);
+                        sw.WriteLine(lines[i + 4]);
+                        sw.WriteLine(lines[i + 5]);
+                        sw.WriteLine(lines[i + 6]);
+                        sw.WriteLine(lines[i + 7]);
+                    }
+                    else
+                    {
+                        sw.WriteLine(tramite.IDTramite);
+                        sw.WriteLine(tramite.expID);
+                        sw.WriteLine(tramite.EtiquetaTramite);
+                        sw.WriteLine(tramite.Contenido);
+                        sw.WriteLine(tramite.FechaHoraCreacion);
+                        sw.WriteLine(DateTime.Now);
+                        sw.WriteLine(tramite.IDUser);
+                        Console.WriteLine($"El tramite {ID} fue modificado");
+                    }
                 }
             }
         }
@@ -133,7 +141,7 @@ namespace SGE.Repositorios;
         {
             while (i < lines.Length)
             {
-                if ((EtiquetaTramite)int.Parse(lines[i + 2]) == etiqueta)
+                if (lines[i + 2] == etiqueta.ToString())
                 {
                     Tramite aux = new Tramite();
                     aux.IDTramite = int.Parse(lines[i]);
@@ -142,16 +150,16 @@ namespace SGE.Repositorios;
                     aux.Contenido = lines[i + 3];
                     aux.FechaHoraCreacion = DateTime.Parse(lines[i + 4]);
                     aux.FechaHoraMod = DateTime.Parse(lines[i + 5]);
-                    aux.IDUser = int.Parse(lines[i + 4]);
+                    aux.IDUser = int.Parse(lines[i + 6]);
                     listaAux.Add(aux);
                 }
-                i += 7;
+                i += 8;
             }
             return listaAux;
         }
-        catch
+        catch (Exception ex)
         {
-            Console.WriteLine("Hubo una excepcion");
+            Console.WriteLine(ex.Message);
             return listaAux;
         }
     }

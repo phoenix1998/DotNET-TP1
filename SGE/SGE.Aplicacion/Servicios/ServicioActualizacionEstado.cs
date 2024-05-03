@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Servicios
 {
-    internal class ServicioActualizacionEstado
+    public class ServicioActualizacionEstado
     {
     }
 }
