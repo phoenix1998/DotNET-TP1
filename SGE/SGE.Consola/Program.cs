@@ -16,5 +16,5 @@ exp.IDExpediente = 1;
 exp.Caratula = "Es una caratula";
 exp.IDUser = 1;
 exp.Estado = (EstadoExpediente)1;
-//expRepo.AltaExpediente(exp, (Permiso)3, 1);
+expRepo.AltaExpediente(exp, (Permiso)3, 1);
 expRepo.BajaExpediente(exp, (Permiso)1, exp.IDUser);

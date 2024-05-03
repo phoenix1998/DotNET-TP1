@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CE60BAB1-C8F2-47B7-8522-07BA5FE860D2}|SGE.Repositorios\\SGE.Repositorios.csproj|c:\\users\\stanley\\documents\\dotnet-tp1\\sge\\sge.repositorios\\repositorioexpediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE60BAB1-C8F2-47B7-8522-07BA5FE860D2}|SGE.Repositorios\\SGE.Repositorios.csproj|solutionrelative:sge.repositorios\\repositorioexpediente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{895F2007-0C4B-454F-8E55-C9B9FCD26ED4}|SGE.Consola\\SGE.Consola.csproj|c:\\users\\stanley\\documents\\dotnet-tp1\\sge\\sge.consola\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{895F2007-0C4B-454F-8E55-C9B9FCD26ED4}|SGE.Consola\\SGE.Consola.csproj|solutionrelative:sge.consola\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +18,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Consola\\Program.cs",
+              "RelativeDocumentMoniker": "SGE.Consola\\Program.cs",
+              "ToolTip": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Consola\\Program.cs",
+              "RelativeToolTip": "SGE.Consola\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T22:55:49.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RepositorioExpediente.cs",
+              "DocumentMoniker": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Repositorios\\RepositorioExpediente.cs",
+              "RelativeDocumentMoniker": "SGE.Repositorios\\RepositorioExpediente.cs",
+              "ToolTip": "C:\\Users\\Stanley\\Documents\\DotNET-TP1\\SGE\\SGE.Repositorios\\RepositorioExpediente.cs",
+              "RelativeToolTip": "SGE.Repositorios\\RepositorioExpediente.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAowDsAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T22:55:45.766Z",
+              "EditorCaption": ""
             }
           ]
         }

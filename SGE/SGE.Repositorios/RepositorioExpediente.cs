@@ -54,23 +54,18 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
         {
             if (SA.PoseeElPermiso(idUser, permisoUser))
             {
-                using var sr = new StreamReader(_nombreArch, true);
-                string str = sr.ReadToEnd();
-                File.Delete(_nombreArch);
-                using (StreamWriter swriter = new StreamWriter(_nombreArch, false))
-                {
-                   
-                    swriter.Write(str);
-                }
-
-                //int i = lines.Length-6;
-                /*while((i >= lines.Length) && (int.Parse(lines[i]) != exp.IDExpediente)){
+                
+                var lines = File.ReadAllLines(_nombreArch);
+                
+                int i = lines.Length-6;
+                while((i >= 0) && (int.Parse(lines[i]) != exp.IDExpediente)){
                     i -= 6;
                     
                 }
                 
                 if (int.Parse(lines[i]) == exp.IDExpediente)
                 {
+                    using var sw = new StreamWriter(_nombreArch, true);
                     Console.WriteLine("Entre al if");
                     sw.WriteLine();
                     sw.WriteLine();
@@ -84,13 +79,13 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
                 else
                 {
                     Console.WriteLine("No se encontro el expediente");
-                }*/
+                }
             }
         }
-        catch(Exception e)
+        catch()
         {
-            //throw new AutorizacionException();
-            Console.WriteLine(e.Message);
+            throw new AutorizacionException();
+            //Console.WriteLine(e.Message);
         }
         
     }
