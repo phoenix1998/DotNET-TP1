@@ -8,6 +8,7 @@ using SGE.Aplicacion.Interfaces;
 using SGE.Aplicacion.Servicios;
 using SGE.Aplicacion.Validadores;
 using System.IO;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
 
 public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador EV) : IExpedienteRepositorio
@@ -134,16 +135,25 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
 
                 if (eID == id)
                 {
-                    return new Expediente
+                    EstadoExpediente estado;
+                    if (Enum.TryParse(lines[i + 5], out estado))
                     {
-                        IDExpediente = eID,
-                        Caratula = (lines[i + 1]),
-                        FechaHoraCreacion = DateTime.Parse(lines[i+2]),
-                        FechaHoraModificacion = DateTime.Parse(lines[i+3]),
-                        IDUser = int.Parse(lines[i+4]),
-                        Estado = (EstadoExpediente)int.Parse(lines[i+5])
-                    };
+                        return new Expediente
+                        {
+                            IDExpediente = eID,
+                            Caratula = (lines[i + 1]),
+                            FechaHoraCreacion = DateTime.Parse(lines[i + 2]),
+                            FechaHoraModificacion = DateTime.Parse(lines[i + 3]),
+                            IDUser = int.Parse(lines[i + 4]),
+                            Estado = estado,
+                        };
+                    }
+                    else
+                    {
+                        Console.WriteLine("El estado es invalido");
+                    }
                 }
+            
                 else
                 {
                     i += 6;
@@ -176,7 +186,15 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
                     aux.FechaHoraModificacion = DateTime.Now;
                     aux.IDUser = int.Parse(lines[i + 4]);
                     //Console.WriteLine(lines[i + 5].ToString());
-                    aux.Estado = (EstadoExpediente)int.Parse(lines[i+5]);
+                    EstadoExpediente estado;
+                    if (Enum.TryParse(lines[i + 5], out estado))
+                    {
+                        aux.Estado = estado;
+                    }
+                    else
+                    {
+                        Console.WriteLine("El estado es invalido");
+                    }
                     listaAux.Add(aux);
                 }
                 i += 6;
