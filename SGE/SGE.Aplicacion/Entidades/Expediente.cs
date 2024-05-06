@@ -18,7 +18,7 @@ namespace SGE.Aplicacion.Entidades
         
         public override string ToString()
         {
-            string info = $"ID Expediente: {IDExpediente} \n Caratula: {Caratula}\nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraModificacion}\n`ID de usuario: {IDUser} \n Estado del expediente: {Estado}";
+            string info = $"ID Expediente: {IDExpediente} \nCaratula: {Caratula}\nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraModificacion}\nID de usuario: {IDUser} \nEstado del expediente: {Estado}";
             return info;
         }
     }
