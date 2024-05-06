@@ -165,32 +165,36 @@ namespace SGE.Repositorios;
     }
     public List<Tramite> ConsultaPorIDexpediente(int id)
     {
-        using var sr = new StreamReader(_nombreArch);
+        //using var sr = new StreamReader(_nombreArch);
         var lines = File.ReadAllLines(_nombreArch);
         List<Tramite> listaAux = new List<Tramite>();
         try
         {
             int eID;
-            int i = 0;
-            while (i < lines.Length)
+            for (int i = 0;i < lines.Length; i+=8)
             {
-                eID = int.Parse(lines[i+1]);
+                eID = int.Parse(lines[i + 1]);
+                
 
                 if (eID == id)
                 {
                     Tramite aux = new Tramite();
                     aux.IDTramite = int.Parse(lines[i]);
                     aux.expID = eID;
-                    aux.EtiquetaTramite = (EtiquetaTramite)int.Parse(lines[i + 2]);
-                    aux.Contenido = lines[i + 4];
-                    aux.FechaHoraCreacion = DateTime.Parse(lines[i + 5]);
-                    aux.FechaHoraMod = DateTime.Parse(lines[i + 6]);
-                    aux.IDUser = int.Parse(lines[i + 7]);
+                    EtiquetaTramite etiqueta;
+                    if (Enum.TryParse(lines[i + 2], out etiqueta))
+                    {
+                        aux.EtiquetaTramite = etiqueta;
+                    }
+                    else
+                    {
+                        Console.WriteLine("La etiqueta es invalido");
+                    }
+                    aux.Contenido = lines[i + 3];
+                    aux.FechaHoraCreacion = DateTime.Parse(lines[i + 4]);
+                    aux.FechaHoraMod = DateTime.Parse(lines[i + 5]);
+                    aux.IDUser = int.Parse(lines[i + 6]);
                     listaAux.Add(aux);
-                }
-                else
-                {
-                    i += 8;
                 }
             }
             return listaAux;
@@ -198,7 +202,10 @@ namespace SGE.Repositorios;
         catch
         {
             throw new AutorizacionException();
+            return null;
         }
+        
+        
     }
 }
 
