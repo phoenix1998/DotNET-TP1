@@ -170,21 +170,22 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
                 if (lines[i] != "")
                 {
                     Expediente aux = new Expediente();
-                    aux.IDExpediente = int.Parse(lines[i + 5]);
+                    aux.IDExpediente = int.Parse(lines[i]);
                     aux.Caratula = lines[i + 1];
                     aux.FechaHoraCreacion = DateTime.Parse(lines[i + 2]);
-                    aux.FechaHoraModificacion = DateTime.Parse(lines[i + 3]);
+                    aux.FechaHoraModificacion = DateTime.Now;
                     aux.IDUser = int.Parse(lines[i + 4]);
-                    aux.Estado = (EstadoExpediente) int.Parse(lines[i + 5]);
+                    //Console.WriteLine(lines[i + 5].ToString());
+                    aux.Estado = (EstadoExpediente)int.Parse(lines[i+5]);
                     listaAux.Add(aux);
                 }
                 i += 6;
             }
             return listaAux;
         }
-        catch
+        catch(Exception e)
         {
-            Console.WriteLine("Hubo una excepcion");
+            Console.WriteLine(e.Message);
             return listaAux;
         }
     }
