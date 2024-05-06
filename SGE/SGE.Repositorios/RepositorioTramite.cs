@@ -163,5 +163,42 @@ namespace SGE.Repositorios;
             return listaAux;
         }
     }
+    public List<Tramite> ConsultaPorIDexpediente(int id)
+    {
+        using var sr = new StreamReader(_nombreArch);
+        var lines = File.ReadAllLines(_nombreArch);
+        List<Tramite> listaAux = new List<Tramite>();
+        try
+        {
+            int eID;
+            int i = 0;
+            while (i < lines.Length)
+            {
+                eID = int.Parse(lines[i+1]);
+
+                if (eID == id)
+                {
+                    Tramite aux = new Tramite();
+                    aux.IDTramite = int.Parse(lines[i]);
+                    aux.expID = eID;
+                    aux.EtiquetaTramite = (EtiquetaTramite)int.Parse(lines[i + 2]);
+                    aux.Contenido = lines[i + 4];
+                    aux.FechaHoraCreacion = DateTime.Parse(lines[i + 5]);
+                    aux.FechaHoraMod = DateTime.Parse(lines[i + 6]);
+                    aux.IDUser = int.Parse(lines[i + 7]);
+                    listaAux.Add(aux);
+                }
+                else
+                {
+                    i += 8;
+                }
+            }
+            return listaAux;
+        }
+        catch
+        {
+            throw new AutorizacionException();
+        }
+    }
 }
 
