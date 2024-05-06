@@ -14,5 +14,6 @@ namespace SGE.Aplicacion.Interfaces
         public void BajaTramite(int ID, int IDUser, Permiso permisoUser);
         public void ModificarTramite(int ID, Tramite tramite, int IDUser, Permiso permisoUser);
         public List<Tramite> ConsultaPorEtiqueta(EtiquetaTramite etiqueta);
+        public List<Tramite> ConsultaPorIDexpediente(int id);
     }
 }
