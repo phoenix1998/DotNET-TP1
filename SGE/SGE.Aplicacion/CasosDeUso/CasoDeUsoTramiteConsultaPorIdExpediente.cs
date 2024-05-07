@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoTramiteConsultaPorIdExpediente(ITramiteRepositorio repo) 
+    public class CasoDeUsoTramiteConsultaPorIdExpediente(ITramiteRepositorio repo, IExpedienteRepositorio expRepo) 
     {
-        public List<Tramite> Ejecutar(int ID)
+        public Expediente Ejecutar(int ID)
         {
-           //Expediente exp = repo.ConsultaPorID(ID);
-            return repo.ConsultaPorIDexpediente(ID);
+            Expediente exp = expRepo.ConsultaPorID(ID);
+            exp.Tramites = repo.ConsultaPorIDexpediente(ID);
+            return exp;
+            
         }
     }
 }

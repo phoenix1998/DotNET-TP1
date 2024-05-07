@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteConsulaTodos(IExpedienteRepositorio repo)
+    public class CasoDeUsoExpedienteConsultaTodos(IExpedienteRepositorio repo)
     {
         public List<Expediente> Ejecutar()
         {

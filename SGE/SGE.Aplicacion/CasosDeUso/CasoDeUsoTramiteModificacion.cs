@@ -11,7 +11,7 @@ namespace SGE.Aplicacion.CasosDeUso
 {
     public class CasoDeUsoTramiteModificacion(ITramiteRepositorio repo)
     {
-        public void Ejecitar(int id, Tramite tramite, int idU, Permiso permiso)
+        public void Ejecutar(int id, Tramite tramite, int idU, Permiso permiso)
         {
             repo.ModificarTramite(id, tramite, idU, permiso);
         }

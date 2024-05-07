@@ -10,15 +10,11 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteBaja(IExpedienteRepositorio repo, ExpedienteValidador validador) 
+    public class CasoDeUsoExpedienteBaja(IExpedienteRepositorio repo) 
     {
         public void Ejecutar(Expediente exp, Permiso permisoUser, int idUser)
         {
-            if (!validador.Validar(exp))
-            {
                 repo.BajaExpediente(exp, permisoUser, idUser);
-            }
-            
         }
     }
 }
