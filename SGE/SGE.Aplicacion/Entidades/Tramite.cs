@@ -23,7 +23,7 @@ namespace SGE.Aplicacion.Entidades
 
         public override string ToString()
         {
-            string info = $"ID Tramite: {IDTramite} \nID Expediente: {expID} \nEtiqueta: {EtiquetaTramite} \nContenido: {Contenido} \nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraMod}";
+            string info = $"ID Tramite: {IDTramite} \nID Expediente: {expID} \nEtiqueta: {EtiquetaTramite} \nContenido: {Contenido} \nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraMod}\n";
             return info;
         }
     }

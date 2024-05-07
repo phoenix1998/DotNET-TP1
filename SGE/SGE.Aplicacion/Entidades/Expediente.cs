@@ -15,10 +15,11 @@ namespace SGE.Aplicacion.Entidades
         public DateTime? FechaHoraModificacion { get; set; }
         public int IDUser { get; set; }
         public EstadoExpediente Estado { get; set; } /* 1: Recién iniciado,  2: Para resolver, 3: con resolucion, 4: en notificacion, 5: finalizado */
-        
+        public List<Tramite> Tramites { get; set; } = new List<Tramite>();
+
         public override string ToString()
         {
-            string info = $"ID Expediente: {IDExpediente} \nCaratula: {Caratula}\nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraModificacion}\nID de usuario: {IDUser} \nEstado del expediente: {Estado}";
+            string info = $"ID Expediente: {IDExpediente} \nCaratula: {Caratula}\nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraModificacion}\nID de usuario: {IDUser} \nEstado del expediente: {Estado}\n";
             return info;
         }
     }
