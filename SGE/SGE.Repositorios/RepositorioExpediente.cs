@@ -25,6 +25,7 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
    // IServicioAutorizacion SA;
     public void AltaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
+        
         try
         {
             if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
@@ -46,10 +47,6 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
     }
     public void BajaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
-         
-        //var lines = File.ReadAllLines(_nombreArch);
-        //using var sw = new StreamWriter(_nombreArch, true);
-        
 
         try
         {
@@ -108,7 +105,7 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
                         sw.WriteLine(exp.IDExpediente);
                         sw.WriteLine(exp.Caratula);
                         sw.WriteLine(exp.FechaHoraCreacion);
-                        sw.WriteLine(DateTime.Now.Date);
+                        sw.WriteLine(DateTime.Now);
                         sw.WriteLine(exp.IDUser);
                         sw.WriteLine(exp.Estado);
                         Console.WriteLine("El Expediente fue modificado");
@@ -136,6 +133,7 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
                 if (eID == id)
                 {
                     EstadoExpediente estado;
+
                     if (Enum.TryParse(lines[i + 5], out estado))
                     {
                         return new Expediente
@@ -152,20 +150,26 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
                     {
                         Console.WriteLine("El estado es invalido");
                     }
+
                 }
-            
+
                 else
                 {
                     i += 6;
                 }
+                return null;
             }
-            return null;
+
         }
-        catch 
+        catch
         {
             throw new AutorizacionException();
         }
+
+        // Si no se encontró ningún expediente con el ID especificado, devolvemos null.
+        return null;
     }
+
     public List<Expediente> ConsultarTodos()
     {
 
