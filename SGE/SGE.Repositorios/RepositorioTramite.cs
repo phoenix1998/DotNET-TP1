@@ -16,14 +16,7 @@ namespace SGE.Repositorios;
     public class RepositorioTramite(IServicioAutorizacion SA, TramiteValidador TV) : ITramiteRepositorio
     {
         readonly string _nombreArch = "Tramite.txt";
-        /*public bool PoseeElPermiso(int idUser, Permiso permiso)
-        {
-            if ((idUser > 0) && ((int)permiso == idUser))
-            {
-                return true;
-            }
-            else return false;
-        }*/
+        
         public void AltaTramite(Tramite tra, int IDUser, Permiso permisoUser)
         {
             try
@@ -51,7 +44,6 @@ namespace SGE.Repositorios;
         {
         try
         {
-
             if (SA.PoseeElPermiso(IDUser, permisoUser))
             {
                 bool ok = false;
@@ -77,13 +69,11 @@ namespace SGE.Repositorios;
                 {
                     Console.WriteLine("Se dio de baja el tramite " + ID);
                 }
-
                 else
                 {
                     Console.WriteLine($"El tramite {ID} no se encontro");
 
                 }
-
             }
         }
         catch
@@ -165,7 +155,7 @@ namespace SGE.Repositorios;
     }
     public List<Tramite> ConsultaPorIDexpediente(int id)
     {
-        //using var sr = new StreamReader(_nombreArch);
+        
         var lines = File.ReadAllLines(_nombreArch);
         List<Tramite> listaAux = new List<Tramite>();
         try
@@ -202,7 +192,7 @@ namespace SGE.Repositorios;
         catch
         {
             throw new AutorizacionException();
-            return null;
+            //return null;
         }
         
         
