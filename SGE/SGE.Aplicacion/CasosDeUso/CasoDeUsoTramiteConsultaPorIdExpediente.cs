@@ -15,7 +15,6 @@ namespace SGE.Aplicacion.CasosDeUso
             Expediente exp = expRepo.ConsultaPorID(ID);
             exp.Tramites = repo.ConsultaPorIDexpediente(ID);
             return exp;
-            
         }
     }
 }
