@@ -19,6 +19,17 @@ namespace SGE.Aplicacion.Entidades
 
         public Tramite()
         {
+            FechaHoraCreacion = DateTime.Now;
+        }
+        public Tramite(int idtramite, int expid, EtiquetaTramite etiqueta, string? content, int iduser)
+        {
+            IDTramite = idtramite;
+            expID = expid;
+            EtiquetaTramite = etiqueta;
+            Contenido = content;
+            IDUser = iduser;
+            FechaHoraCreacion = DateTime.Now;
+            FechaHoraMod = DateTime.Now;
         }
 
         public override string ToString()
