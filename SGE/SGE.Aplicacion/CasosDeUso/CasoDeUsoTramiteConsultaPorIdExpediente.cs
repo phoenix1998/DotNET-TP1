@@ -1,4 +1,5 @@
 ﻿using SGE.Aplicacion.Entidades;
+using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,18 @@ namespace SGE.Aplicacion.CasosDeUso
     {
         public Expediente Ejecutar(int ID)
         {
-            Expediente exp = expRepo.ConsultaPorID(ID);
-            exp.Tramites = repo.ConsultaPorIDexpediente(ID);
-            return exp;
+            try
+            {
+                Expediente exp = expRepo.ConsultaPorID(ID);
+                exp.Tramites = repo.ConsultaPorIDexpediente(ID);
+                return exp;
+            }
+            
+            catch
+            {
+                Console.WriteLine("Hubo una exepcion");
+            }
+            return null;
         }
     }
 }

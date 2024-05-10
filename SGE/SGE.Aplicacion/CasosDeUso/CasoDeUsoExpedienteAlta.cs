@@ -10,11 +10,22 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteAlta(IExpedienteRepositorio repo)
+    public class CasoDeUsoExpedienteAlta(IExpedienteRepositorio repo, IServicioAutorizacion SA, ExpedienteValidador EV)
     {
         public void Ejecutar(Expediente exp, Permiso permisoUser, int idUser)
         {
-                repo.AltaExpediente(exp, permisoUser, idUser);   
+            try
+            {
+                if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
+                {
+                    repo.AltaExpediente(exp, permisoUser, idUser);
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Hubo una exepción");
+            }
+                
         }
     }
 }

@@ -10,11 +10,28 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteBaja(IExpedienteRepositorio repo) 
+    public class CasoDeUsoExpedienteBaja(IExpedienteRepositorio repo, ITramiteRepositorio traRepo, IServicioAutorizacion SA)
     {
+
         public void Ejecutar(Expediente exp, Permiso permisoUser, int idUser)
         {
-                repo.BajaExpediente(exp, permisoUser, idUser);
+            try
+            {
+                if (SA.PoseeElPermiso(idUser, permisoUser))
+                {
+                    foreach (Tramite tra in exp.Tramites)
+                    {
+                        traRepo.BajaTramite(tra.IDTramite, idUser, permisoUser);
+                    }
+                    repo.BajaExpediente(exp, permisoUser, idUser);
+                }
+
+            }
+            catch
+            {
+                Console.WriteLine("Hubo una excepcion");
+            }
+
         }
     }
 }
