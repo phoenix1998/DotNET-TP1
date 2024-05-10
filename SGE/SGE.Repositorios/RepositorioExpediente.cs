@@ -14,6 +14,7 @@ using System.Security.Cryptography;
 public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador EV) : IExpedienteRepositorio
 {
     readonly string _nombreArch = "Expediente.txt";
+    int idExp = 1;
     /*public bool PoseeElPermiso(int idUser, Permiso permiso)
     {
         if ((idUser > 0) && ((int)permiso == idUser))
@@ -22,108 +23,90 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
         }
         else return false;
     }*/
-   // IServicioAutorizacion SA;
+    // IServicioAutorizacion SA;
     public void AltaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
-        
-        try
-        {
-            if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
-            {
-                using var sw = new StreamWriter(_nombreArch, true);
-                sw.WriteLine(exp.IDExpediente);
-                sw.WriteLine(exp.Caratula);
-                sw.WriteLine(DateTime.Now);
-                sw.WriteLine(DateTime.Now);
-                sw.WriteLine(exp.IDUser);
-                sw.WriteLine(exp.Estado);
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Hubo una excepcion");
-        }
+
+
+        using var sw = new StreamWriter(_nombreArch, true);
+        sw.WriteLine(exp.IDExpediente);
+        sw.WriteLine(exp.Caratula);
+        sw.WriteLine(DateTime.Now);
+        sw.WriteLine(DateTime.Now);
+        sw.WriteLine(exp.IDUser);
+        sw.WriteLine(exp.Estado);
+
 
     }
     public void BajaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
 
-        try
+
+        bool ok = false;
+        var lines = File.ReadAllLines(_nombreArch);
+        using var sw = new StreamWriter(_nombreArch, false);
+
+        for (int i = 0; i < lines.Length; i += 6)
         {
-            
-            if (SA.PoseeElPermiso(idUser, permisoUser))
+            if ((int.Parse(lines[i]) != exp.IDExpediente))
             {
-
-                var lines = File.ReadAllLines(_nombreArch);
-                using var sw = new StreamWriter(_nombreArch, false);
-
-                for (int i = 0; i < lines.Length; i += 6)
-                {
-                    if (int.Parse(lines[i]) != exp.IDExpediente)
-                    {
-                        sw.WriteLine(lines[i]);
-                        sw.WriteLine(lines[i+1]);
-                        sw.WriteLine(lines[i+2]);
-                        sw.WriteLine(lines[i+3]);
-                        sw.WriteLine(lines[i+4]);
-                        sw.WriteLine(lines[i+5]);
-                        Console.WriteLine("Se dio de baja el expediente " + exp.IDExpediente);
-                    }
-                }
-
+                sw.WriteLine(lines[i]);
+                sw.WriteLine(lines[i + 1]);
+                sw.WriteLine(lines[i + 2]);
+                sw.WriteLine(lines[i + 3]);
+                sw.WriteLine(lines[i + 4]);
+                sw.WriteLine(lines[i + 5]);
+                Console.WriteLine("Se dio de baja el expediente " + exp.IDExpediente);
+            }
+            else
+            {
+                ok = true;
             }
         }
-        catch
+        if (!ok)
         {
-            throw new AutorizacionException();
-            
+            throw new RepositorioException();
         }
-        
+
     }
-    public void ModificacionExpediente(int ID,Expediente exp, int idUser, Permiso permisoUser )
+
+
+
+    public void ModificacionExpediente(int ID, Expediente exp, int idUser, Permiso permisoUser)
     {
-        try
-        {
-            if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
-            {
-                var lines = File.ReadAllLines(_nombreArch);
-                using var sw = new StreamWriter(_nombreArch, false);
 
-                for (int i = 0; i < lines.Length; i += 6)
-                {
-                    if (int.Parse(lines[i]) != ID)
-                    {
-                        sw.WriteLine(lines[i]);
-                        sw.WriteLine(lines[i + 1]);
-                        sw.WriteLine(lines[i + 2]);
-                        sw.WriteLine(lines[i + 3]);
-                        sw.WriteLine(lines[i + 4]);
-                        sw.WriteLine(lines[i + 5]);
-                    }
-                    else
-                    {
-                        sw.WriteLine(exp.IDExpediente);
-                        sw.WriteLine(exp.Caratula);
-                        sw.WriteLine(exp.FechaHoraCreacion);
-                        sw.WriteLine(DateTime.Now);
-                        sw.WriteLine(exp.IDUser);
-                        sw.WriteLine(exp.Estado);
-                        Console.WriteLine("El Expediente fue modificado");
-                    }
-                }
+        var lines = File.ReadAllLines(_nombreArch);
+        using var sw = new StreamWriter(_nombreArch, false);
+
+        for (int i = 0; i < lines.Length; i += 6)
+        {
+            if (int.Parse(lines[i]) != ID)
+            {
+                sw.WriteLine(lines[i]);
+                sw.WriteLine(lines[i + 1]);
+                sw.WriteLine(lines[i + 2]);
+                sw.WriteLine(lines[i + 3]);
+                sw.WriteLine(lines[i + 4]);
+                sw.WriteLine(lines[i + 5]);
+            }
+            else
+            {
+                sw.WriteLine(exp.IDExpediente);
+                sw.WriteLine(exp.Caratula);
+                sw.WriteLine(exp.FechaHoraCreacion);
+                sw.WriteLine(DateTime.Now);
+                sw.WriteLine(exp.IDUser);
+                sw.WriteLine(exp.Estado);
+                Console.WriteLine("El Expediente fue modificado");
             }
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
     }
+
     public Expediente ConsultaPorID(int id)
     {
         using var sr = new StreamReader(_nombreArch);
         var lines = File.ReadAllLines(_nombreArch);
-        try
-        {
+        
             int eID;
             int i = 0;
             while (i < lines.Length)
@@ -157,17 +140,13 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
                 {
                     i += 6;
                 }
-                return null;
+                
             }
+        return null;
 
-        }
-        catch
-        {
-            throw new AutorizacionException();
-        }
 
         // Si no se encontró ningún expediente con el ID especificado, devolvemos null.
-        return null;
+
     }
 
     public List<Expediente> ConsultarTodos()
@@ -175,14 +154,17 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
 
         //using var sr = new StreamReader (_nombreArch);
         var lines = File.ReadAllLines(_nombreArch);
-        List<Expediente> listaAux = new List<Expediente>();
+        List<Expediente> listaAux = null;
         int i = 0;
-        try
-        {
+        
             while (i < lines.Length)
             {
                 if (lines[i] != "")
                 {
+                    if (listaAux == null)
+                    {
+                        listaAux = new List<Expediente>();
+                    }
                     Expediente aux = new Expediente();
                     aux.IDExpediente = int.Parse(lines[i]);
                     aux.Caratula = lines[i + 1];
@@ -203,13 +185,10 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
                 }
                 i += 6;
             }
-            return listaAux;
-        }
-        catch(Exception e)
-        {
-            Console.WriteLine(e.Message);
-            return listaAux;
-        }
+            
+        
+        
+        return listaAux;
     }
 }
 

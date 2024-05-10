@@ -19,10 +19,7 @@ namespace SGE.Repositorios;
         
         public void AltaTramite(Tramite tra, int IDUser, Permiso permisoUser)
         {
-            try
-            {
-                if (SA.PoseeElPermiso(IDUser, permisoUser) && (TV.Validador(tra)))
-                {
+            
                     using var sw = new StreamWriter(_nombreArch, true);
                     sw.WriteLine(tra.IDTramite);
                     sw.WriteLine(tra.expID);
@@ -33,19 +30,13 @@ namespace SGE.Repositorios;
                     sw.WriteLine(tra.IDUser);
                     sw.WriteLine("-----------");
 
-                }
-            }
-            catch
-            {
-                throw new AutorizacionException();
-            }
         }
+    
+            
+        
         public void BajaTramite(int ID, int IDUser, Permiso permisoUser)
         {
-        try
-        {
-            if (SA.PoseeElPermiso(IDUser, permisoUser))
-            {
+        
                 bool ok = false;
                 var lines = File.ReadAllLines(_nombreArch);
                 using var sw = new StreamWriter(_nombreArch, false);
@@ -71,22 +62,16 @@ namespace SGE.Repositorios;
                 }
                 else
                 {
-                    Console.WriteLine($"El tramite {ID} no se encontro");
+                    throw new RepositorioException();
 
                 }
-            }
+            
         }
-        catch
-        {
-            throw new AutorizacionException();
-        }
-    }
+        
+    
     public void ModificarTramite(int ID, Tramite tramite, int IDUser, Permiso permisoUser)
     {
-        try
-        {
-            if (SA.PoseeElPermiso(IDUser, permisoUser) && (TV.Validador(tramite)))
-            {
+        
                 var lines = File.ReadAllLines(_nombreArch);
                 using var sw = new StreamWriter(_nombreArch, false);
 
@@ -115,20 +100,15 @@ namespace SGE.Repositorios;
                         Console.WriteLine($"El tramite {ID} fue modificado");
                     }
                 }
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Hubo una excepcion");
-        }
     }
+        
+    
     public List<Tramite> ConsultaPorEtiqueta(EtiquetaTramite etiqueta)
     {
         var lines = File.ReadAllLines(_nombreArch);
         List<Tramite> listaAux = new List<Tramite>();
         int i = 0;
-        try
-        {
+        
             while (i < lines.Length)
             {
                 if (lines[i + 2] == etiqueta.ToString())
@@ -145,21 +125,20 @@ namespace SGE.Repositorios;
                 }
                 i += 8;
             }
-            return listaAux;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            return listaAux;
-        }
+            if(listaAux.Count() < 1)
+            {
+                throw new RepositorioException();
+            }
+            
+        
+        return listaAux;
     }
     public List<Tramite> ConsultaPorIDexpediente(int id)
     {
         
         var lines = File.ReadAllLines(_nombreArch);
         List<Tramite> listaAux = new List<Tramite>();
-        try
-        {
+        
             int eID;
             for (int i = 0;i < lines.Length; i+=8)
             {
@@ -189,13 +168,9 @@ namespace SGE.Repositorios;
             }
             return listaAux;
         }
-        catch
-        {
-            throw new AutorizacionException();
-            //return null;
-        }
+        
         
         
     }
-}
+
 
