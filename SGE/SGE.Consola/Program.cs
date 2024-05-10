@@ -15,19 +15,19 @@ ITramiteRepositorio traRepo = new RepositorioTramite(SA, TV);
 ServicioActualizacionEstado updater = new ServicioActualizacionEstado();
 
 //Casos de usos
-CasoDeUsoExpedienteAlta CUExpAlta = new CasoDeUsoExpedienteAlta(expRepo);
-CasoDeUsoExpedienteBaja CUExpBaja = new CasoDeUsoExpedienteBaja(expRepo);
-CasoDeUsoExpedienteConsultaTodos CUConTodos = new CasoDeUsoExpedienteConsultaTodos(expRepo);
-CasoDeUsoExpedienteModificacion CUMod = new CasoDeUsoExpedienteModificacion(expRepo);
-CasoDeUsoTramiteAlta CUTraAlta = new CasoDeUsoTramiteAlta(traRepo, expRepo,updater);
-CasoDeUsoTramiteBaja CUTraBaja = new CasoDeUsoTramiteBaja(traRepo, updater, expRepo);
+CasoDeUsoExpedienteAlta CUExpAlta = new CasoDeUsoExpedienteAlta(expRepo, SA, EV);
+CasoDeUsoExpedienteBaja CUExpBaja = new CasoDeUsoExpedienteBaja(expRepo, traRepo, SA);
+CasoDeUsoExpedienteConsultaTodos CUConTodos = new CasoDeUsoExpedienteConsultaTodos(expRepo, SA, EV);
+CasoDeUsoExpedienteModificacion CUMod = new CasoDeUsoExpedienteModificacion(expRepo, SA, EV);
+CasoDeUsoTramiteAlta CUTraAlta = new CasoDeUsoTramiteAlta(traRepo, expRepo,updater, SA, TV);
+CasoDeUsoTramiteBaja CUTraBaja = new CasoDeUsoTramiteBaja(traRepo, updater, expRepo, SA);
 CasoDeUsoTramiteConsultaPorEtiqueta CUTraConEti = new CasoDeUsoTramiteConsultaPorEtiqueta(traRepo);
 CasoDeUsoTramiteConsultaPorIdExpediente idExp = new CasoDeUsoTramiteConsultaPorIdExpediente(traRepo, expRepo);
-CasoDeUsoTramiteModificacion CUTraMod = new CasoDeUsoTramiteModificacion(traRepo, updater, expRepo);
+CasoDeUsoTramiteModificacion CUTraMod = new CasoDeUsoTramiteModificacion(traRepo, updater, expRepo, SA, TV);
 
 
 // Programa
-/*Expediente exp1 = new Expediente();
+Expediente exp1 = new Expediente();
 exp1.IDExpediente = 1;
 exp1.Caratula = "Es una caratula";
 exp1.Estado = (EstadoExpediente)0;
@@ -74,9 +74,9 @@ tra3.EtiquetaTramite = (EtiquetaTramite)3;
 tra3.Contenido = "Esto es un tramite 3";
 tra3.IDUser = 3;
 CUTraAlta.Ejecutar(tra3, 1, (Permiso)1, exp1);
-*/
 
-Expediente exp4 = idExp.Ejecutar(1);
+
+/*Expediente exp4 = idExp.Ejecutar(1);
 Console.WriteLine(exp4);
 foreach (Tramite tra in exp4.Tramites)
 {
@@ -88,4 +88,6 @@ Console.WriteLine("---------------");
 foreach (Tramite tra in exp4.Tramites)
 {
     Console.WriteLine(tra);
-}
+}*/
+
+
