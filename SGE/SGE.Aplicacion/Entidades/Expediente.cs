@@ -20,15 +20,12 @@ namespace SGE.Aplicacion.Entidades
         {
             FechaHoraCreacion = DateTime.Now;
         }
-        public Expediente(int iDExpediente, string? caratula, int iDUser, EstadoExpediente estado, List<Tramite> tramites)
+        public Expediente(string? caratula, int iDUser, EstadoExpediente estado)
         {
-            IDExpediente = iDExpediente;
+            //IDExpediente = iDExpediente; - lo maneja el repositorio
             Caratula = caratula;
-            FechaHoraCreacion = DateTime.Now;
-            FechaHoraModificacion = DateTime.Now;
             IDUser = iDUser;
             Estado = estado;
-            Tramites = tramites;
         }
 
         public override string ToString()

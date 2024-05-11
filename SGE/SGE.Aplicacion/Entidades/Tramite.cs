@@ -21,15 +21,13 @@ namespace SGE.Aplicacion.Entidades
         {
             FechaHoraCreacion = DateTime.Now;
         }
-        public Tramite(int idtramite, int expid, EtiquetaTramite etiqueta, string? content, int iduser)
+        public Tramite(int expid, EtiquetaTramite etiqueta, string? content, int iduser)
         {
-            IDTramite = idtramite;
+            //IDTramite = idtramite; - lo maneja el repositorio
             expID = expid;
             EtiquetaTramite = etiqueta;
             Contenido = content;
             IDUser = iduser;
-            FechaHoraCreacion = DateTime.Now;
-            FechaHoraMod = DateTime.Now;
         }
 
         public override string ToString()
