@@ -15,8 +15,7 @@ namespace SGE.Aplicacion.CasosDeUso
 
         public void Ejecutar(Expediente exp, Permiso permisoUser, int idUser)
         {
-            try
-            {
+
                 if (SA.PoseeElPermiso(idUser, permisoUser))
                 {
                     foreach (Tramite tra in exp.Tramites)
@@ -25,12 +24,6 @@ namespace SGE.Aplicacion.CasosDeUso
                     }
                     repo.BajaExpediente(exp, permisoUser, idUser);
                 }
-
-            }
-            catch
-            {
-                Console.WriteLine("Hubo una excepcion");
-            }
 
         }
     }

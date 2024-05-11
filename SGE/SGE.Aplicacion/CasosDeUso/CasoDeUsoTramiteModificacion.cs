@@ -16,20 +16,13 @@ namespace SGE.Aplicacion.CasosDeUso
 
         public void Ejecutar(int id, Tramite tramite, int idU, Permiso permiso, Expediente expediente)
         {
-            try
-            {
+
                 if (SA.PoseeElPermiso(idU, permiso) && (TV.Validador(tramite)))
                 {
                     repo.ModificarTramite(id, tramite, idU, permiso);
                     updater.ActualizarEstado(expediente);
                     expRepo.ModificacionExpediente(expediente.IDExpediente, expediente, 1, (Permiso)1);
                 }
-
-            }
-            catch
-            {
-                Console.WriteLine("Hubo una exepcion");
-            }
         }
        
     }

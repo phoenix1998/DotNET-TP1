@@ -13,18 +13,11 @@ namespace SGE.Aplicacion.CasosDeUso
     {
         public Expediente Ejecutar(int ID)
         {
-            try
-            {
-                Expediente exp = expRepo.ConsultaPorID(ID);
-                exp.Tramites = repo.ConsultaPorIDexpediente(ID);
-                return exp;
-            }
             
-            catch
-            {
-                Console.WriteLine("Hubo una exepcion");
-            }
-            return null;
+            Expediente exp = expRepo.ConsultaPorID(ID);
+            exp.Tramites = repo.ConsultaPorIDexpediente(ID);
+            return exp;
+
         }
     }
 }

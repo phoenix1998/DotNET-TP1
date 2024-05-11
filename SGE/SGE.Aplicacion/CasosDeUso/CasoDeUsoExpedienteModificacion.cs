@@ -14,18 +14,10 @@ namespace SGE.Aplicacion.CasosDeUso
     {
         public void Ejecutar(int id, Expediente exp, int IDUser,Permiso permisoUser)
         {
-            try
-            {
                 if(SA.PoseeElPermiso(IDUser, permisoUser) && (EV.Validar(exp)))
                 {
                     repo.ModificacionExpediente(id, exp, IDUser, permisoUser);
                 }
-            }
-            catch
-            {
-                Console.WriteLine("Hubo una exepcion");
-            }
-            
         }
     }
 }

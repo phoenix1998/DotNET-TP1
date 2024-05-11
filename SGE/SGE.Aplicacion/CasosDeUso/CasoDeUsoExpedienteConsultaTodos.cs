@@ -13,10 +13,7 @@ namespace SGE.Aplicacion.CasosDeUso
     {
         public List<Expediente> Ejecutar()
         {
-            
-                return repo.ConsultarTodos();
-            
-            
+                return repo.ConsultarTodos(); 
         }
     }
 }

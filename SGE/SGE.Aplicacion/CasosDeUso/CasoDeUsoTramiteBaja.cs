@@ -16,8 +16,6 @@ namespace SGE.Aplicacion.CasosDeUso
         bool ok = false; // si no lo encuentra
         public void BajaTramite(int id, int idU, Permiso permiso, Expediente expediente)
         {
-            try
-            {
                 if (SA.PoseeElPermiso(idU, permiso))
                 {
                     Tramite aux = new Tramite();
@@ -47,11 +45,6 @@ namespace SGE.Aplicacion.CasosDeUso
                         expRepo.ModificacionExpediente(expediente.IDExpediente, expediente, 1, (Permiso)1);
                     }
                 }
-            }
-            catch
-            {
-                Console.WriteLine("Hubo una excepcion");
-            }
         }
     }
 }
