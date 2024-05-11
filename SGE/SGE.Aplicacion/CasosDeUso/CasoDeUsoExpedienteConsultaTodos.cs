@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteConsultaTodos(IExpedienteRepositorio repo, IServicioAutorizacion SA, ExpedienteValidador EV)
+    public class CasoDeUsoExpedienteConsultaTodos(IExpedienteRepositorio repo)
     {
         public List<Expediente> Ejecutar()
         {
-                return repo.ConsultarTodos(); 
+            return repo.ConsultarTodos();
         }
     }
 }

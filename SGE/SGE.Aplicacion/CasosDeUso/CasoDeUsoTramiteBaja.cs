@@ -11,40 +11,31 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoTramiteBaja(ITramiteRepositorio repo, ServicioActualizacionEstado updater, IExpedienteRepositorio expRepo, IServicioAutorizacion SA)
+    public class CasoDeUsoTramiteBaja(ITramiteRepositorio repo, ServicioActualizacionEstado updater, IExpedienteRepositorio expRepo)
     {
         bool ok = false; // si no lo encuentra
         public void BajaTramite(int id, int idU, Permiso permiso, Expediente expediente)
         {
-                if (SA.PoseeElPermiso(idU, permiso))
+
+            Tramite aux = new Tramite();
+            foreach (Tramite tra in expediente.Tramites)
+            {
+                if (tra.IDTramite == id)
                 {
-                    Tramite aux = new Tramite();
-                    foreach (Tramite tra in expediente.Tramites)
-                    {
-                        Console.WriteLine("Entro al foreach");
-
-                        if (tra.IDTramite == id)
-                        {
-                            aux = tra;
-                            Console.WriteLine("Entro al if");
-
-                            ok = true;
-
-                        }
-
-                    }
-                    if (!ok)
-                    {
-                        throw new RepositorioException();
-                    }
-                    else
-                    {
-                        repo.BajaTramite(id, idU, permiso);
-                        expediente.Tramites.Remove(aux);
-                        updater.ActualizarEstado(expediente);
-                        expRepo.ModificacionExpediente(expediente.IDExpediente, expediente, 1, (Permiso)1);
-                    }
+                    aux = tra;
+                    ok = true;
                 }
+
+            }
+            if (ok)
+            {
+                repo.BajaTramite(id, idU, permiso);
+                expediente.Tramites.Remove(aux);
+                updater.ActualizarEstado(expediente);
+                expRepo.ModificacionExpediente(expediente.IDExpediente, expediente, 1, (Permiso)1);
+            }
+            
+
         }
     }
 }

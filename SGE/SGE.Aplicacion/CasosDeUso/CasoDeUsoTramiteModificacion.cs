@@ -11,19 +11,14 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoTramiteModificacion(ITramiteRepositorio repo, ServicioActualizacionEstado updater, IExpedienteRepositorio expRepo, IServicioAutorizacion SA, TramiteValidador TV)
+    public class CasoDeUsoTramiteModificacion(ITramiteRepositorio repo, ServicioActualizacionEstado updater, IExpedienteRepositorio expRepo)
     {
 
         public void Ejecutar(int id, Tramite tramite, int idU, Permiso permiso, Expediente expediente)
         {
-
-                if (SA.PoseeElPermiso(idU, permiso) && (TV.Validador(tramite)))
-                {
-                    repo.ModificarTramite(id, tramite, idU, permiso);
-                    updater.ActualizarEstado(expediente);
-                    expRepo.ModificacionExpediente(expediente.IDExpediente, expediente, 1, (Permiso)1);
-                }
-        }
-       
+            repo.ModificarTramite(id, tramite, idU, permiso);
+            updater.ActualizarEstado(expediente);
+            expRepo.ModificacionExpediente(expediente.IDExpediente, expediente, 1, (Permiso)1);
+        } 
     }
 }

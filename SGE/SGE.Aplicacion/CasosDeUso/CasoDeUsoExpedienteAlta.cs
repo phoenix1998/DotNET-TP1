@@ -10,14 +10,11 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteAlta(IExpedienteRepositorio repo, IServicioAutorizacion SA, ExpedienteValidador EV)
+    public class CasoDeUsoExpedienteAlta(IExpedienteRepositorio repo)
     {
         public void Ejecutar(Expediente exp, Permiso permisoUser, int idUser)
         {
-                if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
-                {
-                    repo.AltaExpediente(exp, permisoUser, idUser);
-                }             
+            repo.AltaExpediente(exp, permisoUser, idUser);           
         }
     }
 }

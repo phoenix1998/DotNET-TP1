@@ -13,11 +13,9 @@ namespace SGE.Aplicacion.CasosDeUso
     {
         public Expediente Ejecutar(int ID)
         {
-            
             Expediente exp = expRepo.ConsultaPorID(ID);
             exp.Tramites = repo.ConsultaPorIDexpediente(ID);
             return exp;
-
         }
     }
 }
