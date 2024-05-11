@@ -6,24 +6,96 @@ using SGE.Aplicacion.Interfaces;
 using SGE.Aplicacion.Servicios;
 using SGE.Aplicacion.Validadores;
 using SGE.Repositorios;
-// Config de dependencias
-IServicioAutorizacion SA = new ServicioAutorizacionProvisorio();
-ExpedienteValidador EV = new ExpedienteValidador();
-TramiteValidador TV = new TramiteValidador();
-IExpedienteRepositorio expRepo = new RepositorioExpediente(SA, EV);
-ITramiteRepositorio traRepo = new RepositorioTramite(SA, TV);
-ServicioActualizacionEstado updater = new ServicioActualizacionEstado();
 
-//Casos de usos
-CasoDeUsoExpedienteAlta CUExpAlta = new CasoDeUsoExpedienteAlta(expRepo, SA, EV);
-CasoDeUsoExpedienteBaja CUExpBaja = new CasoDeUsoExpedienteBaja(expRepo, traRepo, SA);
-CasoDeUsoExpedienteConsultaTodos CUConTodos = new CasoDeUsoExpedienteConsultaTodos(expRepo, SA, EV);
-CasoDeUsoExpedienteModificacion CUMod = new CasoDeUsoExpedienteModificacion(expRepo, SA, EV);
-CasoDeUsoTramiteAlta CUTraAlta = new CasoDeUsoTramiteAlta(traRepo, expRepo,updater, SA, TV);
-CasoDeUsoTramiteBaja CUTraBaja = new CasoDeUsoTramiteBaja(traRepo, updater, expRepo, SA);
-CasoDeUsoTramiteConsultaPorEtiqueta CUTraConEti = new CasoDeUsoTramiteConsultaPorEtiqueta(traRepo);
-CasoDeUsoTramiteConsultaPorIdExpediente idExp = new CasoDeUsoTramiteConsultaPorIdExpediente(traRepo, expRepo);
-CasoDeUsoTramiteModificacion CUTraMod = new CasoDeUsoTramiteModificacion(traRepo, updater, expRepo, SA, TV);
+namespace SGE.Aplicacion;
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        
+        bool showMenu = true;
+        while (showMenu)
+        {
+            showMenu = MainMenu();
+        }
+    }
+    
+    private static bool MainMenu()
+    {
+        // Config de dependencias
+        IServicioAutorizacion SA = new ServicioAutorizacionProvisorio();
+        ExpedienteValidador EV = new ExpedienteValidador();
+        TramiteValidador TV = new TramiteValidador();
+        IExpedienteRepositorio expRepo = new RepositorioExpediente(SA, EV);
+        ITramiteRepositorio traRepo = new RepositorioTramite(SA, TV);
+        ServicioActualizacionEstado updater = new ServicioActualizacionEstado();
+
+        //Casos de usos
+        CasoDeUsoExpedienteAlta CUExpAlta = new CasoDeUsoExpedienteAlta(expRepo, SA, EV);
+        CasoDeUsoExpedienteBaja CUExpBaja = new CasoDeUsoExpedienteBaja(expRepo, traRepo, SA);
+        CasoDeUsoExpedienteConsultaTodos CUConTodos = new CasoDeUsoExpedienteConsultaTodos(expRepo, SA, EV);
+        CasoDeUsoExpedienteModificacion CUMod = new CasoDeUsoExpedienteModificacion(expRepo, SA, EV);
+        CasoDeUsoTramiteAlta CUTraAlta = new CasoDeUsoTramiteAlta(traRepo, expRepo, updater, SA, TV);
+        CasoDeUsoTramiteBaja CUTraBaja = new CasoDeUsoTramiteBaja(traRepo, updater, expRepo, SA);
+        CasoDeUsoTramiteConsultaPorEtiqueta CUTraConEti = new CasoDeUsoTramiteConsultaPorEtiqueta(traRepo);
+        CasoDeUsoTramiteConsultaPorIdExpediente idExp = new CasoDeUsoTramiteConsultaPorIdExpediente(traRepo, expRepo);
+        CasoDeUsoTramiteModificacion CUTraMod = new CasoDeUsoTramiteModificacion(traRepo, updater, expRepo, SA, TV);
+        Console.Clear();
+        Console.WriteLine("Elige una opcion");
+        Console.WriteLine("1: Dar de alta un expediente");
+        Console.WriteLine("2: Dar de baja un expediente");
+        Console.WriteLine("3: Consultar todos los expedientes");
+        Console.WriteLine("4: Modificar un expediente");
+        Console.WriteLine("5: Dar de alta un tramite");
+        Console.WriteLine("6: Dar de baja un tramite");
+        Console.WriteLine("7: Consultar tramite por etiqueta");
+        Console.WriteLine("8: Consultar tramite por ID de expediente");
+        Console.WriteLine("9: Modificar un tramite");
+        Console.WriteLine("0: Salir");
+        switch (Console.ReadLine())
+        {
+            case "0":
+                return false;
+            case "1":
+                AltaExpediente(SA, EV, expRepo);
+                return true;
+            case "2":
+                BajaExpediente(SA, expRepo);
+                return true;
+            case "3":
+                ConsultarTodosExp(expRepo);
+                return true;
+            case "4":
+                ModificacionExpediente(SA, EV, expRepo);
+                return true;
+            case "5":
+                AltaTramite(SA, TV, traRepo);
+                return true;
+            case "6":
+                BajaTramite(SA, TV, traRepo);
+                return true;
+            case "7":
+                ConsultaTramitePorEtiqueta(traRepo);
+                return true;
+            case "8":
+                ConsulaIDExpediente(traRepo);
+                return true;
+            case "9":
+                ModificacionTramite(SA, TV, traRepo);
+                return true;
+            default: 
+                Console.WriteLine("Opcion incorrecta");
+                return true;
+        }
+    }
+    private static void AltaExpediente(IServicioAutorizacion SA, ExpedienteValidador EV, IExpedienteRepositorio expRepo)
+    {
+        try
+        {
+            if(SA.PoseeElPermiso)
+        }
+    }
+}
 
 
 // Programa
