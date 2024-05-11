@@ -14,19 +14,14 @@ namespace SGE.Aplicacion.Servicios
 
         public bool PoseeElPermiso(int IDUser, Permiso permiso)
         {
-            try
-            {
+
                 if (IDUser != 1)
                 {
                     throw new AutorizacionException();
                 }
                 return true;
-            }
-            catch
-            {
-                return false;
-            }
-            
+           
+
         }
     }
     
