@@ -57,6 +57,7 @@ public class RepositorioExpediente() : IExpedienteRepositorio
         sw.WriteLine("-----------");
         using var sw1 = new StreamWriter(s_indexArch, false);
         sw1.WriteLine(s_idExp);
+        Console.WriteLine($" - Se ha dado de alta el expediente {exp.IDExpediente}");
     }
     public void BajaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
@@ -81,7 +82,7 @@ public class RepositorioExpediente() : IExpedienteRepositorio
             else
             {
                 ok = true;
-                Console.WriteLine("Se dio de baja el expediente " + exp.IDExpediente);
+                Console.WriteLine(" - Se dió de baja el expediente " + exp.IDExpediente);
             }
         }
         if (!ok)
@@ -126,7 +127,7 @@ public class RepositorioExpediente() : IExpedienteRepositorio
         }
         if (ok)
         {
-            Console.WriteLine($"El expediente {ID} fue modificado");
+            Console.WriteLine($" - El expediente {ID} fue modificado");
         }
         
     }
@@ -160,7 +161,7 @@ public class RepositorioExpediente() : IExpedienteRepositorio
                 }
                 else
                 {
-                    Console.WriteLine("El estado es invalido");
+                    Console.WriteLine(" - El estado es invalido");
                 }
 
             }
@@ -205,7 +206,7 @@ public class RepositorioExpediente() : IExpedienteRepositorio
                     }
                     else
                     {
-                        Console.WriteLine("El estado es invalido");
+                        Console.WriteLine(" - El estado es invalido");
                     }
                     listaAux.Add(aux);
                 }

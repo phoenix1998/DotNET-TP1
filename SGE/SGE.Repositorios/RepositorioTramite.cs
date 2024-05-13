@@ -54,7 +54,7 @@ namespace SGE.Repositorios;
         sw.WriteLine("-----------");
         using var sw1 = new StreamWriter(s_indexArch, false);
         sw1.WriteLine(s_idTra);
-
+        Console.WriteLine($" - Se ha dado de alta el trámite {tra.IDTramite}");
     }
 
     public void BajaTramite(int ID, int IDUser, Permiso permisoUser)
@@ -85,7 +85,7 @@ namespace SGE.Repositorios;
         }
         if (ok)
         {
-            Console.WriteLine("Se dio de baja el tramite " + ID);
+            Console.WriteLine(" - Se dio de baja el trámite " + ID);
         }
         else
         {
@@ -124,7 +124,7 @@ namespace SGE.Repositorios;
                         sw.WriteLine(tramite.FechaHoraCreacion);
                         sw.WriteLine(DateTime.Now);
                         sw.WriteLine(tramite.IDUser);
-                        Console.WriteLine($"El tramite {ID} fue modificado");
+                        Console.WriteLine($" - El trámite {ID} fue modificado");
                     }
                 }
     }
@@ -183,7 +183,7 @@ namespace SGE.Repositorios;
                 }
                 else
                 {
-                    Console.WriteLine("La etiqueta es invalido");
+                    Console.WriteLine(" - La etiqueta es inválido");
                 }
                 aux.Contenido = lines[i + 3];
                 aux.FechaHoraCreacion = DateTime.Parse(lines[i + 4]);
@@ -195,7 +195,7 @@ namespace SGE.Repositorios;
         }
         if(listaAux.Count == 0)
         {
-            Console.WriteLine($"No se encontro ningun tramite con id de expediente {id}");
+            Console.WriteLine($" - No se encontró ningún trámite con id de expediente {id}");
         }
         return listaAux;
     }
