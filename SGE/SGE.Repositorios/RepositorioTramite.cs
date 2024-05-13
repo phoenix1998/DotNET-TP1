@@ -13,92 +13,94 @@ using System.Threading.Tasks;
 
 namespace SGE.Repositorios;
 
-    public class RepositorioTramite(IServicioAutorizacion SA, TramiteValidador TV) : ITramiteRepositorio
+    public class RepositorioTramite() : ITramiteRepositorio
     {
-        readonly string _nombreArch = "Tramite.txt";
-        /*public bool PoseeElPermiso(int idUser, Permiso permiso)
+        static readonly string s_nombreArch = "Tramite.txt";
+        static readonly string s_indexArch = "TramiteID.txt";
+        static int s_idTra;
+    static RepositorioTramite()
+    {
+        // Si existe el archivo
+        if (File.Exists(s_indexArch))
         {
-            if ((idUser > 0) && ((int)permiso == idUser))
-            {
-                return true;
-            }
-            else return false;
-        }*/
-        public void AltaTramite(Tramite tra, int IDUser, Permiso permisoUser)
-        {
-            try
-            {
-                if (SA.PoseeElPermiso(IDUser, permisoUser) && (TV.Validador(tra)))
-                {
-                    using var sw = new StreamWriter(_nombreArch, true);
-                    sw.WriteLine(tra.IDTramite);
-                    sw.WriteLine(tra.expID);
-                    sw.WriteLine(tra.EtiquetaTramite);
-                    sw.WriteLine(tra.Contenido);
-                    sw.WriteLine(DateTime.Now);
-                    sw.WriteLine(DateTime.Now);
-                    sw.WriteLine(tra.IDUser);
-                    sw.WriteLine("-----------");
-
-                }
-            }
-            catch
-            {
-                throw new AutorizacionException();
-            }
+            var lines = File.ReadAllLines(s_indexArch);
+            s_idTra = int.Parse(lines[0]);
         }
-        public void BajaTramite(int ID, int IDUser, Permiso permisoUser)
+        else // Si no lo crea y lo setea en 1
         {
-        try
-        {
-
-            if (SA.PoseeElPermiso(IDUser, permisoUser))
-            {
-                bool ok = false;
-                var lines = File.ReadAllLines(_nombreArch);
-                using var sw = new StreamWriter(_nombreArch, false);
-
-                for (int i = 0; i < lines.Length; i += 8)
-                {
-                    if (int.Parse(lines[i]) != ID)
-                    {
-                        sw.WriteLine(lines[i]);
-                        sw.WriteLine(lines[i + 1]);
-                        sw.WriteLine(lines[i + 2]);
-                        sw.WriteLine(lines[i + 3]);
-                        sw.WriteLine(lines[i + 4]);
-                        sw.WriteLine(lines[i + 5]);
-                        sw.WriteLine(lines[i + 6]);
-                        sw.WriteLine(lines[i + 7]);
-                        ok = true;
-                    }
-                }
-                if (!ok)
-                {
-                    Console.WriteLine("Se dio de baja el tramite " + ID);
-                }
-
-                else
-                {
-                    Console.WriteLine($"El tramite {ID} no se encontro");
-
-                }
-
-            }
+            using var sw = new StreamWriter(s_indexArch, true);
+            s_idTra = 1;
+            sw.WriteLine(s_idTra);
         }
-        catch
+        if (!File.Exists(s_nombreArch))
         {
-            throw new AutorizacionException();
+            using var sw = new StreamWriter(s_nombreArch, true);
+            
         }
     }
+    public void AltaTramite(Tramite tra, Permiso permisoUser)
+    {
+        using var sw = new StreamWriter(s_nombreArch, true);
+
+        sw.WriteLine(s_idTra);
+        tra.IDTramite = s_idTra;
+        s_idTra++;
+        sw.WriteLine(tra.expID);
+        sw.WriteLine(tra.EtiquetaTramite);
+        sw.WriteLine(tra.Contenido);
+        sw.WriteLine(DateTime.Now);
+        sw.WriteLine(DateTime.Now);
+        sw.WriteLine(tra.IDUser);
+        sw.WriteLine("-----------");
+        using var sw1 = new StreamWriter(s_indexArch, false);
+        sw1.WriteLine(s_idTra);
+
+    }
+
+    public void BajaTramite(int ID, int IDUser, Permiso permisoUser)
+    {
+
+        bool ok = false;
+        var lines = File.ReadAllLines(s_nombreArch);
+        using var sw = new StreamWriter(s_nombreArch, false);
+
+        for (int i = 0; i < lines.Length; i += 8)
+        {
+            if (int.Parse(lines[i]) != ID)
+            {
+                sw.WriteLine(lines[i]);
+                sw.WriteLine(lines[i + 1]);
+                sw.WriteLine(lines[i + 2]);
+                sw.WriteLine(lines[i + 3]);
+                sw.WriteLine(lines[i + 4]);
+                sw.WriteLine(lines[i + 5]);
+                sw.WriteLine(lines[i + 6]);
+                sw.WriteLine(lines[i + 7]);
+
+            }
+            else
+            {
+                ok = true;
+            }
+        }
+        if (ok)
+        {
+            Console.WriteLine("Se dio de baja el tramite " + ID);
+        }
+        else
+        {
+            throw new RepositorioException();
+
+        }
+
+    }
+
+
     public void ModificarTramite(int ID, Tramite tramite, int IDUser, Permiso permisoUser)
     {
-        try
-        {
-            if (SA.PoseeElPermiso(IDUser, permisoUser) && (TV.Validador(tramite)))
-            {
-                var lines = File.ReadAllLines(_nombreArch);
-                using var sw = new StreamWriter(_nombreArch, false);
+        
+                var lines = File.ReadAllLines(s_nombreArch);
+                using var sw = new StreamWriter(s_nombreArch, false);
 
                 for (int i = 0; i < lines.Length; i += 8)
                 {
@@ -125,20 +127,15 @@ namespace SGE.Repositorios;
                         Console.WriteLine($"El tramite {ID} fue modificado");
                     }
                 }
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Hubo una excepcion");
-        }
     }
+        
+    
     public List<Tramite> ConsultaPorEtiqueta(EtiquetaTramite etiqueta)
     {
-        var lines = File.ReadAllLines(_nombreArch);
+        var lines = File.ReadAllLines(s_nombreArch);
         List<Tramite> listaAux = new List<Tramite>();
         int i = 0;
-        try
-        {
+        
             while (i < lines.Length)
             {
                 if (lines[i + 2] == etiqueta.ToString())
@@ -155,13 +152,54 @@ namespace SGE.Repositorios;
                 }
                 i += 8;
             }
-            return listaAux;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            return listaAux;
-        }
+            if(listaAux.Count() < 1)
+            {
+                throw new RepositorioException();
+            }
+            
+        
+        return listaAux;
     }
+    public List<Tramite> ConsultaPorIDexpediente(int id)
+    {
+
+        var lines = File.ReadAllLines(s_nombreArch);
+        List<Tramite> listaAux = new List<Tramite>();
+        int eID;
+        for (int i = 0; i < lines.Length; i += 8)
+        {
+            eID = int.Parse(lines[i + 1]);
+
+
+            if (eID == id)
+            {
+                Tramite aux = new Tramite();
+                aux.IDTramite = int.Parse(lines[i]);
+                aux.expID = eID;
+                EtiquetaTramite etiqueta;
+                if (Enum.TryParse(lines[i + 2], out etiqueta))
+                {
+                    aux.EtiquetaTramite = etiqueta;
+                }
+                else
+                {
+                    Console.WriteLine("La etiqueta es invalido");
+                }
+                aux.Contenido = lines[i + 3];
+                aux.FechaHoraCreacion = DateTime.Parse(lines[i + 4]);
+                aux.FechaHoraMod = DateTime.Parse(lines[i + 5]);
+                aux.IDUser = int.Parse(lines[i + 6]);
+                listaAux.Add(aux);
+
+            }
+        }
+        if(listaAux.Count == 0)
+        {
+            Console.WriteLine($"No se encontro ningun tramite con id de expediente {id}");
+        }
+        return listaAux;
+    }
+
 }
+
 

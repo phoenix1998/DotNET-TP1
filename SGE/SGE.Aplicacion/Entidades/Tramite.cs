@@ -19,11 +19,20 @@ namespace SGE.Aplicacion.Entidades
 
         public Tramite()
         {
+            FechaHoraCreacion = DateTime.Now;
+        }
+        public Tramite(int expid, EtiquetaTramite etiqueta, string? content, int iduser)
+        {
+            //IDTramite = idtramite; - lo maneja el repositorio
+            expID = expid;
+            EtiquetaTramite = etiqueta;
+            Contenido = content;
+            IDUser = iduser;
         }
 
         public override string ToString()
         {
-            string info = $"ID Tramite: {IDTramite} \nID Expediente: {expID} \nEtiqueta: {EtiquetaTramite} \nContenido: {Contenido} \nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraMod}";
+            string info = $"ID Tramite: {IDTramite} \nID Expediente: {expID} \nEtiqueta: {EtiquetaTramite} \nContenido: {Contenido} \nFecha creacion: {FechaHoraCreacion} \nFecha modificacion: {FechaHoraMod}\n";
             return info;
         }
     }

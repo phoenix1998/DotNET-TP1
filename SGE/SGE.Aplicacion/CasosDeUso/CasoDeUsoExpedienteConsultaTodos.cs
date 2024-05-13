@@ -1,5 +1,6 @@
 ﻿using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Interfaces;
+using SGE.Aplicacion.Validadores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteConsulaTodos(IExpedienteRepositorio repo)
+    public class CasoDeUsoExpedienteConsultaTodos(IExpedienteRepositorio repo)
     {
         public List<Expediente> Ejecutar()
         {

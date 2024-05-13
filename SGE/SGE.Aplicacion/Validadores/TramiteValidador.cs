@@ -9,11 +9,11 @@ namespace SGE.Aplicacion.Validadores
 {
     public class TramiteValidador
     {
-        public bool Validador (Tramite tra)
+        public bool Validador (Tramite tra, int idUserActual)
         {
             try
             {
-                if ((tra.IDUser <= 0) || (tra.Contenido?.Length == 0))
+                if ((idUserActual <= 0) || (tra.Contenido?.Length == 0))
                 {
                     throw new ValidacionException();
                 }

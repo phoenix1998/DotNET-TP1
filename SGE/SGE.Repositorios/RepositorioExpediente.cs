@@ -8,11 +8,14 @@ using SGE.Aplicacion.Interfaces;
 using SGE.Aplicacion.Servicios;
 using SGE.Aplicacion.Validadores;
 using System.IO;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
 
-public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador EV) : IExpedienteRepositorio
+public class RepositorioExpediente() : IExpedienteRepositorio
 {
     readonly string _nombreArch = "Expediente.txt";
+    static readonly string s_indexArch = "ExpedienteID.txt";
+    static int s_idExp;
     /*public bool PoseeElPermiso(int idUser, Permiso permiso)
     {
         if ((idUser > 0) && ((int)permiso == idUser))
@@ -21,172 +24,195 @@ public class RepositorioExpediente(IServicioAutorizacion SA, ExpedienteValidador
         }
         else return false;
     }*/
-   // IServicioAutorizacion SA;
+    // IServicioAutorizacion SA;
+    static RepositorioExpediente()
+    {
+        // Si existe el archivo
+        if(File.Exists(s_indexArch))
+        {
+            var lines = File.ReadAllLines(s_indexArch);
+            s_idExp = int.Parse(lines[0]);
+        }
+        else // Si no lo crea y lo setea en 1
+        {
+            using var sw = new StreamWriter(s_indexArch, true);
+            s_idExp = 1;
+            sw.WriteLine(s_idExp);
+        }
+    }
     public void AltaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
-        try
-        {
-            if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
-            {
-                using var sw = new StreamWriter(_nombreArch, true);
-                sw.WriteLine(exp.IDExpediente);
-                sw.WriteLine(exp.Caratula);
-                sw.WriteLine(DateTime.Now);
-                sw.WriteLine(DateTime.Now);
-                sw.WriteLine(exp.IDUser);
-                sw.WriteLine(exp.Estado);
-            }
-        }
-        catch
-        {
-            Console.WriteLine("Hubo una excepcion");
-        }
-
+        
+        using var sw = new StreamWriter(_nombreArch, true);
+        sw.WriteLine(s_idExp);
+        exp.IDExpediente = s_idExp;
+        s_idExp++;
+        sw.WriteLine(exp.Caratula);
+        exp.FechaHoraCreacion = DateTime.Now;
+        sw.WriteLine(DateTime.Now);
+        exp.FechaHoraModificacion = DateTime.Now;
+        sw.WriteLine(DateTime.Now);
+        sw.WriteLine(exp.IDUser);
+        sw.WriteLine(exp.Estado);
+        sw.WriteLine("-----------");
+        using var sw1 = new StreamWriter(s_indexArch, false);
+        sw1.WriteLine(s_idExp);
     }
     public void BajaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
-         
-        //var lines = File.ReadAllLines(_nombreArch);
-        //using var sw = new StreamWriter(_nombreArch, true);
-        
 
-        try
+        bool ok = false;
+        var lines = File.ReadAllLines(_nombreArch);
+        using var sw = new StreamWriter(_nombreArch, false);
+
+        for (int i = 0; i < lines.Length; i += 7)
         {
-            
-            if (SA.PoseeElPermiso(idUser, permisoUser))
+            if ((int.Parse(lines[i]) != exp.IDExpediente))
             {
-
-                var lines = File.ReadAllLines(_nombreArch);
-                using var sw = new StreamWriter(_nombreArch, false);
-
-                for (int i = 0; i < lines.Length; i += 6)
-                {
-                    if (int.Parse(lines[i]) != exp.IDExpediente)
-                    {
-                        sw.WriteLine(lines[i]);
-                        sw.WriteLine(lines[i+1]);
-                        sw.WriteLine(lines[i+2]);
-                        sw.WriteLine(lines[i+3]);
-                        sw.WriteLine(lines[i+4]);
-                        sw.WriteLine(lines[i+5]);
-                        Console.WriteLine("Se dio de baja el expediente " + exp.IDExpediente);
-                    }
-                }
-
+                sw.WriteLine(lines[i]);
+                sw.WriteLine(lines[i + 1]);
+                sw.WriteLine(lines[i + 2]);
+                sw.WriteLine(lines[i + 3]);
+                sw.WriteLine(lines[i + 4]);
+                sw.WriteLine(lines[i + 5]);
+                sw.WriteLine(lines[i + 6]);
+                
+            }
+            else
+            {
+                ok = true;
+                Console.WriteLine("Se dio de baja el expediente " + exp.IDExpediente);
             }
         }
-        catch
+        if (!ok)
         {
-            throw new AutorizacionException();
-            
+            throw new RepositorioException();
         }
         
     }
-    public void ModificacionExpediente(int ID,Expediente exp, int idUser, Permiso permisoUser )
+
+
+
+    public void ModificacionExpediente(int ID, Expediente exp, int idUser, Permiso permisoUser)
     {
-        try
-        {
-            if (SA.PoseeElPermiso(idUser, permisoUser) && (EV.Validar(exp)))
-            {
-                var lines = File.ReadAllLines(_nombreArch);
-                using var sw = new StreamWriter(_nombreArch, false);
 
-                for (int i = 0; i < lines.Length; i += 6)
-                {
-                    if (int.Parse(lines[i]) != ID)
-                    {
-                        sw.WriteLine(lines[i]);
-                        sw.WriteLine(lines[i + 1]);
-                        sw.WriteLine(lines[i + 2]);
-                        sw.WriteLine(lines[i + 3]);
-                        sw.WriteLine(lines[i + 4]);
-                        sw.WriteLine(lines[i + 5]);
-                    }
-                    else
-                    {
-                        sw.WriteLine(exp.IDExpediente);
-                        sw.WriteLine(exp.Caratula);
-                        sw.WriteLine(exp.FechaHoraCreacion);
-                        sw.WriteLine(DateTime.Now.Date);
-                        sw.WriteLine(exp.IDUser);
-                        sw.WriteLine(exp.Estado);
-                        Console.WriteLine("El Expediente fue modificado");
-                    }
-                }
+        var lines = File.ReadAllLines(_nombreArch);
+        using var sw = new StreamWriter(_nombreArch, false);
+        bool ok = false;
+        for (int i = 0; i < lines.Length; i += 7)
+        {
+            if (int.Parse(lines[i]) != ID)
+            {
+                sw.WriteLine(lines[i]);
+                sw.WriteLine(lines[i + 1]);
+                sw.WriteLine(lines[i + 2]);
+                sw.WriteLine(lines[i + 3]);
+                sw.WriteLine(lines[i + 4]);
+                sw.WriteLine(lines[i + 5]);
+                sw.WriteLine(lines[i + 6]);
+            }
+            else
+            {
+
+                sw.WriteLine(lines[i]);
+                sw.WriteLine(exp.Caratula);
+                sw.WriteLine(lines[i+2]);
+                sw.WriteLine(DateTime.Now);
+                sw.WriteLine(exp.IDUser);
+                sw.WriteLine(exp.Estado);
+                sw.WriteLine(lines[i + 6]);
+                ok = true;
             }
         }
-        catch (Exception e)
+        if (ok)
         {
-            Console.WriteLine(e.Message);
+            Console.WriteLine($"El expediente {ID} fue modificado");
         }
+        
     }
+
     public Expediente ConsultaPorID(int id)
     {
         using var sr = new StreamReader(_nombreArch);
         var lines = File.ReadAllLines(_nombreArch);
-        try
-        {
-            int eID;
-            int i = 0;
-            while (i < lines.Length)
-            {
-                eID = int.Parse(lines[i]);
 
-                if (eID == id)
+        int eID;
+        int i = 0;
+        while (i < lines.Length)
+        {
+            eID = int.Parse(lines[i]);
+
+            if (eID == id)
+            {
+                EstadoExpediente estado;
+
+                if (Enum.TryParse(lines[i + 5], out estado))
                 {
                     return new Expediente
                     {
                         IDExpediente = eID,
                         Caratula = (lines[i + 1]),
-                        FechaHoraCreacion = DateTime.Parse(lines[i+2]),
-                        FechaHoraModificacion = DateTime.Parse(lines[i+3]),
-                        IDUser = int.Parse(lines[i+4]),
-                        Estado = (EstadoExpediente)int.Parse(lines[i+5])
+                        FechaHoraCreacion = DateTime.Parse(lines[i + 2]),
+                        FechaHoraModificacion = DateTime.Parse(lines[i + 3]),
+                        IDUser = int.Parse(lines[i + 4]),
+                        Estado = estado,
                     };
                 }
                 else
                 {
-                    i += 6;
+                    Console.WriteLine("El estado es invalido");
                 }
+
             }
-            return null;
+
+            else
+            {
+                i += 7;
+            }
+
         }
-        catch 
-        {
-            throw new AutorizacionException();
-        }
+        throw new RepositorioException();
+        // Si no se encontró ningún expediente con el ID especificado, tiramos una excepcion
     }
+
     public List<Expediente> ConsultarTodos()
     {
 
         //using var sr = new StreamReader (_nombreArch);
         var lines = File.ReadAllLines(_nombreArch);
-        List<Expediente> listaAux = new List<Expediente>();
+        List<Expediente> listaAux = null;
         int i = 0;
-        try
-        {
+        
             while (i < lines.Length)
             {
                 if (lines[i] != "")
                 {
+                    if (listaAux == null)
+                    {
+                        listaAux = new List<Expediente>();
+                    }
                     Expediente aux = new Expediente();
-                    aux.IDExpediente = int.Parse(lines[i + 5]);
+                    aux.IDExpediente = int.Parse(lines[i]);
                     aux.Caratula = lines[i + 1];
                     aux.FechaHoraCreacion = DateTime.Parse(lines[i + 2]);
-                    aux.FechaHoraModificacion = DateTime.Parse(lines[i + 3]);
+                    aux.FechaHoraModificacion = DateTime.Now;
                     aux.IDUser = int.Parse(lines[i + 4]);
-                    aux.Estado = (EstadoExpediente) int.Parse(lines[i + 5]);
+                    //Console.WriteLine(lines[i + 5].ToString());
+                    EstadoExpediente estado;
+                    if (Enum.TryParse(lines[i + 5], out estado))
+                    {
+                        aux.Estado = estado;
+                    }
+                    else
+                    {
+                        Console.WriteLine("El estado es invalido");
+                    }
                     listaAux.Add(aux);
                 }
-                i += 6;
+                i += 7;
             }
-            return listaAux;
-        }
-        catch
-        {
-            Console.WriteLine("Hubo una excepcion");
-            return listaAux;
-        }
+     
+        return listaAux;
     }
 }
 

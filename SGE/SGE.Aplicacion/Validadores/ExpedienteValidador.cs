@@ -9,11 +9,11 @@ namespace SGE.Aplicacion.Validadores
 {
     public class ExpedienteValidador
     {
-        public bool Validar(Expediente exp)
+        public bool Validar(Expediente exp, int idUserActual)
         {
             try
             {
-                if ((exp.IDUser <= 0) || (exp.Caratula?.Length == 0))
+                if ((idUserActual <= 0) || (exp.Caratula?.Length == 0))
                 {
                     throw new ValidacionException();
                 }

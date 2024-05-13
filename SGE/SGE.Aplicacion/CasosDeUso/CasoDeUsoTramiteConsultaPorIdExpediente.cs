@@ -1,4 +1,5 @@
 ﻿using SGE.Aplicacion.Entidades;
+using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,13 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteConsultaPorId(IExpedienteRepositorio repo) 
+    public class CasoDeUsoTramiteConsultaPorIdExpediente(ITramiteRepositorio repo, IExpedienteRepositorio expRepo) 
     {
         public Expediente Ejecutar(int ID)
         {
-           return repo.ConsultaPorID(ID);
+            Expediente exp = expRepo.ConsultaPorID(ID);
+            exp.Tramites = repo.ConsultaPorIDexpediente(ID);
+            return exp;
         }
     }
 }

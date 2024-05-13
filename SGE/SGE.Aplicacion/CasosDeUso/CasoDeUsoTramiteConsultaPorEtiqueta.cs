@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    internal class CasoDeUsoTramiteConsultaPorEtiqueta(ITramiteRepositorio repo)
+    public class CasoDeUsoTramiteConsultaPorEtiqueta(ITramiteRepositorio repo)
     {
-        public List<Tramite> Ejercutar(EtiquetaTramite etiqueta)
+        public List<Tramite> Ejecutar(EtiquetaTramite etiqueta)
         {
             return repo.ConsultaPorEtiqueta(etiqueta);
         }
-        
     }
 }

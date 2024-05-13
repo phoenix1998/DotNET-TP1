@@ -8,6 +8,6 @@ namespace SGE.Aplicacion.Enumerativos
 {
     public enum EtiquetaTramite
     {
-        EstadiPresentado, PaseAEstudio, Despacho, Resolucion, Notificacion, PaseAlArchivo
+        EstadoPresentado, PaseAEstudio, Despacho, Resolucion, Notificacion, PaseAlArchivo
     }
 }
