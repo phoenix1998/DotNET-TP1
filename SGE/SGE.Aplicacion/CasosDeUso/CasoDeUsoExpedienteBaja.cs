@@ -15,9 +15,12 @@ namespace SGE.Aplicacion.CasosDeUso
 
         public void Ejecutar(Expediente exp, Permiso permisoUser, int idUser)
         {
-            foreach (Tramite tra in exp.Tramites)
+            if (exp.Tramites != null)
             {
-                traRepo.BajaTramite(tra.IDTramite, idUser, permisoUser);
+                foreach (Tramite tra in exp.Tramites)
+                {
+                    traRepo.BajaTramite(tra.IDTramite, idUser, permisoUser);
+                }
             }
             repo.BajaExpediente(exp, permisoUser, idUser);
         }
