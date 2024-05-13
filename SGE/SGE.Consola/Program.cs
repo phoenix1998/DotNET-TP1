@@ -71,7 +71,6 @@ void RealizarAltaExpediente(Expediente exp, Permiso per, int IdUser = 1)
         if ((SA.PoseeElPermiso(IdUser, per) && EV.Validar(exp, IdUser)))
         {
             CUExpAlta.Ejecutar(exp, per, IdUser);
-            Console.WriteLine($"Se ha dado de alta el expediente {exp.IDExpediente}");
         }
     }
     catch
@@ -129,7 +128,6 @@ void RealizarAltaTramite(Tramite tra, Expediente exp,Permiso per, int IdUser)
         if (SA.PoseeElPermiso(IdUser, per) && (TV.Validador(tra, IdUser)))
         {
             CUTraAlta.Ejecutar(tra, per, exp);
-            Console.WriteLine($"Se ha dado de alta el tramite {tra.IDTramite}");
         }
             
     }
