@@ -13,7 +13,7 @@ namespace SGE.Aplicacion.Validadores
         {
             try
             {
-                if ((idUserActual <= 0) || (exp.Caratula?.Length == 0))
+                if ((exp == null) || (idUserActual <= 0) || (exp.Caratula?.Length == 0))
                 {
                     throw new ValidacionException();
                 }
