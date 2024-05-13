@@ -15,7 +15,7 @@ namespace SGE.Repositorios;
 
     public class RepositorioTramite() : ITramiteRepositorio
     {
-        readonly string _nombreArch = "Tramite.txt";
+        static readonly string s_nombreArch = "Tramite.txt";
         static readonly string s_indexArch = "TramiteID.txt";
         static int s_idTra;
     static RepositorioTramite()
@@ -32,10 +32,15 @@ namespace SGE.Repositorios;
             s_idTra = 1;
             sw.WriteLine(s_idTra);
         }
+        if (!File.Exists(s_nombreArch))
+        {
+            using var sw = new StreamWriter(s_nombreArch, true);
+            
+        }
     }
     public void AltaTramite(Tramite tra, Permiso permisoUser)
     {
-        using var sw = new StreamWriter(_nombreArch, true);
+        using var sw = new StreamWriter(s_nombreArch, true);
 
         sw.WriteLine(s_idTra);
         tra.IDTramite = s_idTra;
@@ -56,8 +61,8 @@ namespace SGE.Repositorios;
     {
 
         bool ok = false;
-        var lines = File.ReadAllLines(_nombreArch);
-        using var sw = new StreamWriter(_nombreArch, false);
+        var lines = File.ReadAllLines(s_nombreArch);
+        using var sw = new StreamWriter(s_nombreArch, false);
 
         for (int i = 0; i < lines.Length; i += 8)
         {
@@ -94,8 +99,8 @@ namespace SGE.Repositorios;
     public void ModificarTramite(int ID, Tramite tramite, int IDUser, Permiso permisoUser)
     {
         
-                var lines = File.ReadAllLines(_nombreArch);
-                using var sw = new StreamWriter(_nombreArch, false);
+                var lines = File.ReadAllLines(s_nombreArch);
+                using var sw = new StreamWriter(s_nombreArch, false);
 
                 for (int i = 0; i < lines.Length; i += 8)
                 {
@@ -127,7 +132,7 @@ namespace SGE.Repositorios;
     
     public List<Tramite> ConsultaPorEtiqueta(EtiquetaTramite etiqueta)
     {
-        var lines = File.ReadAllLines(_nombreArch);
+        var lines = File.ReadAllLines(s_nombreArch);
         List<Tramite> listaAux = new List<Tramite>();
         int i = 0;
         
@@ -158,7 +163,7 @@ namespace SGE.Repositorios;
     public List<Tramite> ConsultaPorIDexpediente(int id)
     {
 
-        var lines = File.ReadAllLines(_nombreArch);
+        var lines = File.ReadAllLines(s_nombreArch);
         List<Tramite> listaAux = new List<Tramite>();
         int eID;
         for (int i = 0; i < lines.Length; i += 8)

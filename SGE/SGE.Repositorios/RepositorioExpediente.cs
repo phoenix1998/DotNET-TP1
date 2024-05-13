@@ -61,7 +61,6 @@ public class RepositorioExpediente() : IExpedienteRepositorio
     public void BajaExpediente(Expediente exp, Permiso permisoUser, int idUser)
     {
 
-
         bool ok = false;
         var lines = File.ReadAllLines(_nombreArch);
         using var sw = new StreamWriter(_nombreArch, false);
