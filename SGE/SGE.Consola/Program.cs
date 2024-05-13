@@ -28,30 +28,34 @@ CasoDeUsoTramiteConsultaPorEtiqueta CUTraConEti = new CasoDeUsoTramiteConsultaPo
 CasoDeUsoTramiteConsultaPorIdExpediente CUTidExp = new CasoDeUsoTramiteConsultaPorIdExpediente(traRepo, expRepo);
 CasoDeUsoTramiteModificacion CUTraMod = new CasoDeUsoTramiteModificacion(traRepo, updater, expRepo);
 
-
 // Programa
 //Las operaciones de alta y baja del repositorio se encargan de las fechas y del ID, así que solo le pasamos la caratula, el ID de usuario y el Estado
 // - EXPEDIENTES
-Expediente exp1 = new Expediente("Es una caratula", 1, (EstadoExpediente)0);
-Expediente exp2 = new Expediente("Es otra caratula", 1, (EstadoExpediente)2);
+Expediente exp1 = new Expediente("", 1, (EstadoExpediente)0);
+Expediente exp2 = new Expediente("Es una caratula modificada", 1, (EstadoExpediente)2);
 Expediente exp3 = new Expediente("Una tercera carátula", 3, (EstadoExpediente)3);
-Expediente exp4 = new Expediente("Es una caratula modificada", 1, (EstadoExpediente)4);
-
+//RealizarModificacionExpediente(exp2, (Permiso)1, 3);
 RealizarAltaExpediente(exp1, (Permiso)1);
-RealizarAltaExpediente(exp2, (Permiso)1);
+RealizarAltaExpediente(exp2 , (Permiso)1);
 RealizarAltaExpediente(exp3, (Permiso)1);
 
+// - TRAMITES
+
+
 Tramite tra1 = new Tramite(exp1.IDExpediente, (EtiquetaTramite)1, "Esto es un tramite", 1);
-Tramite tra2 = new Tramite(exp2.IDExpediente, (EtiquetaTramite)2, "Esto es un tramite 2", 1);
+Tramite tra2 = null;
 Tramite tra3 = new Tramite(exp3.IDExpediente, (EtiquetaTramite)3, "Esto es un tramite 3", 1);
-Tramite tra4 = new Tramite(exp1.IDExpediente, (EtiquetaTramite)4, "Esto es un treamite Modificado", 1);
+//Tramite tra4 = new Tramite(exp1.IDExpediente, (EtiquetaTramite)4, "Esto es un treamite Modificado", 1);
 
 RealizarAltaTramite(tra1, exp1, (Permiso)1, 1);
 RealizarAltaTramite(tra2, exp2, (Permiso)1, 1);
 RealizarAltaTramite(tra3, exp3, (Permiso)1, 1);
-//RealizarBajaExpediente(exp2, (Permiso)1);
 
-RealizarModificacionExpediente(exp4, (Permiso)1, exp1.IDExpediente);
+//
+
+//RealizarModificacionExpediente(exp4, (Permiso)1, exp1.IDExpediente);
+
+
 
 
 // - METODOS
@@ -62,6 +66,7 @@ void RealizarAltaExpediente(Expediente exp, Permiso per, int IdUser = 1)
         if ((SA.PoseeElPermiso(IdUser, per) && EV.Validar(exp, IdUser)))
         {
             CUExpAlta.Ejecutar(exp, per, IdUser);
+            Console.WriteLine($"Se ha dado de alta el expediente {exp.IDExpediente}");
         }
     }
     catch
@@ -117,6 +122,7 @@ void RealizarAltaTramite(Tramite tra, Expediente exp,Permiso per, int IdUser)
         if (SA.PoseeElPermiso(IdUser, per) && (TV.Validador(tra, IdUser)))
         {
             CUTraAlta.Ejecutar(tra, per, exp);
+            Console.WriteLine($"Se ha dado de alta el tramite {tra.IDTramite}");
         }
             
     }
@@ -145,16 +151,18 @@ void RealizarConsultaPorEtiqueta(EtiquetaTramite etiqueta)
         Console.WriteLine(" * Hubo una excepcion");
     }
 }
-void RealizarConsultaPorIdExpediente(int idExpediente)
+Expediente RealizarConsultaPorIdExpediente(int idExpediente)
 {
+    Expediente expAux = null;
     try
     {
-        CUTidExp.Ejecutar(idExpediente);
+        expAux = CUTidExp.Ejecutar(idExpediente);
     }
-    catch
+    catch(Exception ex) 
     {
-        Console.WriteLine(" * Hubo una excepcion");
+        Console.WriteLine(ex.Message);
     }
+    return expAux;
 }
 void RealizarModificacionTramite(int idModificacionActual, Tramite tra,  Permiso per, Expediente exp, int IdUser = 1)
 {
