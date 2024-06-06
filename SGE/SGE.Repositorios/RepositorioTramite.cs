@@ -38,7 +38,7 @@ namespace SGE.Repositorios;
             
         }
     }
-    public void AltaTramite(Tramite tra, Permiso permisoUser)
+    public void AltaTramite(Tramite tra)
     {
         using var sw = new StreamWriter(s_nombreArch, true);
 
@@ -57,7 +57,7 @@ namespace SGE.Repositorios;
 
     }
 
-    public void BajaTramite(int ID, int IDUser, Permiso permisoUser)
+    public void BajaTramite(int ID, int IDUser)
     {
 
         bool ok = false;
@@ -85,18 +85,18 @@ namespace SGE.Repositorios;
         }
         if (ok)
         {
-            Console.WriteLine("Se dio de baja el tramite " + ID);
+            Console.WriteLine("Se dio de baja el tramite " + ID + "(para nosotros)" );
         }
         else
         {
-            throw new RepositorioException();
+            throw new RepositorioException($"No se encuentra el tramite {ID}");
 
         }
 
     }
 
 
-    public void ModificarTramite(int ID, Tramite tramite, int IDUser, Permiso permisoUser)
+    public void ModificarTramite(int ID, Tramite tramite, int IDUser)
     {
         
                 var lines = File.ReadAllLines(s_nombreArch);
@@ -124,7 +124,7 @@ namespace SGE.Repositorios;
                         sw.WriteLine(tramite.FechaHoraCreacion);
                         sw.WriteLine(DateTime.Now);
                         sw.WriteLine(tramite.IDUser);
-                        Console.WriteLine($"El tramite {ID} fue modificado");
+                        Console.WriteLine($"El tramite {ID} fue modificado (para nosotros)");
                     }
                 }
     }
@@ -154,7 +154,7 @@ namespace SGE.Repositorios;
             }
             if(listaAux.Count() < 1)
             {
-                throw new RepositorioException();
+                throw new RepositorioException($"No se encontraron tramites con la etiqueta {etiqueta}");
             }
             
         
@@ -195,7 +195,7 @@ namespace SGE.Repositorios;
         }
         if(listaAux.Count == 0)
         {
-            Console.WriteLine($"No se encontro ningun tramite con id de expediente {id}");
+            throw new RepositorioException($"No se encontro ningun tramite con id de expediente {id}");
         }
         return listaAux;
     }

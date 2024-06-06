@@ -40,7 +40,7 @@ public class RepositorioExpediente() : IExpedienteRepositorio
             sw.WriteLine(s_idExp);
         }
     }
-    public void AltaExpediente(Expediente exp, Permiso permisoUser, int idUser)
+    public void AltaExpediente(Expediente exp, int idUser)
     {
         
         using var sw = new StreamWriter(_nombreArch, true);
@@ -58,7 +58,7 @@ public class RepositorioExpediente() : IExpedienteRepositorio
         using var sw1 = new StreamWriter(s_indexArch, false);
         sw1.WriteLine(s_idExp);
     }
-    public void BajaExpediente(Expediente exp, Permiso permisoUser, int idUser)
+    public void BajaExpediente(Expediente exp, int idUser)
     {
 
         bool ok = false;
@@ -81,19 +81,19 @@ public class RepositorioExpediente() : IExpedienteRepositorio
             else
             {
                 ok = true;
-                Console.WriteLine("Se dio de baja el expediente " + exp.IDExpediente);
+                //Console.WriteLine("Se dio de baja el expediente " + exp.IDExpediente);
             }
         }
         if (!ok)
         {
-            throw new RepositorioException();
+            throw new RepositorioException($"No existe el expediente {exp.IDExpediente}");
         }
         
     }
 
 
 
-    public void ModificacionExpediente(int ID, Expediente exp, int idUser, Permiso permisoUser)
+    public void ModificacionExpediente(int ID, Expediente exp, int idUser)
     {
 
         var lines = File.ReadAllLines(_nombreArch);
@@ -126,7 +126,7 @@ public class RepositorioExpediente() : IExpedienteRepositorio
         }
         if (ok)
         {
-            Console.WriteLine($"El expediente {ID} fue modificado");
+            Console.WriteLine($"El expediente {ID} fue modificado (para ver nosotros)");
         }
         
     }
@@ -160,9 +160,9 @@ public class RepositorioExpediente() : IExpedienteRepositorio
                 }
                 else
                 {
-                    Console.WriteLine("El estado es invalido");
+                    throw new RepositorioException("El estado del expediente es invalido");
                 }
-
+                
             }
 
             else
@@ -205,7 +205,7 @@ public class RepositorioExpediente() : IExpedienteRepositorio
                     }
                     else
                     {
-                        Console.WriteLine("El estado es invalido");
+                        throw new RepositorioException("El estado del expediente es invalido");
                     }
                     listaAux.Add(aux);
                 }
