@@ -9,21 +9,14 @@ namespace SGE.Aplicacion.Validadores
 {
     public class TramiteValidador
     {
-        public bool Validador (Tramite tra, int idUserActual)
+        public bool Validador (Tramite tra)
         {
-            try
+            if (tra.Contenido?.Length == 0)
             {
-                if ((tra == null) || (idUserActual <= 0) || (tra.Contenido?.Length == 0))
-                {
-                    throw new ValidacionException();
-                }
-                return true;
+                throw new ValidacionException("El tramite no puede estar vacio");
             }
-            catch
-            {
-                return false;
-            }
-            
+            return true;
+
         }
     }
 }

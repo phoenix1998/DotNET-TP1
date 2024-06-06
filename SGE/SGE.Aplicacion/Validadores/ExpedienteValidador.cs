@@ -9,21 +9,13 @@ namespace SGE.Aplicacion.Validadores
 {
     public class ExpedienteValidador
     {
-        public bool Validar(Expediente exp, int idUserActual)
+        public bool Validar(Expediente exp)
         {
-            try
+            if (exp.Caratula?.Length == 0)
             {
-                if ((exp == null) || (idUserActual <= 0) || (exp.Caratula?.Length == 0))
-                {
-                    throw new ValidacionException();
-                }
-                return true;
+                throw new ValidacionException("La caratula no puede estar vacia");
             }
-            catch
-            {
-                return false;
-            }
-           
+            return true;
         }
     }
 }
