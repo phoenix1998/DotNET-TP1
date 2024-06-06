@@ -8,9 +8,10 @@ namespace SGE.Aplicacion.Excepciones
 {
     public class RepositorioException : Exception
     {
-        public RepositorioException() : base() 
+        public RepositorioException() { }
+        public RepositorioException(string mensaje) : base(mensaje) 
         {
-            Console.WriteLine("La entidad no fue encontrada");
+           
         }
     }
 }

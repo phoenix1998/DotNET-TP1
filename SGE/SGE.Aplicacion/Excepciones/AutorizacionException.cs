@@ -8,9 +8,11 @@ namespace SGE.Aplicacion.Excepciones
 {
     public class AutorizacionException : Exception
     {
-        public AutorizacionException() : base()
+        public AutorizacionException() { }  
+        
+        public AutorizacionException(string mensaje) : base(mensaje)
         {
-            Console.WriteLine("El Usuario no tiene el permiso");
+            
         }
     }
 }
