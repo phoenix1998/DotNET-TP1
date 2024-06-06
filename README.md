@@ -1,2 +1,2 @@
 # DotNET-TP2
-Repositorio del primer trabajo practico del seminario de lenguajes .NET
+Repositorio del segundo trabajo practico del seminario de lenguajes .NET
