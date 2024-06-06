@@ -9,31 +9,21 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.Servicios
 {
-    public class ServicioActualizacionEstado
+    public class ServicioActualizacionEstado(EspecificacionCambioEstado especificacionCambioEstado)
     {
         public void ActualizarEstado(Expediente exp)
         {
+            
             if (exp.Tramites.Count == 0)
             {
-                exp.Estado = (EstadoExpediente)0;
+                exp.Estado = EstadoExpediente.RecienIniciado;
             }
             else
             {
-
-                if (exp.Tramites.Last().EtiquetaTramite.Equals((EtiquetaTramite)3))
-                    {
-                       exp.Estado = (EstadoExpediente)2;
-                    }
-                    if (exp.Tramites.Last().EtiquetaTramite.Equals((EtiquetaTramite)1))
-                    {
-                        exp.Estado = (EstadoExpediente)1;
-                    }
-                    if (exp.Tramites.Last().EtiquetaTramite.Equals((EtiquetaTramite)5))
-                    {
-                        exp.Estado = (EstadoExpediente)4;
-                    }
+                especificacionCambioEstado.DefinirEstado(exp);
             }
+            
         }
-        
+
     }
 }
