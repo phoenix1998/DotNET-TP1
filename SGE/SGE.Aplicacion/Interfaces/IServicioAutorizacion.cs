@@ -9,7 +9,7 @@ namespace SGE.Aplicacion.Interfaces
 {
     public interface IServicioAutorizacion
     {
-        public bool PoseeElPermiso(int IDUser, Permiso permiso);
+        public bool PoseeElPermiso(int IDUser);
         
     }
 }

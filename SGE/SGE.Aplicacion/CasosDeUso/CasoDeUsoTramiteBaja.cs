@@ -38,7 +38,7 @@ namespace SGE.Aplicacion.CasosDeUso
                 repo.BajaTramite(id, idU);
                 expediente.Tramites.Remove(aux);
                 updater.ActualizarEstado(expediente);
-                expRepo.ModificacionExpediente(expediente.IDExpediente, expediente);
+                expRepo.ModificacionExpediente(expediente.IDExpediente, expediente, idU);
             }
             
 

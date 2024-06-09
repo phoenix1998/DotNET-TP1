@@ -19,11 +19,11 @@ namespace SGE.Aplicacion.CasosDeUso
         )
 
     {
-        public void Ejecutar(Expediente exp, int idUser)
+        public void Ejecutar(Expediente exp, int IdUser)
         {
-            if (!SA.PoseeElPermiso(idUser))
+            if (!SA.PoseeElPermiso(IdUser))
             {
-                throw new AutorizacionException($"El usuario {idUser} no posee el permiso para dar de alta un expediente");
+                throw new AutorizacionException($"El usuario {IdUser} no posee el permiso para dar de alta un expediente");
             }
                 
                 
@@ -31,7 +31,7 @@ namespace SGE.Aplicacion.CasosDeUso
             {
                 throw new ValidacionException();
             }
-            repo.AltaExpediente(exp, idUser);
+            repo.AltaExpediente(exp, IdUser);
         }
             
     }
