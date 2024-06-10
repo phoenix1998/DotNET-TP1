@@ -10,10 +10,10 @@ namespace SGE.Aplicacion.Interfaces
 {
     public interface IExpedienteRepositorio
     {
-        public void AltaExpediente(Expediente expediente, int idUser);
-        public void BajaExpediente(Expediente expediente, int idUser);
-        public Expediente ConsultaPorID(int id);
+        public void AltaExpediente(Expediente expediente);
+        public void BajaExpediente(Expediente expediente);
+        public Expediente ConsultaPorId(int id);
         public List<Expediente> ConsultarTodos();
-        public void ModificacionExpediente(int ID, Expediente expediente, int idUser);
+        public void ModificacionExpediente(int ID, Expediente expediente);
     }
 }
