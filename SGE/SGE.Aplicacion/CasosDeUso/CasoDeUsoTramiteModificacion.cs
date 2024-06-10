@@ -19,19 +19,19 @@ namespace SGE.Aplicacion.CasosDeUso
         IServicioAutorizacion SA)
     {
 
-        public void Ejecutar(int id, Tramite tramite, int idU, Expediente expediente)
+        public void Ejecutar(int Tramiteid, Tramite tramite, Usuario usu, Expediente expediente)
         {
-            if (!SA.PoseeElPermiso(idU))
+            if (!SA.PoseeElPermiso(usu, Permiso.TramiteModificacion))
             {
-                throw new AutorizacionException($"El usuario {idU} no posee el permiso para modificar un tramite");
+                throw new AutorizacionException($"El usuario {usu.Id} no posee el permiso para modificar un tramite");
             }
             if (!TV.Validador(tramite))
             {
                 throw new ValidacionException();
             }
-            repo.ModificarTramite(id, tramite, idU);
+            repo.ModificarTramite(Tramiteid, tramite);
             updater.ActualizarEstado(expediente);
-            expRepo.ModificacionExpediente(expediente.IDExpediente, expediente, idU);
+            
         } 
     }
 }

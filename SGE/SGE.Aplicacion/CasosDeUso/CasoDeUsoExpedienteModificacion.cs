@@ -15,11 +15,11 @@ namespace SGE.Aplicacion.CasosDeUso
         IServicioAutorizacion SA,
         IExpedienteValidador EV)
     {
-        public void Ejecutar(int id, Expediente exp, int IDUser)
+        public void Ejecutar(int idExp, Expediente exp, Usuario usu)
         {
-            if (!SA.PoseeElPermiso(IDUser))
+            if (!SA.PoseeElPermiso(usu, Permiso.ExpedienteModificacion))
             {
-                throw new AutorizacionException($"El usuario {IDUser} no posee el permiso para modificar un expediente");
+                throw new AutorizacionException($"El usuario {usu.Id} no posee el permiso para modificar un expediente");
             }
 
 
@@ -27,7 +27,7 @@ namespace SGE.Aplicacion.CasosDeUso
             {
                 throw new ValidacionException();
             }
-            repo.ModificacionExpediente(id, exp, IDUser);
+            repo.ModificacionExpediente(idExp, exp);
         }
     }
 }

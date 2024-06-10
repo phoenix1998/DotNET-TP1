@@ -11,23 +11,16 @@ using System.Threading.Tasks;
 
 namespace SGE.Aplicacion.CasosDeUso
 {
-    public class CasoDeUsoExpedienteBaja(IExpedienteRepositorio repo, ITramiteRepositorio traRepo, IServicioAutorizacion SA)
+    public class CasoDeUsoExpedienteBaja(IExpedienteRepositorio repo, IServicioAutorizacion SA)
     {
 
-        public void Ejecutar(Expediente exp,int idUser)
+        public void Ejecutar(Expediente exp,Usuario usu)
         {
-            if (!SA.PoseeElPermiso(idUser))
+            if (!SA.PoseeElPermiso(usu, Permiso.ExpedienteBaja))
             {
-                throw new AutorizacionException($"El usuario {idUser} no tiene permisos para dar de baja un expediente.");
+                throw new AutorizacionException($"El usuario {usu.Id} no tiene permisos para dar de baja un expediente.");
             }
-            if (exp.Tramites != null)
-            {
-                foreach (Tramite tra in exp.Tramites)
-                {
-                    traRepo.BajaTramite(tra.IDTramite, idUser);
-                }
-            }
-            repo.BajaExpediente(exp, idUser);
+            repo.BajaExpediente(exp);
         }
     }
 }

@@ -18,20 +18,20 @@ namespace SGE.Aplicacion.CasosDeUso
         ITramiteValidador TV,
         IServicioAutorizacion SA)
     {
-        public void Ejecutar(Tramite tramite, Expediente expediente, int IdUser)
+        public void Ejecutar(Tramite tramite, Expediente expediente, Usuario usu)
         {
-            if (!SA.PoseeElPermiso(IdUser))
+            if (!SA.PoseeElPermiso(usu, Permiso.TramiteAlta))
             {
-                throw new AutorizacionException($"El usuario {IdUser} no posee permiso para dar de alta un tramite");
+                throw new AutorizacionException($"El usuario {usu.Id} no posee permiso para dar de alta un tramite");
             }
             if (!TV.Validador(tramite))
             {
                 throw new ValidacionException();
             }
-            repo.AltaTramite(tramite);
+            
             expediente.Tramites.Add(tramite);
             updater.ActualizarEstado(expediente);
-            expRepo.ModificacionExpediente(expediente.IDExpediente, expediente, IdUser);
+            repo.AltaTramite(tramite);
         }
     }
 }
