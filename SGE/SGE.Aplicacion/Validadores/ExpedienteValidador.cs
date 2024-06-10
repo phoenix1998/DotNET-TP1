@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Excepciones;
+using SGE.Aplicacion.Interfaces;
+
 namespace SGE.Aplicacion.Validadores
 {
-    public class ExpedienteValidador
+    public class ExpedienteValidador : IExpedienteValidador
     {
         public bool Validar(Expediente exp)
         {
