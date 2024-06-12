@@ -14,6 +14,7 @@ namespace SGE.Aplicacion.Interfaces
         public void BajaTramite(int ID);
         public void ModificarTramite(int ID, Tramite tramite);
         public List<Tramite> ConsultaPorEtiqueta(EtiquetaTramite etiqueta);
+        public Tramite ConsultaPorId(int ID, int expId);
         
     }
 }
