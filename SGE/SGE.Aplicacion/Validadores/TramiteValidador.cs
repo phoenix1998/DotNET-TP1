@@ -13,7 +13,7 @@ namespace SGE.Aplicacion.Validadores
     {
         public bool Validador (Tramite tra)
         {
-            if (tra.Contenido?.Length == 0)
+            if (tra.Contenido == null || tra.Contenido == "")
             {
                 throw new ValidacionException("El tramite no puede estar vacio");
             }
