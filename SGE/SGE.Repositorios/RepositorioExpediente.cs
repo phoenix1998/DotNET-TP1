@@ -12,6 +12,8 @@ public class RepositorioExpediente : Repositorio ,IExpedienteRepositorio
     
     public void AltaExpediente(Expediente expediente)
     {
+        expediente.FechaHoraCreacion = DateTime.Now;
+        expediente.FechaHoraModificacion = expediente.FechaHoraCreacion;
         Contexto.Expedientes.Add(expediente);
         Contexto.SaveChanges();
     }
@@ -34,6 +36,7 @@ public class RepositorioExpediente : Repositorio ,IExpedienteRepositorio
         {
             throw new RepositorioException($"No se encontro el expediente {Id}");
         }
+        expediente.FechaHoraModificacion = DateTime.Now;
         expedienteConsulta = expediente;
         Contexto.SaveChanges();
     }

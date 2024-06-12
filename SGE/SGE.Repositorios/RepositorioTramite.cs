@@ -12,6 +12,9 @@ public class RepositorioTramite : Repositorio, ITramiteRepositorio
 
     public void AltaTramite(Tramite tramite)
     {
+        
+        tramite.FechaHoraCreacion = DateTime.Now;
+        tramite.FechaHoraMod = tramite.FechaHoraCreacion;
         Contexto.Tramites.Add(tramite);
         Contexto.SaveChanges();
     }
@@ -34,7 +37,7 @@ public class RepositorioTramite : Repositorio, ITramiteRepositorio
         {
             throw new RepositorioException($"No se encontro el tramite {ID}");
         }
-
+        tramite.FechaHoraMod = DateTime.Now;
         tramiteConsulta = tramite;
         Contexto.SaveChanges();
     }
@@ -50,4 +53,16 @@ public class RepositorioTramite : Repositorio, ITramiteRepositorio
         List<Tramite> listaTramites = Contexto.Tramites.Where(t => t.ExpedienteId == idExpediente).ToList();
         return listaTramites;
     }
+
+    public Tramite ConsultaPorId(int ID, int expId)
+    {
+        Tramite? tramiteConsultado = Contexto.Tramites.Where(t => t.Id == ID && t.ExpedienteId == expId)
+            .SingleOrDefault();
+        if (tramiteConsultado == null)
+        {
+            throw new RepositorioException($"No se encontro el tramite {ID}");
+        }
+        return tramiteConsultado;
+    }
+    
 }
