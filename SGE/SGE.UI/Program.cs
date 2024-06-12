@@ -26,7 +26,8 @@ builder.Services.AddSingleton<IUsuarioValidador, UsuarioValidador>();
 
 // Casos de uso de Usuario
 builder.Services.AddTransient<CasoDeUsoUsuarioAlta>();
-
+builder.Services.AddTransient<CasoDeUsoUsuarioTienePermiso>();
+builder.Services.AddTransient<CasoDeUsoUsuarioConsultaPorID>();
 // Casos de uso de Expediente
 builder.Services.AddTransient<CasoDeUsoExpedienteAlta>();
 builder.Services.AddTransient<CasoDeUsoExpedienteBaja>();
@@ -39,6 +40,7 @@ builder.Services.AddTransient<CasoDeUsoTramiteAlta>();
 builder.Services.AddTransient<CasoDeUsoTramiteBaja>();
 builder.Services.AddTransient<CasoDeUsoTramiteModificacion>();
 builder.Services.AddTransient<CasoDeUsoTramiteConsultaPorEtiqueta>();
+builder.Services.AddTransient<CasoDeUsoTramiteConsultaPorId>();
 
 // Repositorios
 builder.Services.AddSingleton<IUsuarioRepositorio, RepositorioUsuario>(usuRepo => new RepositorioUsuario(contexto));

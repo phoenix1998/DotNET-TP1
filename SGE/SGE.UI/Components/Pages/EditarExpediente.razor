@@ -1,0 +1,75 @@
+@page "/expediente/{Id:int?}"
+@rendermode InteractiveServer
+@inject NavigationManager Navegador
+@inject CasoDeUsoExpedienteAlta AltaExpediente
+@inject CasoDeUsoExpedienteBaja BajaExpediente
+@inject CasoDeUsoExpedienteModificacion ModificacionExpediente
+@inject CasoDeUsoConsultaPorIdExpediente ConsultaPorIdExpediente
+@inject CasoDeUsoUsuarioConsultaPorID ConsultaPorIdUsuario
+
+@if (_esNuevoExpediente)
+{
+<h3>Agregando un nuevo Expediente</h3>
+}
+else
+{
+<h3>Modificando al Expediente "@_expediente.Id"</h3>
+}
+
+<input placeholder="Caratula" @bind="_expediente.Caratula" class="form-control">
+<input placeholder="ID de Usuario" @bind="_expediente.IdUser" class="form-control">
+<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+
+@code{
+    
+    Expediente _expediente = new Expediente();
+    
+    [Parameter] public int? Id { get; set; }
+    bool _esNuevoExpediente=true;
+    protected override void OnParametersSet()
+    {
+        try
+        {
+            if (Id != null)
+            {
+                Expediente exp_hallado = ConsultaPorIdExpediente.Ejecutar(Id.Value);
+                _expediente = exp_hallado;
+                _esNuevoExpediente=false;
+            }
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        
+    }
+    
+    void Aceptar()
+    {
+        try
+        {
+            Usuario _usu = ConsultaPorIdUsuario.Ejecutar(_expediente.IdUser);
+            if (_esNuevoExpediente)
+            {
+                AltaExpediente.Ejecutar(_expediente, _usu);
+            }
+            else
+            {
+                if (Id != null)
+                {
+                    ModificacionExpediente.Ejecutar(Id.Value,_expediente, _usu);
+                }
+
+                _esNuevoExpediente = true;
+            }
+            
+            _expediente = new Expediente();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        
+    }
+
+}

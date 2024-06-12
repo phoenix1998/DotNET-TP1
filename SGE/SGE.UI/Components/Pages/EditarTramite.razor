@@ -1,0 +1,81 @@
+@page "/expediente/{IdExp:int?}/tramite/{IdTram:int?}"
+@rendermode InteractiveServer
+@inject NavigationManager Navegador
+@inject CasoDeUsoTramiteAlta AltaTramite
+@inject CasoDeUsoTramiteBaja BajaTramite
+@inject CasoDeUsoTramiteModificacion ModificacionTramite
+@inject CasoDeUsoTramiteConsultaPorEtiqueta ConsultaPorEtiqueta
+@inject CasoDeUsoUsuarioConsultaPorID ConsultaPorIdUsuario
+@inject CasoDeUsoTramiteConsultaPorId ConsultaPorIdTramite
+@inject CasoDeUsoConsultaPorIdExpediente ConsultaPorIdExpediente
+@if (_esNuevoTramite)
+{
+<h3>Agregando un nuevo Tramite</h3>
+}
+else
+{
+<h3>Modificando al Tramite "@_tramite.Id"</h3>
+}
+<input placeholder="Contenido" @bind="_tramite.Contenido" class="form-control">
+<input placeholder="ID de Expediente" @bind="_tramite.ExpedienteId" class="form-control">
+<input placeholder="ID de Usuario" @bind="IdUser" class="form-control">
+<input placeholder="Etiqueta" @bind="_tramite.EtiquetaTramite" class="form-control">
+<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+
+@code{
+
+    Tramite _tramite = new Tramite();
+    Usuario _usu = new Usuario();
+    Expediente _expediente = new Expediente();
+    int IdUser;
+    
+    [Parameter] public int? IdTram { get; set; }
+    [Parameter] public int? IdExp { get; set; }
+    bool _esNuevoTramite = true;
+    protected override void OnParametersSet()
+    {
+        try
+        {
+            if ((IdTram != null) && (IdExp != null))
+            {
+                Tramite tra_hallado = ConsultaPorIdTramite.Ejecutar(IdTram.Value, IdExp.Value);
+                _tramite = tra_hallado;
+                _esNuevoTramite=false;
+            }
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        
+    }
+    
+    void Aceptar()
+    {
+        try
+        {
+            _usu = ConsultaPorIdUsuario.Ejecutar(IdUser);
+            _expediente = ConsultaPorIdExpediente.Ejecutar(IdExp.Value);
+            if (_esNuevoTramite)
+            {
+                AltaTramite.Ejecutar(_tramite, _expediente, _usu);
+
+            }
+            else
+            {
+                {
+                    ModificacionTramite.Ejecutar(IdTram.Value, _tramite, _usu, _expediente);
+                    _esNuevoTramite = true;
+                }
+                _tramite = new Tramite();
+            }
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+    }
+
+    }
