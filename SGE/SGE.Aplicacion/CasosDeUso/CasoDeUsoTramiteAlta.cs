@@ -32,6 +32,7 @@ namespace SGE.Aplicacion.CasosDeUso
             expediente.Tramites.Add(tramite);
             updater.ActualizarEstado(expediente);
             repo.AltaTramite(tramite);
+            expRepo.ModificacionExpediente(expediente.Id, expediente);
         }
     }
 }
