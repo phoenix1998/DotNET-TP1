@@ -1,64 +1,56 @@
-﻿@page "/weather"
+﻿@page "/expediente/{ExpedienteId:int?}/tramites"
+@rendermode InteractiveServer
+@inject CasoDeUsoConsultaPorIdExpediente ConsultaPorIDExpediente
 @attribute [StreamRendering]
 
-<PageTitle>Weather</PageTitle>
+<PageTitle>Tramites</PageTitle>
 
-<h1>Weather</h1>
+<br/>
+<p>Esta es la lista de tramites del expediente @(ExpedienteId??0)</p>
+<br/>
 
-<p>This component demonstrates showing data.</p>
+<table class="tabla-tramites">
+    <thead>
+    <th>ID</th>
+    <th>ID de usuario</th>
+    <th>Ver trámite</th>
+    <th>Fecha de creación</th>
+    <th>Fecha de modificación</th>
+    </thead>
+    <tbody>
+    @foreach (var tramite in _tramites)
+    {
+    <tr>
+        <td>@tramite.Id</td>
+        <td>@tramite</td>
+        <td><a href="/expediente/@ExpedienteId/tramite/@tramite.Id">Editar</a></td>
+        <td>@tramite.FechaHoraCreacion</td>
+        <td>@tramite.FechaHoraMod</td>
+    </tr>
+    }
+    </tbody>
+</table>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
 
 @code {
-    private WeatherForecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
+    List<Tramite> _tramites = new List<Tramite>();
+    Expediente _unExpediente = new Expediente();
+    [Parameter] public int? ExpedienteId { get; set; }
+    protected override void OnParametersSet()
     {
-        // Simulate asynchronous loading to demonstrate streaming rendering
-        await Task.Delay(500);
-
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        try
         {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
-    }
-
-    private class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-        public int TemperatureC { get; set; }
-        public string? Summary { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+            if (ExpedienteId != null)
+            {
+                _unExpediente = ConsultaPorIDExpediente.Ejecutar(ExpedienteId.Value);
+                _tramites = _unExpediente.Tramites ?? new List<Tramite>();
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(" * ERROR " + e.Message);
+        }
+        
+    
     }
 }

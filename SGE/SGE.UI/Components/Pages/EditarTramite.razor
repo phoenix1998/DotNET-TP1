@@ -2,9 +2,9 @@
 @rendermode InteractiveServer
 @inject NavigationManager Navegador
 @inject CasoDeUsoTramiteAlta AltaTramite
-@inject CasoDeUsoTramiteBaja BajaTramite
+
 @inject CasoDeUsoTramiteModificacion ModificacionTramite
-@inject CasoDeUsoTramiteConsultaPorEtiqueta ConsultaPorEtiqueta
+
 @inject CasoDeUsoUsuarioConsultaPorID ConsultaPorIdUsuario
 @inject CasoDeUsoTramiteConsultaPorId ConsultaPorIdTramite
 @inject CasoDeUsoConsultaPorIdExpediente ConsultaPorIdExpediente
@@ -17,7 +17,6 @@ else
 <h3>Modificando al Tramite "@_tramite.Id"</h3>
 }
 <input placeholder="Contenido" @bind="_tramite.Contenido" class="form-control">
-<input placeholder="ID de Expediente" @bind="_tramite.ExpedienteId" class="form-control">
 <input placeholder="ID de Usuario" @bind="IdUser" class="form-control">
 <input placeholder="Etiqueta" @bind="_tramite.EtiquetaTramite" class="form-control">
 <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
@@ -67,8 +66,9 @@ else
                     ModificacionTramite.Ejecutar(IdTram.Value, _tramite, _usu, _expediente);
                     _esNuevoTramite = true;
                 }
-                _tramite = new Tramite();
+                
             }
+            _tramite = new Tramite();
             
         }
         catch (Exception e)

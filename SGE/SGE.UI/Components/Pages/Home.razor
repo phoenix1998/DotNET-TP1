@@ -1,7 +1,43 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+@inject CasoDeUsoExpedienteConsultaTodos ConsultaDeExpedientes
 
-<PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Lista de Expedientes</h1>
 
-Welcome to your new app.
+Estos son los expedientes de la base de datos
+<br/>
+<table class="tabla-expediente">
+    <thead>
+    <th>ID</th>
+    <th>ID de usuario</th>
+    <th>Tramites</th>
+    <th>Fecha de creación</th>
+    <th>Fecha de modificación</th>
+    </thead>
+    <tbody>
+    @foreach (var expediente in _expedientes)
+    {
+        <tr>
+            <td>@expediente.Id</td>
+            <td>@expediente.IdUser</td>
+            <td><a href="/expediente/@expediente.Id/tramites"></a></td>
+            <td>@expediente.FechaHoraCreacion</td>
+            <td>@expediente.FechaHoraModificacion</td>
+        </tr>
+    }
+    </tbody>
+</table>
+@code{
+
+    List<Expediente> _expedientes = new List<Expediente>();
+
+    protected override void OnInitialized()
+    {
+        {
+            _expedientes = ConsultaDeExpedientes.Ejecutar();
+        }
+
+    }
+    
+}
