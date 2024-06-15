@@ -9,11 +9,11 @@ Estos son los expedientes de la base de datos
 <br/>
 <table class="tabla-expediente">
     <thead>
-    <th>ID</th>
-    <th>ID de usuario</th>
-    <th>Tramites</th>
-    <th>Fecha de creación</th>
-    <th>Fecha de modificación</th>
+        <th>ID</th>
+        <th>ID de usuario</th>
+        <th>Tramites</th>
+        <th>Fecha de creación</th>
+        <th>Fecha de modificación</th>
     </thead>
     <tbody>
     @foreach (var expediente in _expedientes)
@@ -21,7 +21,7 @@ Estos son los expedientes de la base de datos
         <tr>
             <td>@expediente.Id</td>
             <td>@expediente.IdUser</td>
-            <td><a href="/expediente/@expediente.Id/tramites"></a></td>
+            <td><a href="/expediente/@expediente.Id/tramites">@expediente.Id</a></td>
             <td>@expediente.FechaHoraCreacion</td>
             <td>@expediente.FechaHoraModificacion</td>
         </tr>
