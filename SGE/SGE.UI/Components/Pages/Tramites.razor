@@ -12,7 +12,6 @@
 <table class="tabla-tramites">
     <thead>
     <th>ID</th>
-    <th>ID de usuario</th>
     <th>Ver trámite</th>
     <th>Fecha de creación</th>
     <th>Fecha de modificación</th>
@@ -20,17 +19,17 @@
     <tbody>
     @foreach (var tramite in _tramites)
     {
-    <tr>
-        <td>@tramite.Id</td>
-        <td>@tramite</td>
-        <td><a href="/expediente/@ExpedienteId/tramite/@tramite.Id">Editar</a></td>
-        <td>@tramite.FechaHoraCreacion</td>
-        <td>@tramite.FechaHoraMod</td>
-    </tr>
+        <tr>
+            <td>@tramite.Id</td>
+            <td><a href="/expediente/@ExpedienteId/tramite/@tramite.Id">Editar</a></td>
+            <td>@tramite.FechaHoraCreacion</td>
+            <td>@tramite.FechaHoraMod</td>
+        </tr>
     }
     </tbody>
 </table>
-
+<br/>
+<a href="/expediente/@ExpedienteId/tramite">Agregar nuevo trámite</a>
 
 @code {
     List<Tramite> _tramites = new List<Tramite>();
