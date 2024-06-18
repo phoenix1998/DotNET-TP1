@@ -1,0 +1,24 @@
+@rendermode InteractiveServer
+
+@inject CasoDeUsoSesionEstado cduEstado
+<div class="btn-salir">
+    <button class="btn btn-secondary" @onclick="AlSalir">Cerrar sesión</button>
+    <DialogoConfirmacion @ref=dialogo Accion="EventoAccion" Mensaje="¿Está seguro de cerrar la sesión?" />
+</div>
+
+@code {
+    [Parameter] public EventCallback AlCerrar { get; set; }
+    DialogoConfirmacion dialogo = null!;
+
+    void AlSalir()
+    {
+        dialogo.Mostrar();
+    }
+    void EventoAccion()
+    {
+        if (cduEstado.Ejecutar())
+        {
+            AlCerrar.InvokeAsync();
+        }
+    }
+}

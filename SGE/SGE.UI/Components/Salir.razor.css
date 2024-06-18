@@ -1,0 +1,10 @@
+.btn-salir {
+    position: fixed;
+    z-index: 1;
+    top: 96%;
+    left: 0;
+}
+
+div.btn-salir button {
+    width: 250px;
+}

@@ -1,0 +1,174 @@
+@rendermode InteractiveServer
+@inject CasoDeUsoUsuarioAlta cduUsuarioAlta
+@inject CasoDeUsoObtenerHash cduHash
+@inject CasoDeUsoUsuarioConsultaTodos cduConsultaTodos
+
+<div class="login-container">
+    @if (!_mostrarLoginRegistro)
+    {
+        <div>
+            <h1>Inicio de sesión</h1>
+        </div>
+        <div>
+            <span>
+                <b>Usuario: </b>
+                <input placeholder="Nombre" @bind="usuario.Nombre" class="form-control">
+            </span>
+        </div>
+        <div>
+            <span>
+                <b>Contraseña: </b>
+                <input placeholder="Contraseña" @bind="usuario.Contraseña" type="password" class="form-control">
+            </span>
+        </div>
+        <div>
+            <span>
+                <button class="btn btn-primary" @onclick="Conectar">Conectarse</button>
+                <button class="btn btn-secondary" @onclick="Registrar">Registrarse</button>
+            </span>
+        </div>
+    }
+    else
+    {
+        <div>
+            <h1>Registro</h1>
+        </div>
+        <div>
+            <span>
+                <b>Usuario: </b>
+                <input placeholder="Nombre" @bind="usuario.Nombre" class="form-control">
+            </span>
+        </div>
+        <div>
+            <span>
+                <b>E-Mail: </b>
+                <input placeholder="Email" @bind="usuario.Email" class="form-control">
+            </span>
+        </div>
+        <div>
+            <span>
+                <b>Apellido: </b>
+                <input placeholder="Apellido" @bind="usuario.Apellido" class="form-control">
+            </span>
+        </div>
+        
+        <div>
+            <span>
+                <b>Contraseña: </b>
+                <input placeholder="Contraseña" @bind="usuario.Contraseña" type="password" class="form-control">
+            </span>
+        </div>
+        <div>
+            <span>
+                <button class="btn btn-secondary" @onclick="Conectar">Conectarse</button>
+                <button class="btn btn-primary" @onclick="Registrar">Registrarse</button>
+            </span>
+        </div>
+    }
+    <DialogoConfirmacion @ref=dialogo Mensaje="" />
+</div>
+
+<style>
+    div.login-container {
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+</style>
+
+@code {
+    bool _mostrarLoginRegistro = false;
+    List<Usuario> listaUsuarios = new List<Usuario>();
+    DialogoConfirmacion dialogo = null!;
+    [Parameter]
+    public Usuario usuario { get; set; }
+    [Parameter]
+    public EventCallback OnConectado { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        listaUsuarios = cduConsultaTodos.Ejecutar();
+    }
+
+    void Registrar()
+    {
+        try
+        {
+            if (_mostrarLoginRegistro)
+            {
+                if (usuario.Nombre == "" || usuario.Contraseña == "")
+                    throw new Exception("ERROR: El nombre de usuario o la contraseña está vacía");
+
+                if (!ExisteCuenta())
+                {
+                    cduUsuarioAlta.Ejecutar(usuario);
+                    OnConectado.InvokeAsync();
+                }
+                else
+                {
+                    dialogo.Mensaje = "Esa cuenta ya se encuentra registrada";
+                    dialogo.Mostrar();
+                }
+            }
+            else
+            {
+                _mostrarLoginRegistro = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    void Conectar()
+    {
+        try
+        {
+            if (!_mostrarLoginRegistro)
+            {
+                if (ExisteCuenta())
+                {
+                    Usuario consultaUsuario = listaUsuarios.Where(u => u.Nombre == usuario.Nombre).Single();
+                    if (consultaUsuario.Contraseña == cduHash.Obtener(usuario.Contraseña))
+                    {
+                        OnConectado.InvokeAsync();
+                    }
+                    else
+                    {
+                        dialogo.Mensaje = "La contraseña es incorrecta";
+                        dialogo.Mostrar();
+                    }
+                }
+            }
+            else
+            {
+                _mostrarLoginRegistro = false;
+            }
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        
+    }
+
+    bool ExisteCuenta()
+    {
+        try
+        {
+            var consultaUsuario = listaUsuarios.Where(u => u.Nombre == usuario.Nombre).SingleOrDefault();
+            if (consultaUsuario != null)
+                return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("ERROR: " + ex.Message);
+        }
+        dialogo.Mensaje = "Esa cuenta no se encuentra registrada";
+        dialogo.Mostrar();
+        return false;
+    }
+}

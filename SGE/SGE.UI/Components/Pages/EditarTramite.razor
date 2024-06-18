@@ -1,4 +1,7 @@
 @page "/expediente/{IdExp:int?}/tramite/{IdTram:int?}"
+@using SGE.Aplicacion.CasosDeUso.Expedientes
+@using SGE.Aplicacion.CasosDeUso.Tramites
+@using SGE.Aplicacion.CasosDeUso.Usuarios
 @rendermode InteractiveServer
 @inject NavigationManager Navegador
 @inject CasoDeUsoTramiteAlta AltaTramite
@@ -26,6 +29,7 @@ else
     Tramite _tramite = new Tramite();
     Usuario _usu = new Usuario();
     Expediente _expediente = new Expediente();
+    
     int IdUser;
     
     [Parameter] public int? IdTram { get; set; }
