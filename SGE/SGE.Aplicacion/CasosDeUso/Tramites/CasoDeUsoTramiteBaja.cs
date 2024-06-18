@@ -3,13 +3,8 @@ using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
 using SGE.Aplicacion.Servicios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SGE.Aplicacion.CasosDeUso
+namespace SGE.Aplicacion.CasosDeUso.Tramites
 {
     public class CasoDeUsoTramiteBaja(ITramiteRepositorio repo, 
         ServicioActualizacionEstado updater, 

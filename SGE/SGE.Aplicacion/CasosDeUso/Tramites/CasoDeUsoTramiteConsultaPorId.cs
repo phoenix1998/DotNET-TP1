@@ -1,7 +1,7 @@
 using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Interfaces;
 
-namespace SGE.Aplicacion.CasosDeUso;
+namespace SGE.Aplicacion.CasosDeUso.Tramites;
 
 public class CasoDeUsoTramiteConsultaPorId(ITramiteRepositorio traRepo)
 {

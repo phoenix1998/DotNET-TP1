@@ -2,14 +2,8 @@
 using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
-using SGE.Aplicacion.Validadores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SGE.Aplicacion.CasosDeUso
+namespace SGE.Aplicacion.CasosDeUso.Expedientes
 {
     public class CasoDeUsoExpedienteModificacion(IExpedienteRepositorio repo,
         IServicioAutorizacion SA,
