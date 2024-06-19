@@ -9,4 +9,6 @@ public interface IUsuarioRepositorio
     public bool TienePermiso(Usuario user, Permiso permiso);
     public Usuario ConsultaPorId(int id);
     public List<Usuario> ConsultaTodos();
+    public void Modificar(Usuario user, bool opcion);
+    public void BajaUsuario(int id);
 }
