@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject CasoDeUsoUsuarioObtener cduObtenerUser
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Menu Principal</a>
     </div>
@@ -15,16 +17,56 @@
         </div>
 
         <div class="nav-item px-3">
+            <NavLink class="nav-link" href="expedientes">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Lista de Expedientes
+            </NavLink>
+        </div>
+        
+        <div class="nav-item px-3">
             <NavLink class="nav-link" href="expediente">
                 <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Agregar Expediente
             </NavLink>
         </div>
-
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Consulta Tramites 
+            <NavLink class="nav-link" href="expedienteid">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Consulta por ID de Expediente
             </NavLink>
         </div>
+        
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="tramitesetiquetas">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Consulta Tramite por Etiqueta
+            </NavLink>
+        </div>
+        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="tramiteid">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Consulta por ID de Tramite
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="modificarcuenta">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Modificar Cuenta
+            </NavLink>
+        </div>
+        
+        
+        @if (cduObtenerUser.Ejecutar().Id == 1)
+        {
+            <div class="nav-item px-3">
+            <NavLink class="nav-link" href="administracion">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Administrar Usuarios
+            </NavLink>
+            </div>
+        }
+        
     </nav>
 </div>
+
+@code{
+
+    
+
+}
 

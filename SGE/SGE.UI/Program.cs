@@ -42,9 +42,10 @@ builder.Services.AddScoped<CasoDeUsoUsuarioCambiar>();
 
 // Casos de uso de Usuario
 builder.Services.AddTransient<CasoDeUsoUsuarioAlta>();
-builder.Services.AddTransient<CasoDeUsoUsuarioTienePermiso>();
 builder.Services.AddTransient<CasoDeUsoUsuarioConsultaPorID>();
 builder.Services.AddTransient<CasoDeUsoUsuarioConsultaTodos>();
+builder.Services.AddTransient<CasoDeUsoUsuarioModificar>();
+builder.Services.AddTransient<CasoDeUsoUsuarioBaja>();
 
 // Casos de uso de Expediente
 builder.Services.AddTransient<CasoDeUsoExpedienteAlta>();
