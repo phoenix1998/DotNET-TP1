@@ -5,12 +5,11 @@
 @rendermode InteractiveServer
 @inject NavigationManager Navegador
 @inject CasoDeUsoTramiteAlta AltaTramite
-
 @inject CasoDeUsoTramiteModificacion ModificacionTramite
-
 @inject CasoDeUsoUsuarioConsultaPorID ConsultaPorIdUsuario
 @inject CasoDeUsoTramiteConsultaPorId ConsultaPorIdTramite
 @inject CasoDeUsoConsultaPorIdExpediente ConsultaPorIdExpediente
+@inject CasoDeUsoUsuarioObtener ObtenerUsuario
 @if (_esNuevoTramite)
 {
 <h3>Agregando un nuevo Tramite</h3>
@@ -20,8 +19,14 @@ else
 <h3>Modificando al Tramite "@_tramite.Id"</h3>
 }
 <input placeholder="Contenido" @bind="_tramite.Contenido" class="form-control">
-<input placeholder="ID de Usuario" @bind="IdUser" class="form-control">
-<input placeholder="Etiqueta" @bind="_tramite.EtiquetaTramite" class="form-control">
+<select name="tramites" id="tramites" @bind="_tramite.EtiquetaTramite" class="form-control">
+    <option value="EstadoPresentado">Estado Presentado</option>
+    <option value="PaseAEstudio">Pase A Estudio</option>
+    <option value="Despacho">Despacho</option>
+    <option value="Resolucion">Resolucion</option>
+    <option value="Notificacion">Notificacion</option>
+    <option value="PaseAlArchivo">Pase Al Archivo</option>
+</select>
 <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
 
 @code{
@@ -57,12 +62,12 @@ else
     {
         try
         {
-            _usu = ConsultaPorIdUsuario.Ejecutar(IdUser);
+            _usu = ObtenerUsuario.Ejecutar();
             _expediente = ConsultaPorIdExpediente.Ejecutar(IdExp.Value);
             if (_esNuevoTramite)
             {
+              
                 AltaTramite.Ejecutar(_tramite, _expediente, _usu);
-
             }
             else
             {

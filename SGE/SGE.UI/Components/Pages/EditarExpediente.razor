@@ -6,7 +6,7 @@
 @inject CasoDeUsoExpedienteBaja BajaExpediente
 @inject CasoDeUsoExpedienteModificacion ModificacionExpediente
 @inject CasoDeUsoConsultaPorIdExpediente ConsultaPorIdExpediente
-@inject CasoDeUsoUsuarioConsultaPorID ConsultaPorIdUsuario
+@inject CasoDeUsoUsuarioObtener ObtenerUsuario
 
 @if (_esNuevoExpediente)
 {
@@ -18,7 +18,6 @@ else
 }
 
 <input placeholder="Caratula" @bind="_expediente.Caratula" class="form-control">
-<input placeholder="ID de Usuario" @bind="_expediente.IdUser" class="form-control">
 <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
 
 @code{
@@ -49,9 +48,10 @@ else
     {
         try
         {
-            Usuario _usu = ConsultaPorIdUsuario.Ejecutar(_expediente.IdUser);
+            Usuario _usu = ObtenerUsuario.Ejecutar();
             if (_esNuevoExpediente)
             {
+                _expediente.IdUser = _usu.Id;
                 AltaExpediente.Ejecutar(_expediente, _usu);
             }
             else

@@ -1,3 +1,62 @@
 @page "/modificarcuenta"
 @rendermode InteractiveServer
+@inject CasoDeUsoObtenerHash cduHash
+@inject CasoDeUsoUsuarioModificar cduModificar
+@inject CasoDeUsoUsuarioObtener cduObtener
 
+<div class="modificar-cuenta">
+    <div>
+        <h1>Modificar datos personales</h1>
+    </div>
+    <div>
+        <span>
+            <b>Usuario: </b>
+            <input placeholder="Nombre" @bind="_usuario.Nombre" class="form-control">
+        </span>
+    </div>
+    <div>
+        <span>
+            <b>Apellido: </b>
+            <input placeholder="Apellido" @bind="_usuario.Apellido" class="form-control">
+        </span>
+    </div>
+    <div>
+        <span>
+            <b>E-Mail: </b>
+            <input placeholder="Email" @bind="_usuario.Email" class="form-control">
+        </span>
+    </div>
+    <div>
+        <span>
+            <b>Contraseña: </b>
+            <input placeholder="Contraseña" @bind="_usuario.Contraseña" type="password" class="form-control">
+        </span>
+    </div>
+    <div>
+        <span>
+            <button class="btn btn-secondary" @onclick="Aceptar">Aceptar</button>
+        </span>
+    </div>
+</div>
+
+
+@code{
+    Usuario _usuario = new Usuario();
+    protected override void OnInitialized()
+    {
+        _usuario = cduObtener.Ejecutar();
+    }
+    
+    void Aceptar()
+    {
+        try
+        {
+            cduModificar.Ejecutar(_usuario);
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        
+    }
+}

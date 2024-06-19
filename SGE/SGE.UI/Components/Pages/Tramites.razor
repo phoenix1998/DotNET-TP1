@@ -18,6 +18,7 @@
     <th>Ver trámite</th>
     <th>Fecha de creación</th>
     <th>Fecha de modificación</th>
+    <th>Etiqueta</th>
     <th>Eliminar?</th>
     </thead>
     <tbody>
@@ -28,6 +29,7 @@
             <td><a href="/expediente/@ExpedienteId/tramite/@tramite.Id">Editar</a></td>
             <td>@tramite.FechaHoraCreacion</td>
             <td>@tramite.FechaHoraMod</td>
+            <td>@tramite.EtiquetaTramite</td>
             <td><button class="btn btn-primary" @onclick="()=>Mostrar(tramite.Id)">Eliminar</button></td>
         </tr>
     }

@@ -1,31 +1,33 @@
-@page "/usuario"
+@page "/usuario/{UsuarioId:int?}"
 
 @rendermode InteractiveServer
-@inject CasoDeUsoUsuarioAlta AltaUsuario
 @inject NavigationManager Navegador
-@inject CasoDeUsoUsuarioTienePermiso TienePermiso
+@inject CasoDeUsoUsuarioModificar ModificarUsuario
+@inject CasoDeUsoUsuarioConsultaPorID cduObtener
 
 <input placeholder="Nombre" @bind="_usuario.Nombre" class="form-control">
 <input placeholder="Apellido" @bind="_usuario.Apellido" class="form-control">
 <input placeholder="Email" @bind="_usuario.Email" class="form-control">
-<input placeholder="Contraseña" @bind="_usuario.Contraseña" class="form-control">
 <input placeholder="Permiso" @bind="_permisoTemp" class="form-control">
 <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
 
 @code {
 Usuario _usuario = new Usuario();
 String? _permisoTemp = "";
+[Parameter] public int UsuarioId { get; set; }
 
+protected override void OnInitialized()
+{
+    _usuario = cduObtener.Ejecutar(UsuarioId);
+}
 void Aceptar()
 {
     try
     {
         List<Permiso> lista = _permisoTemp.Split(",").Select(s => (Permiso)int.Parse(s)).ToList();
         _usuario.Permisos = lista;
-        AltaUsuario.Ejecutar(_usuario);
-
-        _usuario = new Usuario();
-        //Navegador.NavigateTo("listadoclientes");
+        ModificarUsuario.Ejecutar(_usuario, true);
+        
     }
     catch
     {
