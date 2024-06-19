@@ -1,0 +1,22 @@
+.tabla-tramites {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.tabla-tramites th {
+    background-color: #6c7ae0;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.tabla-tramites td {
+    padding: 0.5rem;
+
+}
+.tabla-tramites tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}

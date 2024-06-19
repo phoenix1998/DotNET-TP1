@@ -1,0 +1,53 @@
+@page "/tramiteid"
+@rendermode InteractiveServer
+@inject CasoDeUsoTramiteConsultaPorId cduConsultaPorId
+
+<h1>Consultar por ID de tramite</h1>
+<p>Ingrese el ID del tramite que desea consultar con su ID de expediente</p>
+<input placeholder="IdExp" @bind="_IdExp" class="form-control">
+<input placeholder="IdTramite" @bind="_IdTramite" class="form-control">
+<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+@if ((_tramite.Id != 0) && (_ok))
+{
+    <h3>Tramite con ID @_IdTramite del expediente @_IdExp</h3>
+    <table class="tabla-tramites">
+        <thead>
+        <th>ID</th>
+        <th>Contenido</th>
+        <th>Etiqueta</th>
+        <th>Fecha de creación</th>
+        <th>Fecha de modificación</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@_tramite.Id</td>
+                <td>@_tramite.Contenido</td>
+                <td>@_tramite.EtiquetaTramite</td>
+                <td>@_tramite.FechaHoraCreacion</td>
+                <td>@_tramite.FechaHoraMod</td>
+            </tr>
+        </tbody>
+    </table>
+}
+@if (!_ok)
+{
+    <h3>No se encontraron tramites con el ID introducido</h3>
+}
+@code {
+    int _IdTramite;
+    int _IdExp;
+    Tramite _tramite = new Tramite();
+    bool _ok = true;
+    void Aceptar()
+    {
+        try
+        {
+            _tramite = cduConsultaPorId.Ejecutar(_IdTramite, _IdExp);
+            _ok = true;
+        }
+        catch
+        {
+            _ok = false;
+        }
+    }
+}

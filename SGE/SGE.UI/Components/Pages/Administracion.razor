@@ -1,0 +1,86 @@
+@page "/administracion"
+@rendermode InteractiveServer
+@inject CasoDeUsoUsuarioConsultaTodos ConsultaUsuarios
+@inject CasoDeUsoUsuarioBaja BajaUsuario
+<h3>Administracion</h3>
+<p>Aqui se administran los usuarios del sistema</p>
+<br/>
+<table class="tabla-usuarios">
+    <thead>
+    <th>ID de usuario</th>
+    <th>Nombre y Apellido</th>
+    <th>E-Mail</th>
+    <th>Permisos</th>
+    <th>Editar</th>
+    <th>Eliminar?</th>
+    </thead>
+    <tbody>
+    @foreach (var usuario in _usuarios)
+    {
+    <tr>
+        <td>@usuario.Id</td>
+        <td>@usuario.Nombre, @usuario.Apellido</td>
+        <td>@usuario.Email</td>
+        <td>@(usuario.Permisos.Any() ? string.Join(", ", usuario.Permisos.Select(p => ((EtiquetaTramite)p).ToString())) : "No tiene permisos")</td>
+        <td><a href="/usuario/@usuario.Id/"><button class="btn btn-primary">Editar</button></a></td>
+        <td><button class="btn btn-primary" @onclick="()=>Mostrar(usuario.Id)">Eliminar</button></td>
+        <td></td>
+    </tr>
+    }
+    </tbody>
+</table>
+<DialogoConfirmacion @ref=_dialogo Mensaje="Esta seguro que quiere eliminar a este usuario?" Accion=Eliminar />
+<style>
+    .tabla-usuarios {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .tabla-usuarios th {
+        background-color: #6c7ae0;
+        color: white;
+        font-weight: bold;
+        padding: 0.5rem;
+    }
+
+    .tabla-usuarios td {
+        padding: 0.5rem;
+
+    }
+    .tabla-usuarios tr:nth-child(even) td {
+        background-color: #f2f2f2;
+    }
+</style>
+@code {
+    List<Usuario> _usuarios = new List<Usuario>();
+    int _UserId;
+    DialogoConfirmacion? _dialogo = null!;
+    protected override void OnInitialized()
+    {
+        _usuarios = ConsultaUsuarios.Ejecutar();
+    }
+    void Mostrar(int Id)
+    {
+        _UserId = Id;
+        _dialogo.Mostrar();
+    }
+    void Eliminar()
+    {
+        
+        if(_UserId != 1)
+        {
+            BajaUsuario.Ejecutar(_UserId);
+            _usuarios = ConsultaUsuarios.Ejecutar();
+        }
+        else
+        {
+            Console.WriteLine("No se puede eliminar el usuario administrador");
+        }
+    }
+    
+    
+
+}

@@ -1,0 +1,64 @@
+@page "/tramitesetiquetas"
+@rendermode InteractiveServer
+@inject CasoDeUsoTramiteConsultaPorEtiqueta cduTramiteConsultaPorEtiqueta
+
+<h1>Listar Tramites</h1>
+
+<h3>Seleccione el tipo de etiqueta de tramite para filtrar</h3>
+
+    <label for="tramites">Elije una etiqueta:</label>
+    <select name="tramites" id="tramites" @bind="_opcion">
+        <option value="EstadoPresentado">Estado Presentado</option>
+        <option value="PaseAEstudio">Pase A Estudio</option>
+        <option value="Despacho">Despacho</option>
+        <option value="Resolucion">Resolucion</option>
+        <option value="Notificacion">Notificacion</option>
+        <option value="PaseAlArchivo">Pase Al Archivo</option>
+    </select>
+    <br><br>
+    <button class="btn btn-primary" @onclick="Mostrar">Buscar</button>
+    @if (_listaTramite.Count > 0)
+    {
+        <h3>Tramites con la etiqueta @_opcion</h3>
+        <table class="tabla-tramites">
+            <thead>
+            <th>ID</th>
+            <th>Fecha de creación</th>
+            <th>Fecha de modificación</th>
+            </thead>
+            <tbody>
+            @foreach (var tramite in _listaTramite)
+            {
+                <tr>
+                    <td>@tramite.Id</td>
+                    <td>@tramite.FechaHoraCreacion</td>
+                    <td>@tramite.FechaHoraMod</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    @if (_ok)
+    {
+        <h3>No se encontraron tramites con la etiqueta seleccionada</h3>
+    }
+    <br/>
+@code {
+    EtiquetaTramite _opcion;
+    List<Tramite> _listaTramite = new List<Tramite>();
+    bool _ok = false;
+    void Mostrar()
+    {
+        
+        _listaTramite = cduTramiteConsultaPorEtiqueta.Ejecutar(_opcion);
+        if (_listaTramite.Count == 0)
+        {
+            _ok = true;
+        }
+        else
+        {
+            _ok = false;    
+        }
+        
+    }
+}

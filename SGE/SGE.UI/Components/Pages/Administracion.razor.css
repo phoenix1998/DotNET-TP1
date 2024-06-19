@@ -1,0 +1,22 @@
+.tabla-usuarios {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.tabla-usuarios th {
+    background-color: #6c7ae0;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.tabla-usuarios td {
+    padding: 0.5rem;
+
+}
+.tabla-usuarios tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}

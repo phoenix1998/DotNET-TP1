@@ -1,0 +1,55 @@
+@page "/expedienteid"
+@rendermode InteractiveServer
+@inject CasoDeUsoConsultaPorIdExpediente cduConsultaPorId
+<h3>Consultar Expediente por ID</h3>
+<p>Introduce un ID para buscar un expediente</p>
+
+<input placeholder="Id" @bind="_Id" class="form-control">
+<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+
+@if ((_expediente.Id != 0) && (_ok))
+{
+<h3>Expediente con ID @_Id</h3>
+<table class="tabla-expedientes">
+    <thead>
+    <th>ID</th>
+    <th>ID de usuario</th>
+    <th>Caratula</th>
+    <th>Estado</th>
+    <th>Fecha de creación</th>
+    <th>Fecha de modificación</th>
+    
+    </thead>
+    <tbody>
+    <tr>
+        <td>@_expediente.Id</td>
+        <td>@_expediente.IdUser</td>
+        <td>@_expediente.Caratula</td>
+        <td>@_expediente.Estado</td>
+        <td>@_expediente.FechaHoraCreacion</td>
+        <td>@_expediente.FechaHoraModificacion</td>
+    </tr>
+    </tbody>
+</table>
+}
+@if (!_ok)
+{
+<h3>No se encontro el expediente con el ID introducido</h3>
+}
+@code {
+    int _Id;
+    Expediente _expediente = new Expediente();
+    bool _ok = true;
+    void Aceptar()
+    {
+        try
+        {
+            _expediente = cduConsultaPorId.Ejecutar(_Id);
+            _ok = true;
+        }
+        catch
+        {
+            _ok = false;
+        }
+    }
+}
