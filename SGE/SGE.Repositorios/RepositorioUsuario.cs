@@ -44,11 +44,12 @@ public class RepositorioUsuario : Repositorio , IUsuarioRepositorio
     }
     public Usuario ConsultaPorId(int id)
     {
-        if (Contexto.Usuarios.Find(id) == null)
+        Usuario? usuario = Contexto.Usuarios.Find(id);
+        if (usuario == null)
         {
             throw new RepositorioException($"El usuario con id {id} no existe");
         }
-        return Contexto.Usuarios.Find(id);
+        return usuario;
     }
     public List<Usuario> ConsultaTodos()
     {
@@ -59,16 +60,17 @@ public class RepositorioUsuario : Repositorio , IUsuarioRepositorio
     }
     public void Modificar(Usuario usuario, bool opcion)
     {
-        /*Usuario? usu;
-        usu = Contexto.Usuarios.Find(usuario);
-        if (usu == null)
-        {
-            throw new RepositorioException("No se encontro el usuario");
-        }
-        usu = usuario;*/
+        
         if (!opcion)
         {
-            usuario.Contraseña = hasher.ObtenerHash(usuario.Contraseña);
+            if(!string.IsNullOrEmpty(usuario.Contraseña))
+            {
+                usuario.Contraseña = hasher.ObtenerHash(usuario.Contraseña);
+            }
+            else
+            {
+                throw new RepositorioException($"La contraseña no es valida");
+            }
         }
         Contexto.Usuarios.Update(usuario);
         Contexto.SaveChanges();
