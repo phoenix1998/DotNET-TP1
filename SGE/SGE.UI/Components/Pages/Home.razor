@@ -1,17 +1,35 @@
 ﻿@page "/"
 @rendermode InteractiveServer
-@inject CasoDeUsoExpedienteConsultaTodos ConsultaDeExpedientes
-@inject CasoDeUsoExpedienteBaja BajaExpediente
 @inject CasoDeUsoUsuarioObtener ObtenerUsuario
-@inject CasoDeUsoConsultaPorIdExpediente ConsultaIdExp
 
-<h1>Bienvenido @_usuario.Nombre</h1>
-
+<div class="bienvenida">
+    <h1>Bienvenido @_usuario.Nombre</h1>
+    <h3>Sistema de Gestion de Expedientes</h3>
+</div>
+<div class="modo-uso">
+    <h4>Modo de uso:</h4>
+    <h5>Lista de Expedientes: </h5><p>Aqui se listan los expedientes que estan en la base de datos, para poder ver sus tramites 
+        selecciona "Ver" y aqui se listaran los tramites del expediente. Ademas se puede editar un expediente y tambien eliminar si se desea.</p>
+    <h5>Agregar Expedientes: </h5><p>Se agrega un nuevo expediente a la base de datos dandole un nombre a la caratula.</p>
+    <h5>Consulta por ID de Expediente: </h5><p>Para buscar un expediente por un Id expecifico, introduce el numero de identificacion del expediente para que 
+        se busque en el sistema. Si no existe, se informa por pantalla.</p>
+    <h5>Consulta de Tramite por Etiqueta: </h5><p>Para buscar tramites con una etiqueta especifica, seleccione la etiqueta deseada y se mostrará una lista
+        con los tramites que poseean esa etiqueta. Si no hay tramites con esa etiqueta, se informará por pantalla.</p>
+    <h5>Consulta por ID de Tramite: </h5><p>Para buscar un tramite por ID, se debe primero ingresar un ID de expediente valido, luego ingresar el ID
+        del tramite deseado; al aceptar se informará en pantalla el tramite con sus detalles. En caso contrario, se informará que no existe</p>
+    <h5>Modificar cuenta: </h5><p>Para modificar tu cuenta completa los campos de datos que desea cambiar, y aplique los cambios. ADVERTENCIA: La contraseña se
+        debe actualizar aunque no desee cambiarla (puede ser la misma).</p>
+    @if (ObtenerUsuario.Ejecutar()!.Id == 1)
+    {
+        <h5>Administrar usuarios: </h5><p>Para administrar los usuarios del sistema, seleccione "Administrar" y se mostrará una lista con los usuarios
+            registrados en el sistema. Se puede editar un usuario o eliminarlo si se desea. Usted es el encargado de asignar permisos a los usuarios.</p>
+    }
+</div>
 @code{
     Usuario _usuario = new Usuario();
     protected override void OnInitialized()
     {
-        _usuario = ObtenerUsuario.Ejecutar();
+        _usuario = ObtenerUsuario.Ejecutar()!;
         StateHasChanged();
     }
     
