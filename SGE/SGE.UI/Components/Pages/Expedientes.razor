@@ -61,13 +61,14 @@ Estos son los expedientes de la base de datos
     }
 </style>
 <DialogoConfirmacion @ref=_dialogo Mensaje="Esto eliminara el expediente y todos sus tramites, ¿Estas seguro?" Accion=Eliminar />
+<DialogoNotificacion @ref=_dialogoNotificacion Mensaje=@_error Accion=Eliminar />
 @code{
 
     List<Expediente> _expedientes = new List<Expediente>();
-
+    DialogoNotificacion _dialogoNotificacion = null!;
     DialogoConfirmacion? _dialogo = null!;
-    int ExpedienteId = 0;
-
+    int _expedienteId = 0;
+    String _error = "";
     protected override void OnInitialized()
     {
         {
@@ -77,8 +78,8 @@ Estos son los expedientes de la base de datos
 
     void Mostrar(int Id)
     {
-        ExpedienteId = Id;
-        _dialogo.Mostrar();
+        _expedienteId = Id;
+        _dialogo!.Mostrar();
 
     }
     void Eliminar()
@@ -86,14 +87,13 @@ Estos son los expedientes de la base de datos
         try
         {
 
-            BajaExpediente.Ejecutar(ConsultaIdExp.Ejecutar(ExpedienteId), ObtenerUsuario.Ejecutar());
+            BajaExpediente.Ejecutar(ConsultaIdExp.Ejecutar(_expedienteId), ObtenerUsuario.Ejecutar()!);
             _expedientes = ConsultaDeExpedientes.Ejecutar();
         }
         catch (Exception e)
         {
-            Console.WriteLine(" * ERROR " + e.Message);
-            //_dialogo.Mensaje = "El usuario no tiene permisos para eliminar expedientes";
-            //_dialogo.Mostrar();
+            _error = e.Message;
+            _dialogoNotificacion.Mostrar();
         }
 
     }
