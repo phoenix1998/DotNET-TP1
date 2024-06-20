@@ -15,7 +15,7 @@ namespace SGE.Aplicacion.Entidades
         public DateTime? FechaHoraModificacion { get; set; }
         public int IdUser { get; set; }
         public EstadoExpediente Estado { get; set; } /* 1: Recién iniciado,  2: Para resolver, 3: con resolucion, 4: en notificacion, 5: finalizado */
-        public List<Tramite>? Tramites { get; set; }
+        public List<Tramite> Tramites { get; set; } = new List<Tramite>();
 
         public override string ToString()
         {

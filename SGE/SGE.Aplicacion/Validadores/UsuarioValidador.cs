@@ -8,7 +8,7 @@ public class UsuarioValidador : IUsuarioValidador
 {
     public bool Validar(Usuario usuario)
     {
-        if (usuario.Id < 0)
+        if (usuario.Id < 1)
         {
             throw new ValidacionException($"El usuario {usuario.Nombre} no tiene un id valido");
         }

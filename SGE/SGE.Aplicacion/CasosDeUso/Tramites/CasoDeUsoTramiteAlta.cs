@@ -1,4 +1,5 @@
-﻿using SGE.Aplicacion.Entidades;
+﻿using System.Diagnostics;
+using SGE.Aplicacion.Entidades;
 using SGE.Aplicacion.Enumerativos;
 using SGE.Aplicacion.Excepciones;
 using SGE.Aplicacion.Interfaces;
