@@ -4,35 +4,60 @@
 @inject NavigationManager Navegador
 @inject CasoDeUsoUsuarioModificar ModificarUsuario
 @inject CasoDeUsoUsuarioConsultaPorID cduObtener
-
+<div class="opciones">
 <input placeholder="Nombre" @bind="_usuario.Nombre" class="form-control">
 <input placeholder="Apellido" @bind="_usuario.Apellido" class="form-control">
 <input placeholder="Email" @bind="_usuario.Email" class="form-control">
-<input placeholder="Permiso" @bind="_permisoTemp" class="form-control">
+<select multiple class="form-control" @onchange="ActualizarPermisos">
+    @foreach (var permiso in Enum.GetValues(typeof(Permiso)))
+    {
+    <option value="@permiso">@permiso</option>
+    }
+</select>
 <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+</div>
+<br/>
+
+<div class="importante">
+    <h3>Importante: </h3><p>Para seleccionar multiples permisos, mantenga apretada la tecla CTRL (Windows) o Command (Mac Os)</p>
+</div>
 
 @code {
-Usuario _usuario = new Usuario();
-String? _permisoTemp = "";
-[Parameter] public int UsuarioId { get; set; }
-
-protected override void OnInitialized()
-{
-    _usuario = cduObtener.Ejecutar(UsuarioId);
-}
-void Aceptar()
-{
-    try
+    Usuario _usuario = new Usuario();
+    List<Permiso> _permisosSeleccionados = new List<Permiso>();
+    [Parameter] public int UsuarioId { get; set; }
+    DialogoNotificacion _dialogoNotificacion = null!;
+    String? _error = "";
+    protected override void OnInitialized()
     {
-        List<Permiso> lista = _permisoTemp.Split(",").Select(s => (Permiso)int.Parse(s)).ToList();
-        _usuario.Permisos = lista;
-        ModificarUsuario.Ejecutar(_usuario, true);
-        
+        _usuario = cduObtener.Ejecutar(UsuarioId);
+        _permisosSeleccionados = _usuario.Permisos;
     }
-    catch
+    void Aceptar()
     {
-        Console.WriteLine("Error al guardar usuario");
+        try
+        {
+            _usuario.Permisos = _permisosSeleccionados;
+            ModificarUsuario.Ejecutar(_usuario, true);
+            Navegador.NavigateTo("/administracion");
+        }
+        catch(Exception e)
+        {
+            _error = e.Message;
+            _dialogoNotificacion.Mostrar();
+        }
     }
-}
-
+    void ActualizarPermisos(ChangeEventArgs e)
+    {
+        var selectedOptions = e.Value as IEnumerable<string>;
+        try
+        {
+            if (selectedOptions != null) _permisosSeleccionados = selectedOptions.Select(s => Enum.Parse<Permiso>(s)).ToList();
+        }
+        catch(Exception ex)
+        {
+            _error = ex.Message;
+            _dialogoNotificacion.Mostrar();
+        }
+    }
 }

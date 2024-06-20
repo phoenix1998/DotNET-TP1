@@ -15,10 +15,11 @@
 <table class="tabla-tramites">
     <thead>
     <th>ID</th>
-    <th>Ver trámite</th>
+    <th>Contenido</th>
     <th>Fecha de creación</th>
     <th>Fecha de modificación</th>
     <th>Etiqueta</th>
+    <th>Editar</th>
     <th>Eliminar?</th>
     </thead>
     <tbody>
@@ -26,10 +27,11 @@
     {
         <tr>
             <td>@tramite.Id</td>
-            <td><a href="/expediente/@ExpedienteId/tramite/@tramite.Id">Editar</a></td>
+            <td>@tramite.Contenido</td>
             <td>@tramite.FechaHoraCreacion</td>
             <td>@tramite.FechaHoraMod</td>
             <td>@tramite.EtiquetaTramite</td>
+            <td><a href="/expediente/@ExpedienteId/tramite/@tramite.Id">Editar</a></td>
             <td><button class="btn btn-primary" @onclick="()=>Mostrar(tramite.Id)">Eliminar</button></td>
         </tr>
     }
@@ -38,12 +40,15 @@
 <br/>
 <a href="/expediente/@ExpedienteId/tramite">Agregar nuevo trámite</a>
 <DialogoConfirmacion @ref=_dialogo Mensaje="Esto eliminara el tramite, ¿Estas seguro?" Accion=Eliminar />
+<DialogoNotificacion @ref=_dialogoNotificacion Mensaje=@_error Accion=Eliminar />
 @code {
     List<Tramite> _tramites = new List<Tramite>();
     Expediente _unExpediente = new Expediente();
     [Parameter] public int? ExpedienteId { get; set; }
     DialogoConfirmacion _dialogo = null!;
-    int TramiteId = 0;
+    DialogoNotificacion _dialogoNotificacion = null!;
+    String? _error = "";
+    int _tramiteId = 0;
     protected override void OnParametersSet()
     {
         try
@@ -56,13 +61,13 @@
         }
         catch (Exception e)
         {
-            Console.WriteLine(" * ERROR " + e.Message);
+            throw new Exception(e.Message);
         }
         
     }
-    void Mostrar(int Id)
+    void Mostrar(int id)
     {
-        TramiteId = Id;
+        _tramiteId = id;
         _dialogo.Mostrar();
     }
     void Eliminar()
@@ -71,14 +76,15 @@
         {
             if (ExpedienteId != null)
             {
-                EliminarTramite.Ejecutar(TramiteId, ObtenerUsuario.Ejecutar(), _unExpediente);
+                EliminarTramite.Ejecutar(_tramiteId, ObtenerUsuario.Ejecutar()!, _unExpediente);
                 _tramites = ConsultaPorIDExpediente.Ejecutar(ExpedienteId.Value).Tramites ?? new List<Tramite>();
             }
 
         }
         catch (Exception e)
         {
-            Console.WriteLine(" * ERROR " + e.Message);
+            _error = e.Message;
+            _dialogoNotificacion.Mostrar();
         }
         
     }

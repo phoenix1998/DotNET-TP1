@@ -3,26 +3,28 @@
 @rendermode InteractiveServer
 @inject NavigationManager Navegador
 @inject CasoDeUsoExpedienteAlta AltaExpediente
-@inject CasoDeUsoExpedienteBaja BajaExpediente
 @inject CasoDeUsoExpedienteModificacion ModificacionExpediente
 @inject CasoDeUsoConsultaPorIdExpediente ConsultaPorIdExpediente
 @inject CasoDeUsoUsuarioObtener ObtenerUsuario
+<div class="edicion-expediente">
+    @if (_esNuevoExpediente)
+    {
+        <h3>Agregando un nuevo Expediente</h3>
+    }
+    else
+    {
+        <h3>Modificando al Expediente "@_expediente.Id"</h3>
+    }
 
-@if (_esNuevoExpediente)
-{
-<h3>Agregando un nuevo Expediente</h3>
-}
-else
-{
-<h3>Modificando al Expediente "@_expediente.Id"</h3>
-}
-
-<input placeholder="Caratula" @bind="_expediente.Caratula" class="form-control">
-<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
-
+    <input placeholder="Caratula" @bind="_expediente.Caratula" class="form-control">
+    <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+</div>
+<DialogoNotificacion @ref=_dialogoNotificacion Mensaje=@_error Accion=Aceptar />
 @code{
     
     Expediente _expediente = new Expediente();
+    DialogoNotificacion? _dialogoNotificacion;
+    String? _error = "";
     
     [Parameter] public int? Id { get; set; }
     bool _esNuevoExpediente=true;
@@ -32,14 +34,15 @@ else
         {
             if (Id != null)
             {
-                Expediente exp_hallado = ConsultaPorIdExpediente.Ejecutar(Id.Value);
-                _expediente = exp_hallado;
+                Expediente expHallado = ConsultaPorIdExpediente.Ejecutar(Id.Value);
+                _expediente = expHallado;
                 _esNuevoExpediente=false;
             }
         }
         catch(Exception e)
         {
-            Console.WriteLine(e.Message);
+            _error = e.Message;
+            _dialogoNotificacion?.Mostrar();
         }
         
     }
@@ -48,19 +51,20 @@ else
     {
         try
         {
-            Usuario _usu = ObtenerUsuario.Ejecutar();
+            Usuario usu = ObtenerUsuario.Ejecutar()!;
             if (_esNuevoExpediente)
             {
-                _expediente.IdUser = _usu.Id;
-                AltaExpediente.Ejecutar(_expediente, _usu);
+                _expediente.IdUser = usu.Id;
+                AltaExpediente.Ejecutar(_expediente, usu);
             }
             else
             {
                 if (Id != null)
                 {
-                    ModificacionExpediente.Ejecutar(Id.Value,_expediente, _usu);
+                    ModificacionExpediente.Ejecutar(Id.Value,_expediente, usu);
+                    Navegador.NavigateTo("/expedientes");
                 }
-
+                
                 _esNuevoExpediente = true;
             }
             
@@ -68,7 +72,8 @@ else
         }
         catch(Exception e)
         {
-            Console.WriteLine(e.Message);
+            _error = e.Message;
+            _dialogoNotificacion?.Mostrar();
         }
         
     }

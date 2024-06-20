@@ -1,0 +1,7 @@
+div.edicion-expediente{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}

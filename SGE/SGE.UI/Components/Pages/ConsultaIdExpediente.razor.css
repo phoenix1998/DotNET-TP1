@@ -1,0 +1,32 @@
+div.opciones{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.tabla-expedientes {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.tabla-expedientes th {
+    background-color: #6c7ae0;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.tabla-expedientes td {
+    padding: 0.5rem;
+
+}
+.tabla-expedientes tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}
+.h3{
+    text-align: center;
+}

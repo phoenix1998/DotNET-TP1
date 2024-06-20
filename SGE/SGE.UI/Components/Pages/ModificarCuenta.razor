@@ -1,8 +1,8 @@
 @page "/modificarcuenta"
 @rendermode InteractiveServer
-@inject CasoDeUsoObtenerHash cduHash
 @inject CasoDeUsoUsuarioModificar cduModificar
 @inject CasoDeUsoUsuarioObtener cduObtener
+
 
 <div class="modificar-cuenta">
     <div>
@@ -39,12 +39,15 @@
     </div>
 </div>
 
-
+<DialogoNotificacion @ref=_dialogoNotificacion Mensaje="Los cambios se guardaron correctamente" Accion=Aceptar />
+<DialogoNotificacion @ref=_dialogoNotificacion Mensaje=@_error Accion=Aceptar />
 @code{
     Usuario _usuario = new Usuario();
+    DialogoNotificacion? _dialogoNotificacion;
+    String? _error = "";
     protected override void OnInitialized()
     {
-        _usuario = cduObtener.Ejecutar();
+        _usuario = cduObtener.Ejecutar()!;
     }
     
     void Aceptar()
@@ -52,10 +55,12 @@
         try
         {
             cduModificar.Ejecutar(_usuario);
+            _dialogoNotificacion?.Mostrar();
         }
         catch(Exception e)
         {
-            Console.WriteLine(e.Message);
+            _error = e.Message;
+            _dialogoNotificacion?.Mostrar();
         }
         
     }

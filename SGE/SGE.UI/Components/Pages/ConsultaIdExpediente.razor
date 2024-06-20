@@ -1,12 +1,14 @@
 @page "/expedienteid"
 @rendermode InteractiveServer
 @inject CasoDeUsoConsultaPorIdExpediente cduConsultaPorId
+
+<div class="opciones">
 <h3>Consultar Expediente por ID</h3>
 <p>Introduce un ID para buscar un expediente</p>
 
 <input placeholder="Id" @bind="_Id" class="form-control">
 <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
-
+</div>
 @if ((_expediente.Id != 0) && (_ok))
 {
 <h3>Expediente con ID @_Id</h3>

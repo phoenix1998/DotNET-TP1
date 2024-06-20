@@ -1,42 +1,39 @@
 @page "/expediente/{IdExp:int?}/tramite/{IdTram:int?}"
-@using SGE.Aplicacion.CasosDeUso.Expedientes
-@using SGE.Aplicacion.CasosDeUso.Tramites
-@using SGE.Aplicacion.CasosDeUso.Usuarios
 @rendermode InteractiveServer
 @inject NavigationManager Navegador
 @inject CasoDeUsoTramiteAlta AltaTramite
 @inject CasoDeUsoTramiteModificacion ModificacionTramite
-@inject CasoDeUsoUsuarioConsultaPorID ConsultaPorIdUsuario
 @inject CasoDeUsoTramiteConsultaPorId ConsultaPorIdTramite
 @inject CasoDeUsoConsultaPorIdExpediente ConsultaPorIdExpediente
 @inject CasoDeUsoUsuarioObtener ObtenerUsuario
-@if (_esNuevoTramite)
-{
-<h3>Agregando un nuevo Tramite</h3>
-}
-else
-{
-<h3>Modificando al Tramite "@_tramite.Id"</h3>
-}
-<input placeholder="Contenido" @bind="_tramite.Contenido" class="form-control">
-<select name="tramites" id="tramites" @bind="_tramite.EtiquetaTramite" class="form-control">
-    <option value="EstadoPresentado">Estado Presentado</option>
-    <option value="PaseAEstudio">Pase A Estudio</option>
-    <option value="Despacho">Despacho</option>
-    <option value="Resolucion">Resolucion</option>
-    <option value="Notificacion">Notificacion</option>
-    <option value="PaseAlArchivo">Pase Al Archivo</option>
-</select>
-<button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
-
+<div class="edicion-tramite">
+    @if (_esNuevoTramite)
+    {
+        <h3>Agregando un nuevo Tramite</h3>
+    }
+    else
+    {
+        <h3>Modificando al Tramite "@_tramite.Id"</h3>
+    }
+    <input placeholder="Contenido" @bind="_tramite.Contenido" class="form-control">
+    <select name="tramites" id="tramites" @bind="_tramite.EtiquetaTramite" class="form-control">
+        <option value="EstadoPresentado">Estado Presentado</option>
+        <option value="PaseAEstudio">Pase A Estudio</option>
+        <option value="Despacho">Despacho</option>
+        <option value="Resolucion">Resolucion</option>
+        <option value="Notificacion">Notificacion</option>
+        <option value="PaseAlArchivo">Pase Al Archivo</option>
+    </select>
+    <button class="btn btn-primary" @onclick="Aceptar">Aceptar</button>
+</div>
+<DialogoNotificacion @ref=_dialogoNotificacion Mensaje=@_error Accion=Aceptar />
 @code{
 
     Tramite _tramite = new Tramite();
     Usuario _usu = new Usuario();
     Expediente _expediente = new Expediente();
-    
-    int IdUser;
-    
+    DialogoNotificacion? _dialogoNotificacion = null!;
+    String? _error = "";
     [Parameter] public int? IdTram { get; set; }
     [Parameter] public int? IdExp { get; set; }
     bool _esNuevoTramite = true;
@@ -46,14 +43,15 @@ else
         {
             if ((IdTram != null) && (IdExp != null))
             {
-                Tramite tra_hallado = ConsultaPorIdTramite.Ejecutar(IdTram.Value, IdExp.Value);
-                _tramite = tra_hallado;
+                Tramite traHallado = ConsultaPorIdTramite.Ejecutar(IdTram.Value, IdExp.Value);
+                _tramite = traHallado;
                 _esNuevoTramite=false;
             }
         }
         catch(Exception e)
         {
-            Console.WriteLine(e.Message);
+            _error = e.Message;
+            _dialogoNotificacion?.Mostrar();
         }
         
     }
@@ -62,18 +60,19 @@ else
     {
         try
         {
-            _usu = ObtenerUsuario.Ejecutar();
-            _expediente = ConsultaPorIdExpediente.Ejecutar(IdExp.Value);
+            _usu = ObtenerUsuario.Ejecutar()!;
+            _expediente = ConsultaPorIdExpediente.Ejecutar(IdExp!.Value);
             if (_esNuevoTramite)
             {
-              
                 AltaTramite.Ejecutar(_tramite, _expediente, _usu);
+                Navegador.NavigateTo($"/expediente/{IdExp}/tramites");
             }
             else
             {
                 {
-                    ModificacionTramite.Ejecutar(IdTram.Value, _tramite, _usu, _expediente);
+                    ModificacionTramite.Ejecutar(IdTram!.Value, _tramite, _usu, _expediente);
                     _esNuevoTramite = true;
+                    Navegador.NavigateTo($"/expediente/{IdExp}/tramites");
                 }
                 
             }
@@ -82,7 +81,8 @@ else
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
+            _error = e.Message;
+            _dialogoNotificacion?.Mostrar();
         }
 
     }
