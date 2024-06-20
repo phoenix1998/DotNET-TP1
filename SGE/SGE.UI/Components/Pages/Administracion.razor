@@ -2,6 +2,11 @@
 @rendermode InteractiveServer
 @inject CasoDeUsoUsuarioConsultaTodos ConsultaUsuarios
 @inject CasoDeUsoUsuarioBaja BajaUsuario
+@inject CasoDeUsoUsuarioObtener ObtenerUsuario
+@if (ObtenerUsuario.Ejecutar()!.Id == 1)
+{
+    
+
 <h3>Administracion</h3>
 <p>Aqui se administran los usuarios del sistema</p>
 <br/>
@@ -21,7 +26,7 @@
         <td>@usuario.Id</td>
         <td>@usuario.Nombre, @usuario.Apellido</td>
         <td>@usuario.Email</td>
-        <td>@(usuario.Permisos.Any() ? string.Join(", ", usuario.Permisos.Select(p => ((EtiquetaTramite)p).ToString())) : "No tiene permisos")</td>
+        <td>@(usuario.Permisos.Any() ? string.Join(", ", usuario.Permisos.Select(p => ((Permiso)p).ToString())) : "No tiene permisos")</td>
         <td><a href="/usuario/@usuario.Id/"><button class="btn btn-primary">Editar</button></a></td>
         <td><button class="btn btn-primary" @onclick="()=>Mostrar(usuario.Id)">Eliminar</button></td>
         <td></td>
@@ -30,6 +35,7 @@
     </tbody>
 </table>
 <DialogoConfirmacion @ref=_dialogo Mensaje="Esta seguro que quiere eliminar a este usuario?" Accion=Eliminar />
+<DialogoNotificacion @ref=_dialogoNotificacion Mensaje=@_error Accion=Eliminar />
 <style>
     .tabla-usuarios {
         border-collapse: separate;
@@ -56,31 +62,40 @@
 </style>
 @code {
     List<Usuario> _usuarios = new List<Usuario>();
-    int _UserId;
+    int _userId;
+    String? _error;
     DialogoConfirmacion? _dialogo = null!;
+    DialogoNotificacion? _dialogoNotificacion = null!;
     protected override void OnInitialized()
     {
         _usuarios = ConsultaUsuarios.Ejecutar();
     }
+
     void Mostrar(int Id)
     {
-        _UserId = Id;
-        _dialogo.Mostrar();
+        _userId = Id;
+        _dialogo!.Mostrar();
     }
+
     void Eliminar()
     {
-        
-        if(_UserId != 1)
+
+        if (_userId != 1)
         {
-            BajaUsuario.Ejecutar(_UserId);
+            BajaUsuario.Ejecutar(_userId);
             _usuarios = ConsultaUsuarios.Ejecutar();
         }
         else
         {
-            Console.WriteLine("No se puede eliminar el usuario administrador");
+            _error = "No se puede eliminar el usuario administrador";
+            _dialogoNotificacion!.Mostrar();
         }
     }
-    
-    
 
+}
+}
+else
+{
+    <h1>No tiene permisos para acceder a esta pagina</h1>
+    <p>Por favor, selecciona una opcion del menu principal</p>
 }
